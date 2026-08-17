@@ -511,6 +511,35 @@ body {
   font-weight: 800;
 }
 
+/* ===== Gen Stats ===== */
+.gen-stats {
+  max-width: 1200px;
+  margin: 0 auto 24px;
+  padding: 14px 24px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  color: var(--text-tertiary);
+  border: 1px dashed var(--card-border);
+  border-radius: var(--radius-sm);
+  background: var(--bg-secondary);
+}
+
+.gen-stats span {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-weight: 600;
+}
+
+.gen-stats .free-badge {
+  color: #10b981;
+  font-weight: 800;
+}
+
 /* ===== Footer ===== */
 .footer {
   text-align: center;
@@ -532,7 +561,7 @@ body {
   .logo-text h1 { font-size: 17px; }
   .logo-text p { font-size: 11px; }
   .date-display { display: none; }
-  .slot-banner, .filters, .content-grid, .stats-bar, .date-nav { padding: 0 16px; }
+  .slot-banner, .filters, .content-grid, .stats-bar, .date-nav, .gen-stats { padding: 0 16px; }
   .content-grid { grid-template-columns: 1fr; }
   .slot-card { padding: 16px 20px; flex-direction: column; align-items: flex-start; }
   .card { padding: 18px; }
@@ -584,6 +613,9 @@ body {
 
 <!-- Content Grid -->
 <div class="content-grid" id="contentGrid"></div>
+
+<!-- Generation Stats -->
+<div class="gen-stats" id="genStats"></div>
 
 <!-- Footer -->
 <footer class="footer">
@@ -673,6 +705,7 @@ async function init() {
   renderDateNav();
   renderFilters();
   renderStats();
+  renderGenStats();
   renderContent();
 }
 
@@ -788,6 +821,31 @@ function renderStats() {
     <span>🤖 AI <span class="num">${aiCount}</span></span>
     <span>💼 工作 <span class="num">${workCount}</span></span>
     <span>🏠 生活 <span class="num">${lifeCount}</span></span>
+  `;
+}
+
+// ===== Generation Stats =====
+function renderGenStats() {
+  const el = document.getElementById('genStats');
+  if (!rawData || !rawData.generationStats) {
+    el.innerHTML = '';
+    return;
+  }
+
+  const s = rawData.generationStats;
+  const isFree = s.cost === 0;
+  const fmt = (n) => (n || 0).toLocaleString();
+  const costStr = isFree
+    ? '<span class="free-badge">💚 免费模型，零花费！</span>'
+    : s.cost < 0.01 ? `💰 $${s.cost}` : `💰 $${s.cost.toFixed(2)}`;
+
+  el.innerHTML = `
+    <span>🤖 ${escapeHtml(s.model)}</span>
+    <span>📥 输入 ${fmt(s.promptTokens)}</span>
+    <span>📤 输出 ${fmt(s.completionTokens)}</span>
+    <span>📊 共 ${fmt(s.totalTokens)} tokens</span>
+    ${costStr}
+    <span style="opacity:0.6;">${escapeHtml(s.slot)} · ${formatDateTime(s.lastRun)}</span>
   `;
 }
 

@@ -101,8 +101,37 @@ ${focusDesc}
 [{"title":"...","category":"...","categoryName":"...","content":"...","explanation":"...","usageTip":"...","sourceUrl":"..."}, ...]`;
 }
 
+// ===== 获取免费模型 =====
+async function getFreeModels() {
+  try {
+    const res = await fetch('https://openrouter.ai/api/v1/models');
+    const data = await res.json();
+    const models = data.data || [];
+
+    const freeTextModels = models.filter(m => {
+      const pricing = m.pricing || {};
+      const isFree = pricing.prompt === '0' && pricing.completion === '0';
+      const modalities = (m.architecture && m.architecture.input_modalities) || [];
+      const isText = modalities.includes('text') || modalities.length === 0;
+      const id = (m.id || '').toLowerCase();
+      const isExcluded = ['lyria', 'clip', 'audio', 'image', 'whisper', 'vision', 'stable'].some(x => id.includes(x));
+      return isFree && isText && !isExcluded && m.id !== 'openrouter/free';
+    });
+
+    freeTextModels.sort((a, b) => (b.context_length || 0) - (a.context_length || 0));
+    const top3 = freeTextModels.slice(0, 3).map(m => m.id);
+    console.log(`🆓 可用免费模型(top3): ${top3.join(', ') || '无'}`);
+    return top3;
+  } catch (e) {
+    console.log(`⚠️ 获取免费模型列表失败: ${e.message}`);
+    return [];
+  }
+}
+
 // ===== 调用 OpenRouter =====
-async function generateContent(prompt) {
+async function generateContent(prompt, model) {
+  const useModel = model || MODEL;
+  console.log(`🔄 尝试模型: ${useModel}`);
   const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
     method: 'POST',
     headers: {
@@ -112,7 +141,7 @@ async function generateContent(prompt) {
       'X-Title': 'Gengku',
     },
     body: JSON.stringify({
-      model: MODEL,
+      model: useModel,
       messages: [
         { role: 'system', content: '你是一个专业的内容创作者，擅长用幽默风趣的方式解读技术和生活话题。你输出的是纯JSON，不包含任何markdown标记。' },
         { role: 'user', content: prompt },
@@ -133,7 +162,33 @@ async function generateContent(prompt) {
   // 清理可能的 markdown 代码块标记
   text = text.replace(/^```json\s*/i, '').replace(/^```\s*/i, '').replace(/```\s*$/i, '');
 
-  return JSON.parse(text);
+  const items = JSON.parse(text);
+  const usage = data.usage || {};
+  console.log(`✅ 模型 ${useModel} 成功`);
+  return { items, usage, usedModel: useModel };
+}
+
+// ===== 费用计算 =====
+function calculateCost(model, promptTokens, completionTokens) {
+  if (model.includes(':free')) return { cost: 0, note: '免费模型' };
+
+  const pricing = {
+    'deepseek/deepseek-chat':              { input: 0.14,  output: 0.28 },
+    'deepseek/deepseek-r1':                { input: 0.55,  output: 2.19 },
+    'anthropic/claude-3.5-sonnet':         { input: 3.0,   output: 15.0 },
+    'anthropic/claude-3.5-haiku':          { input: 0.8,   output: 4.0 },
+    'openai/gpt-4o':                       { input: 2.5,   output: 10.0 },
+    'openai/gpt-4o-mini':                 { input: 0.15,  output: 0.6 },
+    'google/gemini-2.0-flash-001':         { input: 0.1,   output: 0.4 },
+    'meta-llama/llama-3.3-70b-instruct':   { input: 0.23,  output: 0.4 },
+  };
+
+  const p = pricing[model] || { input: 0.5, output: 1.5 };
+  const cost = (promptTokens * p.input + completionTokens * p.output) / 1_000_000;
+  return {
+    cost: Math.round(cost * 100000) / 100000,
+    note: `$${p.input}/1M输入 + $${p.output}/1M输出`,
+  };
 }
 
 // ===== 主流程 =====
@@ -148,11 +203,27 @@ async function main() {
     existing = JSON.parse(readFileSync(DATA_PATH, 'utf-8'));
   }
 
-  // 生成新内容
+  // 生成新内容（先获取免费模型，带 fallback）
+  const freeModels = await getFreeModels();
+  const modelsToTry = [...freeModels, MODEL];
   const prompt = buildPrompt(slot);
   console.log('⏳ 正在生成内容...');
-  const newItems = await generateContent(prompt);
+
+  let newItems, usage, usedModel;
+  for (const model of modelsToTry) {
+    try {
+      const result = await generateContent(prompt, model);
+      newItems = result.items;
+      usage = result.usage;
+      usedModel = result.usedModel;
+      break;
+    } catch (e) {
+      console.log(`❌ 模型 ${model} 失败: ${e.message}`);
+    }
+  }
+  if (!newItems) throw new Error('所有模型尝试均失败');
   console.log(`✅ 生成了 ${newItems.length} 条新梗`);
+  console.log(`📊 Token: 输入 ${usage.prompt_tokens || 0} / 输出 ${usage.completion_tokens || 0} / 总计 ${usage.total_tokens || 0}`);
 
   // 去重（标题去重）
   const existingTitles = new Set(existing.content.map(c => c.title));
@@ -179,10 +250,26 @@ async function main() {
 
   // 合并 & 保留最近 200 条
   const merged = [...enriched, ...existing.content].slice(0, 200);
+
+  // 费用统计
+  const { cost, note } = calculateCost(usedModel, usage.prompt_tokens || 0, usage.completion_tokens || 0);
+  const isFree = usedModel.includes(':free');
+  console.log(`💰 费用: ${isFree ? '💚 免费模型，零花费！' : `$${cost} (${note})`}`);
+
   const updated = {
     lastUpdated: timeStr,
     version: existing.version || '1.0.0',
     content: merged,
+    generationStats: {
+      model: usedModel,
+      lastRun: timeStr,
+      slot: slot.title,
+      promptTokens: usage.prompt_tokens || 0,
+      completionTokens: usage.completion_tokens || 0,
+      totalTokens: usage.total_tokens || 0,
+      cost: cost,
+      costNote: isFree ? '免费模型' : note,
+    },
   };
 
   writeFileSync(DATA_PATH, JSON.stringify(updated, null, 2) + '\n', 'utf-8');
