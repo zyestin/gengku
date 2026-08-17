@@ -225,6 +225,99 @@ body {
   vertical-align: middle;
 }
 
+/* ===== Date Navigation ===== */
+.date-nav {
+  max-width: 1200px;
+  margin: 16px auto 0;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.date-nav-scroll {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  flex: 1;
+  padding: 4px 2px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--card-border) transparent;
+}
+
+.date-nav-scroll::-webkit-scrollbar { height: 4px; }
+.date-nav-scroll::-webkit-scrollbar-track { background: transparent; }
+.date-nav-scroll::-webkit-scrollbar-thumb { background: var(--card-border); border-radius: 4px; }
+
+.date-chip {
+  padding: 7px 14px;
+  border-radius: 100px;
+  border: 1px solid var(--card-border);
+  background: var(--card-bg);
+  color: var(--text-secondary);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.date-chip:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.date-chip.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+.date-chip .day-tag {
+  font-size: 11px;
+  opacity: 0.65;
+  padding: 1px 6px;
+  border-radius: 100px;
+  background: var(--bg-secondary);
+}
+
+.date-chip.active .day-tag {
+  background: rgba(255,255,255,0.2);
+  opacity: 0.9;
+}
+
+.date-nav-btn {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid var(--card-border);
+  background: var(--card-bg);
+  color: var(--text-secondary);
+  cursor: pointer;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+  flex-shrink: 0;
+}
+
+.date-nav-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  transform: scale(1.05);
+}
+
+.date-nav-btn:disabled {
+  opacity: 0.25;
+  cursor: not-allowed;
+  transform: none;
+}
+
 /* ===== Content Grid ===== */
 .content-grid {
   max-width: 1200px;
@@ -422,7 +515,7 @@ body {
   .logo-text h1 { font-size: 17px; }
   .logo-text p { font-size: 11px; }
   .date-display { display: none; }
-  .slot-banner, .filters, .content-grid, .stats-bar { padding: 0 16px; }
+  .slot-banner, .filters, .content-grid, .stats-bar, .date-nav { padding: 0 16px; }
   .content-grid { grid-template-columns: 1fr; }
   .slot-card { padding: 16px 20px; flex-direction: column; align-items: flex-start; }
   .card { padding: 18px; }
@@ -462,6 +555,13 @@ body {
 <!-- Stats -->
 <div class="stats-bar" id="statsBar"></div>
 
+<!-- Date Navigation -->
+<div class="date-nav">
+  <button class="date-nav-btn" id="datePrev" aria-label="前一天">←</button>
+  <div class="date-nav-scroll" id="dateNavScroll"></div>
+  <button class="date-nav-btn" id="dateNext" aria-label="后一天">→</button>
+</div>
+
 <!-- Filters -->
 <div class="filters" id="filters"></div>
 
@@ -471,7 +571,7 @@ body {
 <!-- Footer -->
 <footer class="footer">
   <p>梗库 GENGKU · AI 驱动的话题灵感库 · 最后更新: <span id="lastUpdated">--</span></p>
-  <p style="margin-top:4px;opacity:0.7;">GitHub Actions + Vercel · OpenRouter AI · 零本地依赖</p>
+  <p style="margin-top:4px;opacity:0.7;">GitHub Actions + GitHub Pages · OpenRouter AI · 零本地依赖</p>
 </footer>
 
 <script>
@@ -504,7 +604,9 @@ const SLOTS = {
 let allContent = [];
 let activeCategory = 'all';
 let activeSlot = 'all';
+let activeDate = 'all';
 let rawData = null;
+let allDates = [];
 
 // ===== Init =====
 async function init() {
@@ -540,6 +642,18 @@ async function init() {
     activeSlot = currentSlot;
   }
 
+  // Collect unique dates (sorted desc)
+  allDates = [...new Set(allContent.map(c => c.date))].sort().reverse();
+
+  // Default to today's date if available, else most recent date
+  const todayStr = formatDateStr(now);
+  if (allDates.includes(todayStr)) {
+    activeDate = todayStr;
+  } else if (allDates.length > 0) {
+    activeDate = allDates[0];
+  }
+
+  renderDateNav();
   renderFilters();
   renderStats();
   renderContent();
@@ -576,6 +690,30 @@ function getCurrentSlot(date) {
 function formatDate(date) {
   const days = ['日','一','二','三','四','五','六'];
   return `${date.getFullYear()}年${date.getMonth()+1}月${date.getDate()}日 星期${days[date.getDay()]}`;
+}
+
+function formatDateStr(date) {
+  return `${date.getFullYear()}-${String(date.getMonth()+1).padStart(2,'0')}-${String(date.getDate()).padStart(2,'0')}`;
+}
+
+function formatDateChip(dateStr) {
+  const d = new Date(dateStr + 'T00:00:00');
+  const days = ['日','一','二','三','四','五','六'];
+  return `${d.getMonth()+1}月${d.getDate()}日`;
+}
+
+function formatDayLabel(dateStr) {
+  const d = new Date(dateStr + 'T00:00:00');
+  const days = ['日','一','二','三','四','五','六'];
+  const today = new Date();
+  const todayStr = formatDateStr(today);
+  const yesterday = new Date(today);
+  yesterday.setDate(yesterday.getDate() - 1);
+  const yesterdayStr = formatDateStr(yesterday);
+
+  if (dateStr === todayStr) return '今天';
+  if (dateStr === yesterdayStr) return '昨天';
+  return `周${days[d.getDay()]}`;
 }
 
 function formatDateTime(iso) {
@@ -623,22 +761,99 @@ function renderFilters() {
 
 // ===== Stats =====
 function renderStats() {
-  const workCount = allContent.filter(c => ['rn','frontend','app-dev','ai-coding','ai-tools','prompt','ai-culture','devtools'].includes(c.category)).length;
-  const lifeCount = allContent.filter(c => ['ai-life','edu','pingpong','current','family','life'].includes(c.category)).length;
-  const aiCount = allContent.filter(c => ['ai-coding','ai-tools','prompt','ai-culture','ai-life'].includes(c.category)).length;
+  const scoped = activeDate === 'all' ? allContent : allContent.filter(c => c.date === activeDate);
+  const workCount = scoped.filter(c => ['rn','frontend','app-dev','ai-coding','ai-tools','prompt','ai-culture','devtools'].includes(c.category)).length;
+  const lifeCount = scoped.filter(c => ['ai-life','edu','pingpong','current','family','life'].includes(c.category)).length;
+  const aiCount = scoped.filter(c => ['ai-coding','ai-tools','prompt','ai-culture','ai-life'].includes(c.category)).length;
+  const dateLabel = activeDate === 'all' ? '全部' : formatDateChip(activeDate);
   document.getElementById('statsBar').innerHTML = `
-    <span>📊 共 <span class="num">${allContent.length}</span> 条梗</span>
+    <span>📊 ${dateLabel} <span class="num">${scoped.length}</span> 条梗</span>
     <span>🤖 AI <span class="num">${aiCount}</span></span>
     <span>💼 工作 <span class="num">${workCount}</span></span>
     <span>🏠 生活 <span class="num">${lifeCount}</span></span>
   `;
 }
 
+// ===== Date Navigation =====
+function renderDateNav() {
+  const scroll = document.getElementById('dateNavScroll');
+
+  let html = `<button class="date-chip ${activeDate === 'all' ? 'active' : ''}" data-date="all">全部日期</button>`;
+  for (const dateStr of allDates) {
+    const count = allContent.filter(c => c.date === dateStr).length;
+    html += `<button class="date-chip ${activeDate === dateStr ? 'active' : ''}" data-date="${dateStr}">
+      ${formatDateChip(dateStr)}
+      <span class="day-tag">${formatDayLabel(dateStr)} ${count}条</span>
+    </button>`;
+  }
+  scroll.innerHTML = html;
+
+  scroll.querySelectorAll('[data-date]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      activeDate = btn.dataset.date;
+      renderDateNav();
+      renderStats();
+      renderContent();
+      scrollActiveDateIntoView();
+    });
+  });
+
+  updateNavButtons();
+}
+
+function updateNavButtons() {
+  const prevBtn = document.getElementById('datePrev');
+  const nextBtn = document.getElementById('dateNext');
+
+  if (activeDate === 'all') {
+    prevBtn.disabled = true;
+    nextBtn.disabled = true;
+    return;
+  }
+
+  const idx = allDates.indexOf(activeDate);
+  prevBtn.disabled = idx >= allDates.length - 1;
+  nextBtn.disabled = idx <= 0;
+}
+
+function scrollActiveDateIntoView() {
+  const scroll = document.getElementById('dateNavScroll');
+  const active = scroll.querySelector('.date-chip.active');
+  if (active) {
+    active.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+  }
+}
+
+document.getElementById('datePrev').addEventListener('click', () => {
+  if (activeDate === 'all') return;
+  const idx = allDates.indexOf(activeDate);
+  if (idx < allDates.length - 1) {
+    activeDate = allDates[idx + 1];
+    renderDateNav();
+    renderStats();
+    renderContent();
+    scrollActiveDateIntoView();
+  }
+});
+
+document.getElementById('dateNext').addEventListener('click', () => {
+  if (activeDate === 'all') return;
+  const idx = allDates.indexOf(activeDate);
+  if (idx > 0) {
+    activeDate = allDates[idx - 1];
+    renderDateNav();
+    renderStats();
+    renderContent();
+    scrollActiveDateIntoView();
+  }
+});
+
 // ===== Render Content =====
 function renderContent() {
   const grid = document.getElementById('contentGrid');
 
   let filtered = allContent;
+  if (activeDate !== 'all') filtered = filtered.filter(c => c.date === activeDate);
   if (activeSlot !== 'all') filtered = filtered.filter(c => c.slot === activeSlot);
   if (activeCategory !== 'all') filtered = filtered.filter(c => c.category === activeCategory);
 
@@ -646,11 +861,17 @@ function renderContent() {
   filtered.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
   if (filtered.length === 0) {
+    let emptyMsg = '等待 AI 定时生成新梗...';
+    let emptyTitle = '这个分类暂时还没有内容';
+    if (activeDate !== 'all') {
+      emptyTitle = `${formatDateChip(activeDate)} 暂无内容`;
+      emptyMsg = '这一天还没有生成梗，试试切换到其他日期或"全部日期"';
+    }
     grid.innerHTML = `
       <div class="empty-state">
         <span class="emoji">📭</span>
-        <h3>这个分类暂时还没有内容</h3>
-        <p>等待 AI 定时生成新梗...</p>
+        <h3>${emptyTitle}</h3>
+        <p>${emptyMsg}</p>
       </div>
     `;
     return;
