@@ -1,7 +1,103 @@
 {
-  "lastUpdated": "2026-08-17T13:42:00+08:00",
+  "lastUpdated": "2026-08-17T18:37:00+08:00",
   "version": "1.0.0",
   "content": [
+    {
+      "id": "1786963048955-0",
+      "title": "React Native新架构：Fabric终于不'掉帧'了，但我的头发已经掉光了",
+      "category": "rn",
+      "categoryName": "React Native开发",
+      "content": "React Native新架构Fabric号称解决了性能问题，但老开发者们纷纷表示：'等它稳定的时候，我的发际线已经回不来了'",
+      "explanation": "React Native长期因为性能问题被吐槽，新架构Fabric旨在解决这个问题，但迁移过程让很多开发者头疼",
+      "usageTip": "当同事抱怨RN性能时，可以摸摸头发说：'你知道吗，Fabric现在终于不卡了，但我这发量...'",
+      "slot": "workday-evening",
+      "date": "2026-08-17",
+      "createdAt": "2026-08-17T18:37:00+08:00"
+    },
+    {
+      "id": "1786963048955-1",
+      "title": "AI编程助手：从'这代码写得真棒'到'这行代码会炸'只需要3秒",
+      "category": "ai-coding",
+      "categoryName": "AI编程",
+      "content": "AI助手前一秒还在夸你代码优雅，下一秒就指出这会导致内存泄漏，像极了喜怒无常的代码审查员",
+      "explanation": "AI编程助手如Copilot等经常出现前后矛盾的代码建议，让开发者哭笑不得",
+      "usageTip": "当同事炫耀AI生成的代码时，可以说：'小心点，它可能正在酝酿怎么在code review时打你脸'",
+      "slot": "workday-evening",
+      "date": "2026-08-17",
+      "createdAt": "2026-08-17T18:37:00+08:00"
+    },
+    {
+      "id": "1786963048955-2",
+      "title": "辅导作业新姿势：让AI当'坏老师'，自己当'好爸爸'",
+      "category": "ai-life",
+      "categoryName": "AI生活",
+      "content": "现在辅导作业都让AI当黑脸：'这是AI老师说的要重写，爸爸也觉得你写得很好，但...'",
+      "explanation": "很多家长利用AI工具来辅导孩子作业，把严厉的要求推给AI，自己保持温和形象",
+      "usageTip": "家长群里可以说：'最近发现个新技巧，让ChatGPT当作业恶人，家庭和谐度+10086'",
+      "slot": "workday-evening",
+      "date": "2026-08-17",
+      "createdAt": "2026-08-17T18:37:00+08:00"
+    },
+    {
+      "id": "1786963048955-3",
+      "title": "Token焦虑症：看着进度条就像看着钱包在燃烧",
+      "category": "prompt",
+      "categoryName": "Prompt工程",
+      "content": "每次用AI写长文都紧张地盯着token计数器，感觉不是在工作而是在玩21点",
+      "explanation": "使用大模型时token消耗直接关联费用，长对话或复杂任务会让用户产生'烧钱焦虑'",
+      "usageTip": "同事问你为什么总是打断AI输出时，可以说：'兄弟，我这是在救你的信用卡啊'",
+      "slot": "workday-evening",
+      "date": "2026-08-17",
+      "createdAt": "2026-08-17T18:37:00+08:00"
+    },
+    {
+      "id": "1786963048955-4",
+      "title": "丈母娘乒乓球教学：'你这个发球还不如我刷抖音学的'",
+      "category": "pingpong",
+      "categoryName": "乒乓球",
+      "content": "现在中老年乒乓球爱好者技术突飞猛进，因为短视频平台上有无数国乒退役选手在教球",
+      "explanation": "抖音等平台上有大量专业乒乓球教学视频，让业余爱好者水平大幅提升",
+      "usageTip": "可以和球友吐槽：'现在最怕和阿姨大爷打球，他们学的全是专业动作'",
+      "slot": "workday-evening",
+      "date": "2026-08-17",
+      "createdAt": "2026-08-17T18:37:00+08:00"
+    },
+    {
+      "id": "1786963048955-5",
+      "title": "AI生成家长群回复：从'收到'到'文采飞扬'只要0.3秒",
+      "category": "ai-life",
+      "categoryName": "AI生活",
+      "content": "现在家长群里的长篇大论可能都是AI生成的，只有'收到'两个字是真人打的",
+      "explanation": "很多家长使用AI工具润色家长群发言，既体面又省时",
+      "usageTip": "可以在家长群开玩笑说：'刚发现群里文笔最好的几位，IP地址都是api.openai.com'",
+      "slot": "workday-evening",
+      "date": "2026-08-17",
+      "createdAt": "2026-08-17T18:37:00+08:00"
+    },
+    {
+      "id": "1786963048955-6",
+      "title": "React状态管理新哲学：Zustand不是因为好用，是因为名字够酷",
+      "category": "frontend",
+      "categoryName": "前端技术",
+      "content": "开发者选择Zustand的真相：Redux太复杂，MobX不够潮，而Zustand听起来像德国高性能汽车",
+      "explanation": "Zustand是近年来流行的轻量级状态管理库，名字在德语中是'状态'的意思",
+      "usageTip": "当讨论状态管理方案时可以说：'我选Zustand主要是因为念起来感觉自己很专业'",
+      "slot": "workday-evening",
+      "date": "2026-08-17",
+      "createdAt": "2026-08-17T18:37:00+08:00"
+    },
+    {
+      "id": "1786963048955-7",
+      "title": "AI幻觉现场：一本正经地告诉你'1+1=3'是因为'数学在进化'",
+      "category": "ai-culture",
+      "categoryName": "AI文化",
+      "content": "当AI犯低级错误时，它总能给出令人信服(但完全错误)的解释，仿佛在考验用户的智商",
+      "explanation": "大语言模型有时会产生'幻觉'(hallucination)，即自信地给出错误答案",
+      "usageTip": "当AI给出明显错误答案时，可以模仿它的语气说：'根据最新研究，你这个问题本身就有问题'",
+      "slot": "workday-evening",
+      "date": "2026-08-17",
+      "createdAt": "2026-08-17T18:37:00+08:00"
+    },
     {
       "id": "1786945349432-0",
       "title": "AI写代码的尽头是AI写AI",
@@ -616,13 +712,13 @@
     }
   ],
   "generationStats": {
-    "model": "dots-studio/dots-3-note-preview:free",
-    "lastRun": "2026-08-17T13:42:00+08:00",
+    "model": "deepseek/deepseek-chat",
+    "lastRun": "2026-08-17T18:37:00+08:00",
     "slot": "工作日晚间",
-    "promptTokens": 1059,
-    "completionTokens": 1759,
-    "totalTokens": 2818,
-    "cost": 0,
-    "costNote": "免费模型"
+    "promptTokens": 1015,
+    "completionTokens": 1128,
+    "totalTokens": 2143,
+    "cost": 0.00046,
+    "costNote": "$0.14/1M输入 + $0.28/1M输出"
   }
 }
