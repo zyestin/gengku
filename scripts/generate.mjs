@@ -107,8 +107,8 @@ async function generateContent(prompt) {
     headers: {
       'Authorization': `Bearer ${API_KEY}`,
       'Content-Type': 'application/json',
-      'HTTP-Referer': 'https://github.com/gengku/gengku',
-      'X-Title': '梗库 GENGKU',
+      'HTTP-Referer': 'https://github.com/zyestin/gengku',
+      'X-Title': 'Gengku',
     },
     body: JSON.stringify({
       model: MODEL,
