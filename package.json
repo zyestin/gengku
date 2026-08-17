@@ -1,0 +1,12 @@
+{
+  "name": "gengku",
+  "version": "1.0.0",
+  "description": "梗库 - 每日工作与生活话题灵感库",
+  "type": "module",
+  "scripts": {
+    "generate": "node scripts/generate.mjs",
+    "serve": "npx serve ."
+  },
+  "dependencies": {},
+  "license": "MIT"
+}

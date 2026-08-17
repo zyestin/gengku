@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>梗库 GENGKU · 每日话题灵感</title>
+<style>
+:root {
+  --bg: #faf7f2;
+  --bg-secondary: #f0ebe3;
+  --card-bg: #ffffff;
+  --card-border: #e8e2d8;
+  --text: #1a1a2e;
+  --text-secondary: #6b7280;
+  --text-tertiary: #9ca3af;
+  --accent: #f59e0b;
+  --accent-light: #fef3c7;
+  --accent-dark: #d97706;
+  --shadow: 0 2px 12px rgba(0,0,0,0.06);
+  --shadow-hover: 0 8px 30px rgba(0,0,0,0.12);
+  --radius: 16px;
+  --radius-sm: 10px;
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-theme="dark"] {
+  --bg: #0d0d17;
+  --bg-secondary: #15152380;
+  --card-bg: #1a1a2e;
+  --card-border: #2a2a3e;
+  --text: #e5e7eb;
+  --text-secondary: #9ca3af;
+  --text-tertiary: #6b7280;
+  --accent: #fbbf24;
+  --accent-light: #78350f;
+  --accent-dark: #f59e0b;
+  --shadow: 0 2px 12px rgba(0,0,0,0.3);
+  --shadow-hover: 0 8px 30px rgba(0,0,0,0.4);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  transition: var(--transition);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ===== Header ===== */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--bg);
+  border-bottom: 1px solid var(--card-border);
+  backdrop-filter: blur(12px);
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+}
+
+.header-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  font-weight: 900;
+  color: #fff;
+  letter-spacing: -1px;
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+}
+
+.logo-text h1 {
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+
+.logo-text p {
+  font-size: 12px;
+  color: var(--text-tertiary);
+  font-weight: 500;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.date-display {
+  font-size: 13px;
+  color: var(--text-secondary);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.theme-toggle {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  border: 1px solid var(--card-border);
+  background: var(--card-bg);
+  cursor: pointer;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+}
+
+.theme-toggle:hover {
+  transform: scale(1.05);
+  border-color: var(--accent);
+}
+
+/* ===== Slot Banner ===== */
+.slot-banner {
+  max-width: 1200px;
+  margin: 24px auto 0;
+  padding: 0 24px;
+}
+
+.slot-card {
+  background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+  border-radius: var(--radius);
+  padding: 20px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  color: #fff;
+  box-shadow: 0 4px 20px rgba(245, 158, 11, 0.25);
+}
+
+.slot-info h2 {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.slot-info p {
+  font-size: 13px;
+  opacity: 0.9;
+}
+
+.slot-badge {
+  background: rgba(255,255,255,0.2);
+  padding: 6px 16px;
+  border-radius: 100px;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* ===== Filters ===== */
+.filters {
+  max-width: 1200px;
+  margin: 24px auto 0;
+  padding: 0 24px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+.filter-label {
+  font-size: 13px;
+  color: var(--text-tertiary);
+  font-weight: 600;
+  margin-right: 4px;
+}
+
+.filter-pill {
+  padding: 7px 16px;
+  border-radius: 100px;
+  border: 1px solid var(--card-border);
+  background: var(--card-bg);
+  color: var(--text-secondary);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  white-space: nowrap;
+}
+
+.filter-pill:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.filter-pill.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+.filter-pill .cat-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: 6px;
+  vertical-align: middle;
+}
+
+/* ===== Content Grid ===== */
+.content-grid {
+  max-width: 1200px;
+  margin: 24px auto 48px;
+  padding: 0 24px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: 20px;
+}
+
+/* ===== Card ===== */
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius);
+  padding: 24px;
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  animation: cardIn 0.5s ease backwards;
+}
+
+@keyframes cardIn {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.card:hover {
+  box-shadow: var(--shadow-hover);
+  transform: translateY(-2px);
+  border-color: var(--accent);
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.card-category {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 100px;
+  letter-spacing: 0.3px;
+}
+
+.card-slot {
+  font-size: 11px;
+  color: var(--text-tertiary);
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 100px;
+  background: var(--bg-secondary);
+}
+
+.card-title {
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.4;
+  color: var(--text);
+}
+
+.card-content {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+.card-explanation {
+  background: var(--bg-secondary);
+  border-radius: var(--radius-sm);
+  padding: 14px 16px;
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.65;
+}
+
+.card-explanation .label {
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--accent-dark);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 6px;
+  display: block;
+}
+
+.card-usage {
+  border-left: 3px solid var(--accent);
+  padding: 10px 14px;
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.65;
+  background: var(--accent-light);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+
+[data-theme="dark"] .card-usage {
+  background: rgba(251, 191, 36, 0.08);
+}
+
+.card-usage .label {
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--accent-dark);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+  display: block;
+}
+
+.card-footer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--text-tertiary);
+  margin-top: auto;
+}
+
+/* ===== Empty State ===== */
+.empty-state {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 80px 20px;
+  color: var(--text-tertiary);
+}
+
+.empty-state .emoji {
+  font-size: 48px;
+  margin-bottom: 16px;
+  display: block;
+}
+
+.empty-state h3 {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+}
+
+.empty-state p {
+  font-size: 14px;
+}
+
+/* ===== Stats Bar ===== */
+.stats-bar {
+  max-width: 1200px;
+  margin: 0 auto 20px;
+  padding: 0 24px;
+  display: flex;
+  gap: 24px;
+  font-size: 13px;
+  color: var(--text-tertiary);
+  font-weight: 600;
+}
+
+.stats-bar span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.stats-bar .num {
+  color: var(--accent-dark);
+  font-size: 15px;
+  font-weight: 800;
+}
+
+/* ===== Footer ===== */
+.footer {
+  text-align: center;
+  padding: 32px 24px;
+  font-size: 13px;
+  color: var(--text-tertiary);
+  border-top: 1px solid var(--card-border);
+}
+
+.footer a {
+  color: var(--accent-dark);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 640px) {
+  .header-inner { padding: 12px 16px; }
+  .logo-text h1 { font-size: 17px; }
+  .logo-text p { font-size: 11px; }
+  .date-display { display: none; }
+  .slot-banner, .filters, .content-grid, .stats-bar { padding: 0 16px; }
+  .content-grid { grid-template-columns: 1fr; }
+  .slot-card { padding: 16px 20px; flex-direction: column; align-items: flex-start; }
+  .card { padding: 18px; }
+}
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<header class="header">
+  <div class="header-inner">
+    <div class="logo">
+      <div class="logo-icon">梗</div>
+      <div class="logo-text">
+        <h1>梗库 GENGKU</h1>
+        <p>每日工作与生活话题灵感</p>
+      </div>
+    </div>
+    <div class="header-right">
+      <div class="date-display" id="dateDisplay"></div>
+      <button class="theme-toggle" id="themeToggle" aria-label="切换主题">🌙</button>
+    </div>
+  </div>
+</header>
+
+<!-- Slot Banner -->
+<div class="slot-banner">
+  <div class="slot-card" id="slotBanner">
+    <div class="slot-info">
+      <h2 id="slotTitle">加载中...</h2>
+      <p id="slotDesc">正在获取今日话题</p>
+    </div>
+    <div class="slot-badge" id="slotBadge">--</div>
+  </div>
+</div>
+
+<!-- Stats -->
+<div class="stats-bar" id="statsBar"></div>
+
+<!-- Filters -->
+<div class="filters" id="filters"></div>
+
+<!-- Content Grid -->
+<div class="content-grid" id="contentGrid"></div>
+
+<!-- Footer -->
+<footer class="footer">
+  <p>梗库 GENGKU · AI 驱动的话题灵感库 · 最后更新: <span id="lastUpdated">--</span></p>
+  <p style="margin-top:4px;opacity:0.7;">GitHub Actions + Vercel · OpenRouter AI · 零本地依赖</p>
+</footer>
+
+<script>
+// ===== Category Config =====
+const CATEGORIES = {
+  'rn':        { name: 'RN开发',   color: '#61dafb', bg: 'rgba(97,218,251,0.12)' },
+  'frontend':  { name: '前端技术',  color: '#f59e0b', bg: 'rgba(245,158,11,0.12)' },
+  'app-dev':   { name: 'App开发',   color: '#6366f1', bg: 'rgba(99,102,241,0.12)' },
+  'ai-coding': { name: 'AI编程',    color: '#8b5cf6', bg: 'rgba(139,92,246,0.12)' },
+  'devtools':  { name: '开发工具',  color: '#10b981', bg: 'rgba(16,185,129,0.12)' },
+  'edu':       { name: '儿童教育',  color: '#ec4899', bg: 'rgba(236,72,153,0.12)' },
+  'pingpong':  { name: '乒乓球',    color: '#ef4444', bg: 'rgba(239,68,68,0.12)' },
+  'current':   { name: '时事热点',  color: '#3b82f6', bg: 'rgba(59,130,246,0.12)' },
+  'family':    { name: '家庭育儿',  color: '#f97316', bg: 'rgba(249,115,22,0.12)' },
+  'life':      { name: '生活日常',  color: '#14b8a6', bg: 'rgba(20,184,166,0.12)' },
+};
+
+const SLOTS = {
+  'workday-morning':   { title: '工作日早间', desc: '上班路上来一波工作话题，到公司跟同事聊', badge: '💼 100% 工作' },
+  'workday-evening':   { title: '工作日晚间', desc: '下班了，工作生活各一半，切换模式', badge: '🌗 50% 工作 + 50% 生活' },
+  'weekend-morning':   { title: '周末早晨',   desc: '和家人、孩子、附近家长聊的生活话题', badge: '🏠 100% 生活' },
+  'weekend-evening':   { title: '周末晚间',   desc: '一天结束，和家人聊聊今天的趣事', badge: '🌙 100% 生活' },
+};
+
+// ===== State =====
+let allContent = [];
+let activeCategory = 'all';
+let activeSlot = 'all';
+let rawData = null;
+
+// ===== Init =====
+async function init() {
+  // Theme
+  const savedTheme = localStorage.getItem('gengku-theme') || 'light';
+  setTheme(savedTheme);
+
+  // Date
+  const now = new Date();
+  document.getElementById('dateDisplay').textContent = formatDate(now);
+
+  // Current slot
+  const currentSlot = getCurrentSlot(now);
+  if (SLOTS[currentSlot]) {
+    document.getElementById('slotTitle').textContent = SLOTS[currentSlot].title;
+    document.getElementById('slotDesc').textContent = SLOTS[currentSlot].desc;
+    document.getElementById('slotBadge').textContent = SLOTS[currentSlot].badge;
+  }
+
+  // Load data
+  try {
+    const res = await fetch('data/content.json');
+    rawData = await res.json();
+    allContent = rawData.content || [];
+    document.getElementById('lastUpdated').textContent = formatDateTime(rawData.lastUpdated);
+  } catch (e) {
+    console.error('Failed to load content:', e);
+    allContent = [];
+  }
+
+  // Default filter to current slot
+  if (currentSlot && allContent.some(c => c.slot === currentSlot)) {
+    activeSlot = currentSlot;
+  }
+
+  renderFilters();
+  renderStats();
+  renderContent();
+}
+
+// ===== Theme =====
+function setTheme(theme) {
+  document.documentElement.setAttribute('data-theme', theme);
+  document.getElementById('themeToggle').textContent = theme === 'dark' ? '☀️' : '🌙';
+  localStorage.setItem('gengku-theme', theme);
+}
+
+document.getElementById('themeToggle').addEventListener('click', () => {
+  const current = document.documentElement.getAttribute('data-theme');
+  setTheme(current === 'dark' ? 'light' : 'dark');
+});
+
+// ===== Slot Detection =====
+function getCurrentSlot(date) {
+  const day = date.getDay(); // 0=Sun, 6=Sat
+  const hour = date.getHours();
+  const isWeekend = day === 0 || day === 6;
+
+  if (isWeekend) {
+    if (hour < 12) return 'weekend-morning';
+    return 'weekend-evening';
+  } else {
+    if (hour < 12) return 'workday-morning';
+    return 'workday-evening';
+  }
+}
+
+// ===== Date Formatting =====
+function formatDate(date) {
+  const days = ['日','一','二','三','四','五','六'];
+  return `${date.getFullYear()}年${date.getMonth()+1}月${date.getDate()}日 星期${days[date.getDay()]}`;
+}
+
+function formatDateTime(iso) {
+  if (!iso) return '--';
+  const d = new Date(iso);
+  return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')} ${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`;
+}
+
+// ===== Filters =====
+function renderFilters() {
+  const container = document.getElementById('filters');
+
+  // Slot filters
+  let html = '<span class="filter-label">时段</span>';
+  html += `<button class="filter-pill ${activeSlot === 'all' ? 'active' : ''}" data-slot="all">全部</button>`;
+  for (const [key, slot] of Object.entries(SLOTS)) {
+    html += `<button class="filter-pill ${activeSlot === key ? 'active' : ''}" data-slot="${key}">${slot.title}</button>`;
+  }
+
+  // Category filters
+  html += '<span class="filter-label" style="margin-left:12px;">分类</span>';
+  html += `<button class="filter-pill ${activeCategory === 'all' ? 'active' : ''}" data-cat="all">全部</button>`;
+  for (const [key, cat] of Object.entries(CATEGORIES)) {
+    html += `<button class="filter-pill ${activeCategory === key ? 'active' : ''}" data-cat="${key}"><span class="cat-dot" style="background:${cat.color};"></span>${cat.name}</button>`;
+  }
+
+  container.innerHTML = html;
+
+  container.querySelectorAll('[data-slot]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      activeSlot = btn.dataset.slot;
+      renderFilters();
+      renderContent();
+    });
+  });
+
+  container.querySelectorAll('[data-cat]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      activeCategory = btn.dataset.cat;
+      renderFilters();
+      renderContent();
+    });
+  });
+}
+
+// ===== Stats =====
+function renderStats() {
+  const workCount = allContent.filter(c => ['rn','frontend','app-dev','ai-coding','devtools'].includes(c.category)).length;
+  const lifeCount = allContent.filter(c => ['edu','pingpong','current','family','life'].includes(c.category)).length;
+  document.getElementById('statsBar').innerHTML = `
+    <span>📊 共 <span class="num">${allContent.length}</span> 条梗</span>
+    <span>💼 工作 <span class="num">${workCount}</span></span>
+    <span>🏠 生活 <span class="num">${lifeCount}</span></span>
+  `;
+}
+
+// ===== Render Content =====
+function renderContent() {
+  const grid = document.getElementById('contentGrid');
+
+  let filtered = allContent;
+  if (activeSlot !== 'all') filtered = filtered.filter(c => c.slot === activeSlot);
+  if (activeCategory !== 'all') filtered = filtered.filter(c => c.category === activeCategory);
+
+  // Sort by createdAt desc
+  filtered.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+
+  if (filtered.length === 0) {
+    grid.innerHTML = `
+      <div class="empty-state">
+        <span class="emoji">📭</span>
+        <h3>这个分类暂时还没有内容</h3>
+        <p>等待 AI 定时生成新梗...</p>
+      </div>
+    `;
+    return;
+  }
+
+  grid.innerHTML = filtered.map((item, i) => {
+    const cat = CATEGORIES[item.category] || { name: '其他', color: '#6b7280', bg: 'rgba(107,114,128,0.12)' };
+    const slot = SLOTS[item.slot] || { title: '其他' };
+    return `
+      <div class="card" style="animation-delay:${i * 0.06}s;">
+        <div class="card-header">
+          <span class="card-category" style="color:${cat.color};background:${cat.bg};">
+            <span style="width:8px;height:8px;border-radius:50%;background:${cat.color};display:inline-block;"></span>
+            ${cat.name}
+          </span>
+          <span class="card-slot">${slot.title}</span>
+        </div>
+        <div class="card-title">${escapeHtml(item.title)}</div>
+        <div class="card-content">${escapeHtml(item.content)}</div>
+        <div class="card-explanation">
+          <span class="label">📖 解读</span>
+          ${escapeHtml(item.explanation)}
+        </div>
+        <div class="card-usage">
+          <span class="label">💬 怎么用</span>
+          ${escapeHtml(item.usageTip)}
+        </div>
+        <div class="card-footer">
+          <span>🕐 ${formatDateTime(item.createdAt)}</span>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+// ===== Utils =====
+function escapeHtml(str) {
+  if (!str) return '';
+  return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+// ===== Start =====
+init();
+</script>
+</body>
+</html>
