@@ -477,16 +477,20 @@ body {
 <script>
 // ===== Category Config =====
 const CATEGORIES = {
-  'rn':        { name: 'RN开发',   color: '#61dafb', bg: 'rgba(97,218,251,0.12)' },
-  'frontend':  { name: '前端技术',  color: '#f59e0b', bg: 'rgba(245,158,11,0.12)' },
-  'app-dev':   { name: 'App开发',   color: '#6366f1', bg: 'rgba(99,102,241,0.12)' },
-  'ai-coding': { name: 'AI编程',    color: '#8b5cf6', bg: 'rgba(139,92,246,0.12)' },
-  'devtools':  { name: '开发工具',  color: '#10b981', bg: 'rgba(16,185,129,0.12)' },
-  'edu':       { name: '儿童教育',  color: '#ec4899', bg: 'rgba(236,72,153,0.12)' },
-  'pingpong':  { name: '乒乓球',    color: '#ef4444', bg: 'rgba(239,68,68,0.12)' },
-  'current':   { name: '时事热点',  color: '#3b82f6', bg: 'rgba(59,130,246,0.12)' },
-  'family':    { name: '家庭育儿',  color: '#f97316', bg: 'rgba(249,115,22,0.12)' },
-  'life':      { name: '生活日常',  color: '#14b8a6', bg: 'rgba(20,184,166,0.12)' },
+  'rn':         { name: 'RN开发',     color: '#61dafb', bg: 'rgba(97,218,251,0.12)' },
+  'frontend':   { name: '前端技术',    color: '#f59e0b', bg: 'rgba(245,158,11,0.12)' },
+  'app-dev':    { name: 'App开发',     color: '#6366f1', bg: 'rgba(99,102,241,0.12)' },
+  'ai-coding':  { name: 'AI编程',      color: '#8b5cf6', bg: 'rgba(139,92,246,0.12)' },
+  'ai-tools':   { name: 'AI工具',      color: '#a855f7', bg: 'rgba(168,85,247,0.12)' },
+  'prompt':     { name: 'Prompt工程',  color: '#d946ef', bg: 'rgba(217,70,239,0.12)' },
+  'ai-culture': { name: 'AI文化',      color: '#f43f5e', bg: 'rgba(244,63,94,0.12)' },
+  'devtools':   { name: '开发工具',    color: '#10b981', bg: 'rgba(16,185,129,0.12)' },
+  'ai-life':    { name: 'AI生活',      color: '#06b6d4', bg: 'rgba(6,182,212,0.12)' },
+  'edu':        { name: '儿童教育',    color: '#ec4899', bg: 'rgba(236,72,153,0.12)' },
+  'pingpong':   { name: '乒乓球',      color: '#ef4444', bg: 'rgba(239,68,68,0.12)' },
+  'current':    { name: '时事热点',    color: '#3b82f6', bg: 'rgba(59,130,246,0.12)' },
+  'family':     { name: '家庭育儿',    color: '#f97316', bg: 'rgba(249,115,22,0.12)' },
+  'life':       { name: '生活日常',    color: '#14b8a6', bg: 'rgba(20,184,166,0.12)' },
 };
 
 const SLOTS = {
@@ -619,10 +623,12 @@ function renderFilters() {
 
 // ===== Stats =====
 function renderStats() {
-  const workCount = allContent.filter(c => ['rn','frontend','app-dev','ai-coding','devtools'].includes(c.category)).length;
-  const lifeCount = allContent.filter(c => ['edu','pingpong','current','family','life'].includes(c.category)).length;
+  const workCount = allContent.filter(c => ['rn','frontend','app-dev','ai-coding','ai-tools','prompt','ai-culture','devtools'].includes(c.category)).length;
+  const lifeCount = allContent.filter(c => ['ai-life','edu','pingpong','current','family','life'].includes(c.category)).length;
+  const aiCount = allContent.filter(c => ['ai-coding','ai-tools','prompt','ai-culture','ai-life'].includes(c.category)).length;
   document.getElementById('statsBar').innerHTML = `
     <span>📊 共 <span class="num">${allContent.length}</span> 条梗</span>
+    <span>🤖 AI <span class="num">${aiCount}</span></span>
     <span>💼 工作 <span class="num">${workCount}</span></span>
     <span>🏠 生活 <span class="num">${lifeCount}</span></span>
   `;
