@@ -290,6 +290,23 @@ body {
   opacity: 0.9;
 }
 
+.source-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--accent-dark);
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.source-link:hover {
+  color: var(--accent);
+  text-decoration: underline;
+}
+
 .date-nav-btn {
   width: 34px;
   height: 34px;
@@ -778,8 +795,35 @@ function renderStats() {
 function renderDateNav() {
   const scroll = document.getElementById('dateNavScroll');
 
-  let html = `<button class="date-chip ${activeDate === 'all' ? 'active' : ''}" data-date="all">全部日期</button>`;
+  const todayStr = formatDateStr(new Date());
+  const yesterday = new Date();
+  yesterday.setDate(yesterday.getDate() - 1);
+  const yesterdayStr = formatDateStr(yesterday);
+
+  let html = '';
+
+  // "全部" button
+  html += `<button class="date-chip ${activeDate === 'all' ? 'active' : ''}" data-date="all">📋 全部</button>`;
+
+  // "今天" quick button (if has content)
+  if (allDates.includes(todayStr)) {
+    const count = allContent.filter(c => c.date === todayStr).length;
+    html += `<button class="date-chip ${activeDate === todayStr ? 'active' : ''}" data-date="${todayStr}">
+      📅 今天 <span class="day-tag">${count}条</span>
+    </button>`;
+  }
+
+  // "昨天" quick button (if has content)
+  if (allDates.includes(yesterdayStr)) {
+    const count = allContent.filter(c => c.date === yesterdayStr).length;
+    html += `<button class="date-chip ${activeDate === yesterdayStr ? 'active' : ''}" data-date="${yesterdayStr}">
+      📅 昨天 <span class="day-tag">${count}条</span>
+    </button>`;
+  }
+
+  // Other date chips (skip today/yesterday already shown above)
   for (const dateStr of allDates) {
+    if (dateStr === todayStr || dateStr === yesterdayStr) continue;
     const count = allContent.filter(c => c.date === dateStr).length;
     html += `<button class="date-chip ${activeDate === dateStr ? 'active' : ''}" data-date="${dateStr}">
       ${formatDateChip(dateStr)}
@@ -894,6 +938,10 @@ function renderContent() {
         <div class="card-explanation">
           <span class="label">📖 解读</span>
           ${escapeHtml(item.explanation)}
+          <a href="${item.sourceUrl ? escapeHtml(item.sourceUrl) : 'https://www.google.com/search?q=' + encodeURIComponent(item.title)}"
+             class="source-link" target="_blank" rel="noopener noreferrer">
+             ${item.sourceUrl ? '👉 原文' : '🔍 搜索相关'}
+          </a>
         </div>
         <div class="card-usage">
           <span class="label">💬 怎么用</span>

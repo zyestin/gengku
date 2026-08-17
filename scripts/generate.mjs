@@ -86,7 +86,7 @@ ${slot.title}（${slot.desc}）
 ${focusDesc}
 
 ## 生成要求
-1. 生成 8 条梗，每条包含：title（标题）、category（分类key）、categoryName（分类名）、content（梗的描述，生动有趣）、explanation（梗的解释/背景，帮用户理解）、usageTip（怎么用这个梗，具体到可以怎么开口聊）
+1. 生成 8 条梗，每条包含：title（标题）、category（分类key）、categoryName（分类名）、content（梗的描述，生动有趣）、explanation（梗的解释/背景，帮用户理解）、usageTip（怎么用这个梗，具体到可以怎么开口聊）、sourceUrl（可选，原始链接）
 2. 梗要有趣、接地气，能引发共鸣和笑声
 3. **重点往 AI 使用方面找料**——用户深度使用 AI，AI 编程、AI 工具、Prompt 工程、AI 文化（token 烧钱、AI 幻觉、AI 焦虑等）方面的梗要多生成，这是用户最感兴趣的方向
 4. 内容要有时效性，结合 2026 年近期热点（如果有的话）
@@ -94,10 +94,11 @@ ${focusDesc}
 6. usageTip 要具体，给出可以直接用的开场白或聊天切入方式
 7. category 必须是以下之一：rn, frontend, app-dev, ai-coding, ai-tools, prompt, ai-culture, devtools, ai-life, edu, pingpong, current, family, life
 8. 不要生成已有的重复内容，尽量有新意
+9. sourceUrl：如果梗来源于具体的文章、新闻、事件、热门帖子，尽量提供真实可访问的原始链接。如果是一般性经验/梗/段子，sourceUrl 留空。不要编造不存在的 URL！
 
 ## 输出格式
 请直接输出 JSON 数组，不要包含 markdown 代码块标记，不要有其他文字：
-[{"title":"...","category":"...","categoryName":"...","content":"...","explanation":"...","usageTip":"..."}, ...]`;
+[{"title":"...","category":"...","categoryName":"...","content":"...","explanation":"...","usageTip":"...","sourceUrl":"..."}, ...]`;
 }
 
 // ===== 调用 OpenRouter =====
@@ -163,13 +164,18 @@ async function main() {
   const dateStr = `${shanghaiNow.getUTCFullYear()}-${String(shanghaiNow.getUTCMonth()+1).padStart(2,'0')}-${String(shanghaiNow.getUTCDate()).padStart(2,'0')}`;
   const timeStr = `${dateStr}T${String(shanghaiNow.getUTCHours()).padStart(2,'0')}:${String(shanghaiNow.getUTCMinutes()).padStart(2,'0')}:00+08:00`;
 
-  const enriched = uniqueItems.map((item, i) => ({
-    id: `${Date.now()}-${i}`,
-    ...item,
-    slot: slot.slotId,
-    date: dateStr,
-    createdAt: timeStr,
-  }));
+  const enriched = uniqueItems.map((item, i) => {
+    const { sourceUrl, ...rest } = item;
+    const cleanUrl = (sourceUrl && sourceUrl.trim().startsWith('http')) ? sourceUrl.trim() : null;
+    return {
+      id: `${Date.now()}-${i}`,
+      ...rest,
+      ...(cleanUrl ? { sourceUrl: cleanUrl } : {}),
+      slot: slot.slotId,
+      date: dateStr,
+      createdAt: timeStr,
+    };
+  });
 
   // 合并 & 保留最近 200 条
   const merged = [...enriched, ...existing.content].slice(0, 200);
