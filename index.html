@@ -456,10 +456,37 @@ body {
 .card-footer {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 8px;
   font-size: 12px;
   color: var(--text-tertiary);
   margin-top: auto;
+}
+
+.source-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 5px 12px;
+  border-radius: 100px;
+  background: var(--bg-secondary);
+  color: var(--accent-dark);
+  font-size: 12px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: var(--transition);
+  border: 1px solid transparent;
+}
+
+.source-btn:hover {
+  background: var(--accent-light);
+  border-color: var(--accent);
+  color: var(--accent-dark);
+  transform: scale(1.02);
+}
+
+[data-theme="dark"] .source-btn {
+  background: rgba(251, 191, 36, 0.1);
 }
 
 /* ===== Empty State ===== */
@@ -726,7 +753,6 @@ body {
   font-weight: 600;
   cursor: pointer;
   transition: var(--transition);
-  align-self: flex-start;
 }
 
 .pt-expand-btn:hover {
@@ -734,8 +760,12 @@ body {
   color: var(--accent);
 }
 
-.pt-source {
-  font-size: 12px;
+.pt-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: auto;
 }
 
 /* ===== Responsive ===== */
@@ -1301,6 +1331,10 @@ function renderContent() {
   grid.innerHTML = filtered.map((item, i) => {
     const cat = CATEGORIES[item.category] || { name: '其他', color: '#6b7280', bg: 'rgba(107,114,128,0.12)' };
     const slot = SLOTS[item.slot] || { title: '其他' };
+    const srcUrl = item.sourceUrl
+      ? escapeHtml(item.sourceUrl)
+      : 'https://www.google.com/search?q=' + encodeURIComponent(item.title);
+    const srcDomain = item.sourceUrl ? getDomain(item.sourceUrl) : 'google.com';
     return `
       <div class="card" style="animation-delay:${i * 0.06}s;">
         <div class="card-header">
@@ -1315,10 +1349,6 @@ function renderContent() {
         <div class="card-explanation">
           <span class="label">📖 解读</span>
           ${escapeHtml(item.explanation)}
-          <a href="${item.sourceUrl ? escapeHtml(item.sourceUrl) : 'https://www.google.com/search?q=' + encodeURIComponent(item.title)}"
-             class="source-link" target="_blank" rel="noopener noreferrer">
-             ${item.sourceUrl ? '👉 原文' : '🔍 搜索相关'}
-          </a>
         </div>
         <div class="card-usage">
           <span class="label">💬 怎么用</span>
@@ -1326,6 +1356,9 @@ function renderContent() {
         </div>
         <div class="card-footer">
           <span>🕐 ${formatDateTime(item.createdAt)}</span>
+          <a href="${srcUrl}" class="source-btn" target="_blank" rel="noopener noreferrer">
+            ${item.sourceUrl ? '🔗 来源: ' + escapeHtml(srcDomain) : '🔍 搜索相关'}
+          </a>
         </div>
       </div>
     `;
@@ -1336,6 +1369,13 @@ function renderContent() {
 function escapeHtml(str) {
   if (!str) return '';
   return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function getDomain(url) {
+  try {
+    const u = new URL(url);
+    return u.hostname.replace(/^www\./, '');
+  } catch { return ''; }
 }
 
 // ===== Gengku Slot Banner =====
@@ -1420,9 +1460,6 @@ function renderParentingContent() {
     let detailHtml = '';
     if (isExpanded) {
       const promptsHtml = (item.discussionPrompts || []).map(p => `<li>${escapeHtml(p)}</li>`).join('');
-      const sourceHtml = item.sourceUrl
-        ? `<a href="${escapeHtml(item.sourceUrl)}" class="source-link" target="_blank" rel="noopener noreferrer" style="font-size:12px;">👉 原文</a>`
-        : '';
       detailHtml = `
         <div class="pt-detail expanded">
           <div class="pt-script">
@@ -1437,10 +1474,13 @@ function renderParentingContent() {
             <span class="label">亲子活动</span>
             ${escapeHtml(item.activity)}
           </div>
-          ${sourceHtml}
         </div>
       `;
     }
+    const srcUrl = item.sourceUrl
+      ? escapeHtml(item.sourceUrl)
+      : 'https://www.google.com/search?q=' + encodeURIComponent(item.title);
+    const srcDomain = item.sourceUrl ? getDomain(item.sourceUrl) : 'google.com';
     return `
       <div class="pt-card" style="animation-delay:${i * 0.06}s;">
         <div class="pt-tags">
@@ -1450,9 +1490,14 @@ function renderParentingContent() {
         <div class="pt-title">${escapeHtml(item.title)}</div>
         <div class="pt-story">${escapeHtml(item.story)}</div>
         ${detailHtml}
-        <button class="pt-expand-btn" data-id="${escapeHtml(item.id)}">
-          ${isExpanded ? '收起 ⬆' : '爸爸讲述指南 ⬇'}
-        </button>
+        <div class="pt-footer">
+          <button class="pt-expand-btn" data-id="${escapeHtml(item.id)}">
+            ${isExpanded ? '收起 ⬆' : '爸爸讲述指南 ⬇'}
+          </button>
+          <a href="${srcUrl}" class="source-btn" target="_blank" rel="noopener noreferrer">
+            ${item.sourceUrl ? '🔗 来源: ' + escapeHtml(srcDomain) : '🔍 搜索相关'}
+          </a>
+        </div>
       </div>
     `;
   }).join('');
