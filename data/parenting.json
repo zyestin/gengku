@@ -1,7 +1,64 @@
 {
-  "lastUpdated": "2026-08-18T15:03:00+08:00",
+  "lastUpdated": "2026-08-18T21:00:00+08:00",
   "version": "1.0.0",
   "content": [
+    {
+      "id": "1787058039003-0",
+      "title": "彩虹画家的秘密",
+      "theme": "unique-path",
+      "themeName": "做唯一故事",
+      "interest": "drawing",
+      "interestName": "画画",
+      "story": "从前，有个小女孩叫露西，她喜欢画彩虹。但她的彩虹和别人不一样，她画的彩虹会唱歌！每当人们看到她的画，耳边就会响起美妙的旋律。露西从不和别人比赛谁画的彩虹更标准，她只想画出自己心中的彩虹。最后，她的画展成了小镇上最受欢迎的地方，因为每个人都想听听彩虹的声音。",
+      "dadScript": "团团，你知道吗？世界上有一个小女孩，她画的彩虹会唱歌哦！",
+      "discussionPrompts": [
+        "你觉得露西的彩虹为什么能唱歌？",
+        "如果你画一幅画，你会画什么特别的呢？"
+      ],
+      "activity": "画画：画一幅会唱歌的彩虹或其他会‘发出声音’的画",
+      "date": "2026-08-18",
+      "timeSlot": "evening",
+      "slot": "parenting-daily",
+      "createdAt": "2026-08-18T21:00:00+08:00"
+    },
+    {
+      "id": "1787058039003-1",
+      "title": "小画家的昆虫探险",
+      "theme": "benefiting-others",
+      "themeName": "惠及他人",
+      "interest": "drawing",
+      "interestName": "画画",
+      "story": "小李是一个爱画画的小男孩，他特别喜欢画昆虫。有一天，他发现学校里的小朋友都害怕蜘蛛，于是他画了一本有趣的《蜘蛛朋友》图画书，讲述蜘蛛是多么友好和有用的生物。小朋友们看了他的书后，再也不怕蜘蛛了，反而开始喜欢上了这些八条腿的小伙伴。",
+      "dadScript": "团团，你知道吗？有一个小画家用他的画改变了大家对蜘蛛的看法呢！",
+      "discussionPrompts": [
+        "你觉得画画怎么可以帮到别人呢？",
+        "如果你画一本书，你会画什么内容来帮助别人呢？"
+      ],
+      "activity": "观察和画画：找一只昆虫，观察它并画出它的特点",
+      "date": "2026-08-18",
+      "timeSlot": "evening",
+      "slot": "parenting-daily",
+      "createdAt": "2026-08-18T21:00:00+08:00"
+    },
+    {
+      "id": "1787058039003-2",
+      "title": "看不见的颜色",
+      "theme": "science-fun",
+      "themeName": "科学乐趣",
+      "interest": "drawing",
+      "interestName": "画画",
+      "story": "小明是个小画家，他总是对颜色很着迷。有一天，他学习了关于光的知识，发现原来有些颜色是我们看不见的！于是他开始尝试用特殊的颜料画出这些‘看不见的颜色’，并举办了一场‘隐形画展’。虽然观众看不到所有的画作，但他们都被小明的创意和探索精神深深吸引。",
+      "dadScript": "团团，你知道吗？有些颜色是我们看不见的，但有个小画家却想出了办法把它们画出来！",
+      "discussionPrompts": [
+        "你觉得看不见的颜色是什么样的呢？",
+        "如果你能画出一种新的颜色，你会画什么样的颜色呢？"
+      ],
+      "activity": "画画实验：用不同颜色混合，看看能创造出什么新的颜色",
+      "date": "2026-08-18",
+      "timeSlot": "evening",
+      "slot": "parenting-daily",
+      "createdAt": "2026-08-18T21:00:00+08:00"
+    },
     {
       "id": "1787036605829-0",
       "title": "云朵里的秘密图书馆",
@@ -277,13 +334,13 @@
     }
   ],
   "generationStats": {
-    "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
-    "lastRun": "2026-08-18T15:03:00+08:00",
+    "model": "deepseek/deepseek-chat",
+    "lastRun": "2026-08-18T21:00:00+08:00",
     "slot": "育儿每日故事",
-    "promptTokens": 1024,
-    "completionTokens": 1389,
-    "totalTokens": 2413,
-    "cost": 0,
-    "costNote": "免费模型"
+    "promptTokens": 763,
+    "completionTokens": 617,
+    "totalTokens": 1380,
+    "cost": 0.00028,
+    "costNote": "$0.14/1M输入 + $0.28/1M输出"
   }
 }
