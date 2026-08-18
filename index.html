@@ -555,16 +555,199 @@ body {
   font-weight: 600;
 }
 
+/* ===== Tab Bar ===== */
+.tab-bar {
+  max-width: 1200px;
+  margin: 16px auto 0;
+  padding: 0 24px;
+  display: flex;
+  gap: 8px;
+}
+
+.tab-btn {
+  padding: 9px 22px;
+  border-radius: 100px;
+  border: 1px solid var(--card-border);
+  background: var(--card-bg);
+  color: var(--text-secondary);
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: var(--transition);
+  white-space: nowrap;
+}
+
+.tab-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.tab-btn.active {
+  background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+  border-color: var(--accent);
+  color: #fff;
+  box-shadow: 0 2px 12px rgba(245, 158, 11, 0.3);
+}
+
+/* ===== Parenting Cards ===== */
+.pt-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius);
+  padding: 24px;
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  animation: cardIn 0.5s ease backwards;
+}
+
+.pt-card:hover {
+  box-shadow: var(--shadow-hover);
+  transform: translateY(-2px);
+  border-color: var(--accent);
+}
+
+.pt-tags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.pt-tag {
+  font-size: 11px;
+  padding: 3px 10px;
+  border-radius: 100px;
+  font-weight: 700;
+}
+
+.pt-tag.theme { background: rgba(139,92,246,0.12); color: #8b5cf6; }
+.pt-tag.interest { background: rgba(16,185,129,0.12); color: #10b981; }
+
+.pt-title {
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.4;
+  color: var(--text);
+}
+
+.pt-story {
+  font-size: 15px;
+  color: var(--text-secondary);
+  line-height: 1.8;
+}
+
+.pt-detail {
+  display: none;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.pt-detail.expanded {
+  display: flex;
+}
+
+.pt-script {
+  background: var(--accent-light);
+  border-left: 3px solid var(--accent);
+  padding: 14px 16px;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  font-size: 14px;
+  color: var(--text);
+  line-height: 1.7;
+}
+
+[data-theme="dark"] .pt-script {
+  background: rgba(251, 191, 36, 0.08);
+}
+
+.pt-script .label {
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--accent-dark);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 6px;
+  display: block;
+}
+
+.pt-prompts {
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.pt-prompts .label {
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--accent-dark);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 6px;
+  display: block;
+}
+
+.pt-prompts ul {
+  padding-left: 18px;
+}
+
+.pt-prompts li {
+  margin-bottom: 6px;
+  line-height: 1.65;
+}
+
+.pt-activity {
+  background: var(--bg-secondary);
+  border-radius: var(--radius-sm);
+  padding: 14px 16px;
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.65;
+}
+
+.pt-activity .label {
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--accent-dark);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 6px;
+  display: block;
+}
+
+.pt-expand-btn {
+  padding: 8px 18px;
+  border-radius: 100px;
+  border: 1px solid var(--card-border);
+  background: var(--card-bg);
+  color: var(--text-secondary);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  align-self: flex-start;
+}
+
+.pt-expand-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.pt-source {
+  font-size: 12px;
+}
+
 /* ===== Responsive ===== */
 @media (max-width: 640px) {
   .header-inner { padding: 12px 16px; }
   .logo-text h1 { font-size: 17px; }
   .logo-text p { font-size: 11px; }
   .date-display { display: none; }
-  .slot-banner, .filters, .content-grid, .stats-bar, .date-nav, .gen-stats { padding: 0 16px; }
+  .tab-bar, .slot-banner, .filters, .content-grid, .stats-bar, .date-nav, .gen-stats { padding: 0 16px; }
   .content-grid { grid-template-columns: 1fr; }
   .slot-card { padding: 16px 20px; flex-direction: column; align-items: flex-start; }
-  .card { padding: 18px; }
+  .card, .pt-card { padding: 18px; }
 }
 </style>
 </head>
@@ -586,6 +769,12 @@ body {
     </div>
   </div>
 </header>
+
+<!-- Tab Bar -->
+<div class="tab-bar">
+  <button class="tab-btn active" data-tab="gengku">💼 梗库</button>
+  <button class="tab-btn" data-tab="parenting">👪 育儿</button>
+</div>
 
 <!-- Slot Banner -->
 <div class="slot-banner">
@@ -649,13 +838,140 @@ const SLOTS = {
   'weekend-evening':   { title: '周末晚间',   desc: '一天结束，和家人聊聊今天的趣事', badge: '🌙 100% 生活' },
 };
 
-// ===== State =====
+// ===== Parenting Config =====
+const PT_THEMES = {
+  'unique-path':     { name: '做唯一故事' },
+  'learning-meaning': { name: '学习的意义' },
+  'benefiting-others': { name: '惠及他人' },
+  'science-fun':     { name: '科学乐趣' },
+  'open-minded':     { name: '豁达人生' },
+  'math-beauty':     { name: '数学之美' },
+};
+
+const PT_INTERESTS = {
+  'drawing':   { name: '画画', emoji: '🎨' },
+  'insects':   { name: '昆虫', emoji: '🐛' },
+  'voiceover': { name: '配音', emoji: '🎭' },
+  'musical':   { name: '音乐剧', emoji: '🎬' },
+  'games':     { name: '游戏组织', emoji: '⚽' },
+  'general':   { name: '通用', emoji: '📖' },
+};
+
+// ===== Tab State =====
+let currentTab = 'gengku';
+const tabState = {
+  gengku: { rawData: null, allContent: [], activeDate: 'all', activeSlot: 'all', activeCategory: 'all', allDates: [], scrollY: 0 },
+  parenting: { rawData: null, allContent: [], activeDate: 'all', activeTheme: 'all', activeInterest: 'all', allDates: [], expandedCards: new Set(), scrollY: 0 },
+};
+
+// ===== State (aliases to current tab) =====
 let allContent = [];
 let activeCategory = 'all';
 let activeSlot = 'all';
 let activeDate = 'all';
 let rawData = null;
 let allDates = [];
+let expandedCards = new Set();
+let activeTheme = 'all';
+let activeInterest = 'all';
+
+// ===== Smart Default Tab =====
+function getDefaultTab() {
+  const now = new Date();
+  const day = now.getDay();
+  const hour = now.getHours();
+  // Friday after 17:00, Saturday, Sunday → parenting
+  if ((day === 5 && hour >= 17) || day === 6 || day === 0) return 'parenting';
+  return 'gengku';
+}
+
+// ===== Save/Restore Tab State =====
+function saveTabState() {
+  const s = tabState[currentTab];
+  s.rawData = rawData;
+  s.allContent = allContent;
+  s.activeDate = activeDate;
+  s.allDates = allDates;
+  s.scrollY = window.scrollY;
+  if (currentTab === 'gengku') {
+    s.activeSlot = activeSlot;
+    s.activeCategory = activeCategory;
+  } else {
+    s.activeTheme = activeTheme || 'all';
+    s.activeInterest = activeInterest || 'all';
+    s.expandedCards = expandedCards;
+  }
+}
+
+function restoreTabState(tab) {
+  const s = tabState[tab];
+  rawData = s.rawData;
+  allContent = s.allContent;
+  activeDate = s.activeDate || 'all';
+  allDates = s.allDates || [];
+  if (tab === 'gengku') {
+    activeSlot = s.activeSlot || 'all';
+    activeCategory = s.activeCategory || 'all';
+  } else {
+    activeTheme = s.activeTheme || 'all';
+    activeInterest = s.activeInterest || 'all';
+    expandedCards = s.expandedCards || new Set();
+  }
+}
+
+// ===== Switch Tab =====
+async function switchTab(tab) {
+  if (tab === currentTab) return;
+  saveTabState();
+  currentTab = tab;
+  // Update tab buttons
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.tab === tab);
+  });
+  // Load data if needed
+  if (!tabState[tab].rawData) {
+    const file = tab === 'gengku' ? 'data/content.json' : 'data/parenting.json';
+    try {
+      const res = await fetch(file);
+      tabState[tab].rawData = await res.json();
+      tabState[tab].allContent = tabState[tab].rawData.content || [];
+      tabState[tab].allDates = [...new Set(tabState[tab].allContent.map(c => c.date))].sort().reverse();
+      const todayStr = formatDateStr(new Date());
+      tabState[tab].activeDate = tabState[tab].allDates.includes(todayStr) ? todayStr : (tabState[tab].allDates[0] || 'all');
+    } catch (e) { console.error('Load failed:', e); }
+  }
+  restoreTabState(tab);
+  document.getElementById('lastUpdated').textContent = rawData ? formatDateTime(rawData.lastUpdated) : '--';
+  renderAll();
+  // Restore scroll after render
+  setTimeout(() => window.scrollTo(0, tabState[tab].scrollY || 0), 50);
+}
+
+// ===== Render All =====
+function renderAll() {
+  if (currentTab === 'gengku') {
+    renderSlotBanner();
+    renderDateNav();
+    renderFilters();
+    renderStats();
+    renderGenStats();
+    renderContent();
+  } else {
+    renderPtSlotBanner();
+    renderDateNav();
+    renderPtFilters();
+    renderPtStats();
+    renderGenStats();
+    renderParentingContent();
+  }
+}
+
+// ===== Parenting Slot Banner =====
+function renderPtSlotBanner() {
+  document.getElementById('slotTitle').textContent = '育儿故事';
+  document.getElementById('slotDesc').textContent = '每日一则，爸爸讲给团团听的故事';
+  document.getElementById('slotBadge').textContent = '👪 育儿';
+}
 
 // ===== Init =====
 async function init() {
@@ -667,46 +983,49 @@ async function init() {
   const now = new Date();
   document.getElementById('dateDisplay').textContent = formatDate(now);
 
-  // Current slot
-  const currentSlot = getCurrentSlot(now);
-  if (SLOTS[currentSlot]) {
-    document.getElementById('slotTitle').textContent = SLOTS[currentSlot].title;
-    document.getElementById('slotDesc').textContent = SLOTS[currentSlot].desc;
-    document.getElementById('slotBadge').textContent = SLOTS[currentSlot].badge;
-  }
+  // Tab button listeners
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => switchTab(btn.dataset.tab));
+  });
 
-  // Load data
+  // Smart default tab
+  currentTab = getDefaultTab();
+
+  // Load gengku data
   try {
     const res = await fetch('data/content.json');
-    rawData = await res.json();
-    allContent = rawData.content || [];
-    document.getElementById('lastUpdated').textContent = formatDateTime(rawData.lastUpdated);
-  } catch (e) {
-    console.error('Failed to load content:', e);
-    allContent = [];
-  }
+    tabState.gengku.rawData = await res.json();
+    tabState.gengku.allContent = tabState.gengku.rawData.content || [];
+    tabState.gengku.allDates = [...new Set(tabState.gengku.allContent.map(c => c.date))].sort().reverse();
+    const todayStr = formatDateStr(now);
+    tabState.gengku.activeDate = tabState.gengku.allDates.includes(todayStr) ? todayStr : (tabState.gengku.allDates[0] || 'all');
+    // Default slot filter
+    const currentSlot = getCurrentSlot(now);
+    if (currentSlot && tabState.gengku.allContent.some(c => c.slot === currentSlot)) {
+      tabState.gengku.activeSlot = currentSlot;
+    }
+  } catch (e) { console.error('Load gengku:', e); }
 
-  // Default filter to current slot
-  if (currentSlot && allContent.some(c => c.slot === currentSlot)) {
-    activeSlot = currentSlot;
-  }
+  // Load parenting data
+  try {
+    const res = await fetch('data/parenting.json');
+    tabState.parenting.rawData = await res.json();
+    tabState.parenting.allContent = tabState.parenting.rawData.content || [];
+    tabState.parenting.allDates = [...new Set(tabState.parenting.allContent.map(c => c.date))].sort().reverse();
+    const todayStr = formatDateStr(now);
+    tabState.parenting.activeDate = tabState.parenting.allDates.includes(todayStr) ? todayStr : (tabState.parenting.allDates[0] || 'all');
+  } catch (e) { console.error('Load parenting:', e); }
 
-  // Collect unique dates (sorted desc)
-  allDates = [...new Set(allContent.map(c => c.date))].sort().reverse();
+  // Update tab buttons for default
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.tab === currentTab);
+  });
 
-  // Default to today's date if available, else most recent date
-  const todayStr = formatDateStr(now);
-  if (allDates.includes(todayStr)) {
-    activeDate = todayStr;
-  } else if (allDates.length > 0) {
-    activeDate = allDates[0];
-  }
+  // Restore current tab state
+  restoreTabState(currentTab);
+  document.getElementById('lastUpdated').textContent = rawData ? formatDateTime(rawData.lastUpdated) : '--';
 
-  renderDateNav();
-  renderFilters();
-  renderStats();
-  renderGenStats();
-  renderContent();
+  renderAll();
 }
 
 // ===== Theme =====
@@ -1017,6 +1336,141 @@ function renderContent() {
 function escapeHtml(str) {
   if (!str) return '';
   return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+// ===== Gengku Slot Banner =====
+function renderSlotBanner() {
+  const now = new Date();
+  const currentSlot = getCurrentSlot(now);
+  if (SLOTS[currentSlot]) {
+    document.getElementById('slotTitle').textContent = SLOTS[currentSlot].title;
+    document.getElementById('slotDesc').textContent = SLOTS[currentSlot].desc;
+    document.getElementById('slotBadge').textContent = SLOTS[currentSlot].badge;
+  }
+}
+
+// ===== Parenting Filters =====
+function renderPtFilters() {
+  const container = document.getElementById('filters');
+  let html = '<span class="filter-label">主题</span>';
+  html += `<button class="filter-pill ${activeTheme === 'all' ? 'active' : ''}" data-theme="all">全部</button>`;
+  for (const [key, theme] of Object.entries(PT_THEMES)) {
+    html += `<button class="filter-pill ${activeTheme === key ? 'active' : ''}" data-theme="${key}">${theme.name}</button>`;
+  }
+  html += '<span class="filter-label" style="margin-left:12px;">兴趣</span>';
+  html += `<button class="filter-pill ${activeInterest === 'all' ? 'active' : ''}" data-interest="all">全部</button>`;
+  for (const [key, interest] of Object.entries(PT_INTERESTS)) {
+    html += `<button class="filter-pill ${activeInterest === key ? 'active' : ''}" data-interest="${key}">${interest.emoji} ${interest.name}</button>`;
+  }
+  container.innerHTML = html;
+  container.querySelectorAll('[data-theme]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      activeTheme = btn.dataset.theme;
+      tabState.parenting.activeTheme = activeTheme;
+      renderPtFilters();
+      renderParentingContent();
+    });
+  });
+  container.querySelectorAll('[data-interest]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      activeInterest = btn.dataset.interest;
+      tabState.parenting.activeInterest = activeInterest;
+      renderPtFilters();
+      renderParentingContent();
+    });
+  });
+}
+
+// ===== Parenting Stats =====
+function renderPtStats() {
+  const scoped = activeDate === 'all' ? allContent : allContent.filter(c => c.date === activeDate);
+  const themeCount = Object.keys(PT_THEMES).filter(t => scoped.some(c => c.theme === t)).length;
+  const interestCount = Object.keys(PT_INTERESTS).filter(i => scoped.some(c => c.interest === i)).length;
+  const dateLabel = activeDate === 'all' ? '全部' : formatDateChip(activeDate);
+  document.getElementById('statsBar').innerHTML = `
+    <span>📖 ${dateLabel} <span class="num">${scoped.length}</span> 条故事</span>
+    <span>🎯 ${themeCount} 个主题</span>
+    <span>✨ ${interestCount} 个兴趣</span>
+  `;
+}
+
+// ===== Parenting Content =====
+function renderParentingContent() {
+  const grid = document.getElementById('contentGrid');
+  let filtered = allContent;
+  if (activeDate !== 'all') filtered = filtered.filter(c => c.date === activeDate);
+  if (activeTheme !== 'all') filtered = filtered.filter(c => c.theme === activeTheme);
+  if (activeInterest !== 'all') filtered = filtered.filter(c => c.interest === activeInterest);
+
+  if (filtered.length === 0) {
+    let emptyMsg = '等待 AI 生成新的育儿故事...';
+    let emptyTitle = '这个分类暂时还没有内容';
+    if (activeDate !== 'all') {
+      emptyTitle = `${formatDateChip(activeDate)} 暂无内容`;
+      emptyMsg = '这一天还没有生成故事，试试切换到其他日期或"全部日期"';
+    }
+    grid.innerHTML = `<div class="empty-state"><span class="emoji">📭</span><h3>${emptyTitle}</h3><p>${emptyMsg}</p></div>`;
+    return;
+  }
+
+  grid.innerHTML = filtered.map((item, i) => {
+    const theme = PT_THEMES[item.theme] || { name: '其他' };
+    const interest = PT_INTERESTS[item.interest] || { name: '其他', emoji: '📖' };
+    const isExpanded = expandedCards.has(item.id);
+    let detailHtml = '';
+    if (isExpanded) {
+      const promptsHtml = (item.discussionPrompts || []).map(p => `<li>${escapeHtml(p)}</li>`).join('');
+      const sourceHtml = item.sourceUrl
+        ? `<a href="${escapeHtml(item.sourceUrl)}" class="source-link" target="_blank" rel="noopener noreferrer" style="font-size:12px;">👉 原文</a>`
+        : '';
+      detailHtml = `
+        <div class="pt-detail expanded">
+          <div class="pt-script">
+            <span class="label">爸爸开场白</span>
+            ${escapeHtml(item.dadScript)}
+          </div>
+          <div class="pt-prompts">
+            <span class="label">讨论问题</span>
+            <ul>${promptsHtml}</ul>
+          </div>
+          <div class="pt-activity">
+            <span class="label">亲子活动</span>
+            ${escapeHtml(item.activity)}
+          </div>
+          ${sourceHtml}
+        </div>
+      `;
+    }
+    return `
+      <div class="pt-card" style="animation-delay:${i * 0.06}s;">
+        <div class="pt-tags">
+          <span class="pt-tag theme">${escapeHtml(theme.name)}</span>
+          <span class="pt-tag interest">${interest.emoji} ${escapeHtml(interest.name)}</span>
+        </div>
+        <div class="pt-title">${escapeHtml(item.title)}</div>
+        <div class="pt-story">${escapeHtml(item.story)}</div>
+        ${detailHtml}
+        <button class="pt-expand-btn" data-id="${escapeHtml(item.id)}">
+          ${isExpanded ? '收起 ⬆' : '爸爸讲述指南 ⬇'}
+        </button>
+      </div>
+    `;
+  }).join('');
+
+  // Expand button listeners
+  grid.querySelectorAll('.pt-expand-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const id = btn.dataset.id;
+      if (expandedCards.has(id)) {
+        expandedCards.delete(id);
+        tabState.parenting.expandedCards = expandedCards;
+      } else {
+        expandedCards.add(id);
+        tabState.parenting.expandedCards = expandedCards;
+      }
+      renderParentingContent();
+    });
+  });
 }
 
 // ===== Start =====

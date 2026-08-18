@@ -3,7 +3,10 @@ import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const DATA_PATH = join(__dirname, '..', 'data', 'content.json');
+const MODE = process.argv.includes('--mode') ? process.argv[process.argv.indexOf('--mode') + 1] : 'gengku';
+const DATA_PATH = MODE === 'parenting'
+  ? join(__dirname, '..', 'data', 'parenting.json')
+  : join(__dirname, '..', 'data', 'content.json');
 const API_KEY = process.env.OPENROUTER_API_KEY;
 const MODEL = process.env.OPENROUTER_MODEL || 'deepseek/deepseek-chat';
 
@@ -106,6 +109,106 @@ ${focusDesc}
 [{"title":"...","category":"...","categoryName":"...","content":"...","explanation":"...","usageTip":"...","sourceUrl":"..."}, ...]`;
 }
 
+// ===== 育儿模式配置 =====
+const PT_THEMES = {
+  'unique-path':       { name: '做唯一故事', desc: '找到自己独特路径的人——不随大流、不卷竞争，做无可替代的自己' },
+  'learning-meaning':  { name: '学习的意义', desc: '为什么学？不是因为考试，是因为好奇心和探索欲' },
+  'benefiting-others': { name: '惠及他人', desc: '用热爱服务世界——画画感动别人、昆虫知识分享给同学、游戏让大家快乐' },
+  'science-fun':       { name: '科学乐趣', desc: '牛顿煮手表、爱因斯坦拒当总统——科学家不是因为有用才做科学，是因为太好玩了' },
+  'open-minded':       { name: '豁达人生', desc: '苏轼被贬海南还发明美食、王阳明被贬龙场反而悟道——困难不可怕，失去好奇心才可怕' },
+  'math-beauty':       { name: '数学之美', desc: '向日葵种子螺旋、斐波那契数列、蜂巢六边形——数学是大自然的密码，不是作业' },
+};
+
+const PT_INTERESTS = {
+  'drawing':   { name: '画画', desc: '做唯一画风、办画展、用画画帮别人看见看不见的东西' },
+  'insects':   { name: '昆虫', desc: '观察记录、录制昆虫小课堂分享给同学、博物插画连接画画' },
+  'voiceover': { name: '配音', desc: '一人配多角、英语通过配音自然学、声音技巧练习' },
+  'musical':   { name: '音乐剧', desc: '家庭剧场当小导演、Lin-Manuel Miranda式创新、连接配音+英语' },
+  'games':     { name: '游戏组织', desc: '分析游戏设计、创造新游戏、写规则手册、教领导力原则' },
+  'general':   { name: '通用', desc: '跨兴趣的通用教育主题' },
+};
+
+const PT_ROTATION = [
+  'benefiting-others',  // Sunday
+  'science-fun',         // Monday
+  'drawing',            // Tuesday (interest-based)
+  'open-minded',         // Wednesday
+  'voiceover',          // Thursday (interest-based)
+  'unique-path',        // Friday
+  'math-beauty',        // Saturday
+];
+
+function getParentingSlot() {
+  const now = new Date();
+  const shanghai = new Date(now.getTime() + 8 * 3600 * 1000);
+  const day = shanghai.getUTCDay();
+  const dateStr = `${shanghai.getUTCFullYear()}-${String(shanghai.getUTCMonth()+1).padStart(2,'0')}-${String(shanghai.getUTCDate()).padStart(2,'0')}`;
+  const rotKey = PT_ROTATION[day];
+
+  let theme = null, interest = null;
+  if (PT_THEMES[rotKey]) {
+    theme = { key: rotKey, ...PT_THEMES[rotKey] };
+  } else if (PT_INTERESTS[rotKey]) {
+    interest = { key: rotKey, ...PT_INTERESTS[rotKey] };
+  }
+
+  return {
+    slotId: 'parenting-daily',
+    title: '育儿每日故事',
+    desc: '爸爸讲给7岁女儿团团听的故事',
+    theme,
+    interest,
+    shanghai,
+    dateStr,
+  };
+}
+
+function buildParentingPrompt(slot) {
+  const themesDesc = Object.entries(PT_THEMES).map(([k,v]) => `- ${v.name}（${k}）: ${v.desc}`).join('\n');
+  const interestsDesc = Object.entries(PT_INTERESTS).map(([k,v]) => `- ${v.name}（${k}）: ${v.desc}`).join('\n');
+
+  let focusHint = '';
+  if (slot.theme) {
+    focusHint = `今日主题方向：${slot.theme.name}（${slot.theme.key}）——${slot.theme.desc}。请围绕这个主题生成内容，但也欢迎自然延伸。`;
+  } else if (slot.interest) {
+    focusHint = `今日兴趣方向：${slot.interest.name}（${slot.interest.key}）——${slot.interest.desc}。请围绕这个兴趣生成内容，也欢迎连接其他兴趣。`;
+  }
+
+  const dateStr = slot.dateStr;
+
+  return `你是一个育儿故事内容生成助手。你的任务是为一位父亲生成可以讲给7岁女儿（团团，二年级）听的故事。
+
+## 核心教育理念
+"做唯一，不卷第一"——不让孩子在别人设定的赛道上争第一，而是帮她找到属于自己的赛道，做到无可替代。
+
+## 孩子的兴趣（5个方向）
+${interestsDesc}
+
+## 教育主题（6个方向）
+${themesDesc}
+
+## 今日内容
+日期：${dateStr}
+${focusHint || '今日自由生成，请从上述主题和兴趣中选择有趣的组合。'}
+
+## 生成要求
+生成 3 条故事，每条包含：
+- title: 标题，简洁有趣，能引起7岁孩子好奇
+- theme: 主题key（从上述6个中选）
+- themeName: 主题名
+- interest: 兴趣key（从上述6个中选，通用用general）
+- interestName: 兴趣名
+- story: 故事内容，3-5句话，7岁能懂，有画面感，生动有趣
+- dadScript: 爸爸的开场白，以"团团，你知道吗？"开头，口语化，可以直接照着说
+- discussionPrompts: 2个开放式问题数组，讲完故事后可以问孩子
+- activity: 一个简单的后续活动建议（画画/观察/游戏等），可以当天做
+- sourceUrl: 可选，如果故事基于真实人物或事件，提供原始链接
+
+## 输出格式
+输出 JSON 数组，3个对象。不要输出其他内容。
+[{"title":"...","theme":"...","themeName":"...","interest":"...","interestName":"...","story":"...","dadScript":"...","discussionPrompts":["...","..."],"activity":"...","sourceUrl":""}]`;
+}
+
 // ===== 获取免费模型 =====
 async function getFreeModels() {
   try {
@@ -198,9 +301,10 @@ function calculateCost(model, promptTokens, completionTokens) {
 
 // ===== 主流程 =====
 async function main() {
-  const slot = getCurrentSlot();
+  const slot = MODE === 'parenting' ? getParentingSlot() : getCurrentSlot();
   console.log(`📅 时段: ${slot.title} (${slot.slotId})`);
   console.log(`🤖 模型: ${MODEL}`);
+  if (MODE === 'parenting') console.log(`👶 模式: 育儿`);
 
   // 读取现有数据
   let existing = { lastUpdated: '', content: [] };
@@ -211,7 +315,7 @@ async function main() {
   // 生成新内容（先获取免费模型，带 fallback）
   const freeModels = await getFreeModels();
   const modelsToTry = [...freeModels, MODEL];
-  const prompt = buildPrompt(slot);
+  const prompt = MODE === 'parenting' ? buildParentingPrompt(slot) : buildPrompt(slot);
   console.log('⏳ 正在生成内容...');
 
   let newItems, usage, usedModel;
@@ -227,7 +331,7 @@ async function main() {
     }
   }
   if (!newItems) throw new Error('所有模型尝试均失败');
-  console.log(`✅ 生成了 ${newItems.length} 条新梗`);
+  console.log(`✅ 生成了 ${newItems.length} 条${MODE === 'parenting' ? '育儿故事' : '新梗'}`);
   console.log(`📊 Token: 输入 ${usage.prompt_tokens || 0} / 输出 ${usage.completion_tokens || 0} / 总计 ${usage.total_tokens || 0}`);
 
   // 去重（标题去重）
@@ -247,8 +351,9 @@ async function main() {
       id: `${Date.now()}-${i}`,
       ...rest,
       ...(cleanUrl ? { sourceUrl: cleanUrl } : {}),
-      slot: slot.slotId,
       date: dateStr,
+      timeSlot: MODE === 'parenting' ? 'evening' : slot.slotId,
+      slot: slot.slotId,
       createdAt: timeStr,
     };
   });

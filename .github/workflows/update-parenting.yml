@@ -1,0 +1,35 @@
+name: 育儿内容更新
+
+on:
+  schedule:
+    # 每天晚上 20:00 (北京时间 = UTC+8 → UTC 12:00)
+    - cron: '0 12 * * *'
+  workflow_dispatch: # 支持手动触发
+
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: 生成育儿内容
+        env:
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+        run: node scripts/generate.mjs --mode parenting
+
+      - name: Commit & Push
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+          git add data/parenting.json
+          git diff --staged --quiet || git commit -m "📝 育儿内容自动更新 $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          git push
