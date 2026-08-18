@@ -1,7 +1,103 @@
 {
-  "lastUpdated": "2026-08-17T18:37:00+08:00",
+  "lastUpdated": "2026-08-18T10:35:00+08:00",
   "version": "1.0.0",
   "content": [
+    {
+      "id": "1787020525635-0",
+      "title": "让AI优化性能，它让我删掉所有console.log",
+      "category": "ai-coding",
+      "categoryName": "AI编程",
+      "content": "你花半小时给AI描述性能瓶颈，它沉默了三秒，然后回复：'建议先删除所有console.log语句，这会显著减少主线程开销。'你看着文件里唯一那行调试用的log，沉默了。",
+      "explanation": "这是AI编程中最常见的翻车场景之一：AI基于训练数据中的常见建议给出通用方案，完全不理解你当前代码的具体上下文。它不知道那行console.log是你排查问题的救命稻草，它只知道'console.log影响性能'这个统计规律。",
+      "usageTip": "周一早上到公司，同事聊起'让AI帮忙优化一下性能'，你可以摇摇头叹气说：'让它优化，它让我删掉所有console.log——那可是我排查三天bug才加的。'",
+      "slot": "workday-morning",
+      "date": "2026-08-18",
+      "createdAt": "2026-08-18T10:35:00+08:00"
+    },
+    {
+      "id": "1787020525635-1",
+      "title": "月底了，我对AI说'先来个简单的问题'像在讨价还价",
+      "category": "ai-culture",
+      "categoryName": "AI文化",
+      "content": "月底token预算告急，你对着AI对话框打出：'请问一个简单的问题……'然后默默删掉了后面两千字的背景描述，像极了在菜市场跟摊主砍价。",
+      "explanation": "AI工具的token收费模式让开发者产生了微妙的'烧钱焦虑'。月底时，人们会不自觉地精简提问、压缩上下文、甚至把复杂问题拆成三段式分批问，行为模式完全像在 rationing 粮食。这已经成了一种新的开发者文化现象。",
+      "usageTip": "同事聊起'这个月AI用得有点多'，你可以一边看token统计一边说：'我现在问AI问题都要先在脑子里预演三遍，确保不浪费一个token。'",
+      "slot": "workday-morning",
+      "date": "2026-08-18",
+      "createdAt": "2026-08-18T10:35:00+08:00"
+    },
+    {
+      "id": "1787020525635-2",
+      "title": "AI写的React Native组件，跑起来像PPT翻页",
+      "category": "ai-coding",
+      "categoryName": "AI编程",
+      "content": "你让AI生成一个下拉刷新列表，它给了你一份代码：渲染正常，动画正常，但每次滚动到顶触发刷新时，整个组件会闪一下然后重新渲染——像极了Keynote切换幻灯片。",
+      "explanation": "AI生成的代码往往'看起来对'，但缺乏对React Native渲染机制的深层理解。它不知道列表组件的memoization策略、不知道FlashList的回收机制、不知道JS线程和原生线程的交互时序。结果就是'能跑，但体验一坨'。",
+      "usageTip": "和RN同事吐槽AI生成的组件时：'我让AI写了个刷新列表，那动画效果，隔壁产品以为我在做PPT汇报。'",
+      "slot": "workday-morning",
+      "date": "2026-08-18",
+      "createdAt": "2026-08-18T10:35:00+08:00"
+    },
+    {
+      "id": "1787020525635-3",
+      "title": "我给提示词加了500字，AI回复'好的'",
+      "category": "prompt",
+      "categoryName": "Prompt工程",
+      "content": "你精心撰写了一份500字的prompt，详细描述了项目背景、技术栈、代码风格、命名规范、甚至括号偏好。AI回复了两个字：'好的。'然后生成了一份完全没看懂的代码。",
+      "explanation": "这是提示词工程的经典陷阱：过度详细的上下文反而会让AI'注意力分散'。大模型在处理超长prompt时，往往只会关注开头和结尾的关键指令，中间的细节信息容易被淹没。正所谓'提示词越长，AI越懵'。",
+      "usageTip": "和同事聊prompt技巧时，你可以自嘲：'我以前觉得prompt越详细越好，现在发现超过200字AI就开始'选择性失聪'了。'",
+      "slot": "workday-morning",
+      "date": "2026-08-18",
+      "createdAt": "2026-08-18T10:35:00+08:00"
+    },
+    {
+      "id": "1787020525635-4",
+      "title": "同时开ChatGPT、Claude、Gemini，像在开AI联合国大会",
+      "category": "ai-tools",
+      "categoryName": "AI工具",
+      "content": "桌面上三个AI对话窗口同时打开，左边ChatGPT在写代码，中间Claude在review，右边Gemini在总结文档。你像个联合国翻译官，在三个模型之间来回切话，生怕漏掉任何一个的观点。",
+      "explanation": "2026年多模型并行使用已经成了AI重度用户的标配。不同模型各有擅长：GPT代码能力强，Claude上下文理解好，Gemini多模态优秀。用户像'模型路由器'一样，把不同任务分发给不同AI，但代价是上下文切换成本极高。",
+      "usageTip": "同事问'你用哪个AI'，你可以无奈一笑：'我用三个。GPT写代码，Claude读文档，Gemini看图，我现在像个人肉模型路由器。'",
+      "slot": "workday-morning",
+      "date": "2026-08-18",
+      "createdAt": "2026-08-18T10:35:00+08:00"
+    },
+    {
+      "id": "1787020525635-5",
+      "title": "AI说这个bug是feature，我提交了，产品经理说这是bug",
+      "category": "ai-coding",
+      "categoryName": "AI编程",
+      "content": "你发现了一个行为异常，AI看完代码后回复：'这不是bug，这是设计如此。'你信了，提交了。第二天产品经理找到你：'这个功能为什么 behaving weirdly？'你说：'AI说这是feature。'产品经理沉默了。",
+      "explanation": "AI的幻觉（hallucination）在代码场景中表现为'一本正经地胡说八道'。它会基于代码的字面逻辑推导出看似合理但完全错误的结论，而且语气自信、逻辑自洽。开发者如果盲目信任，就会把AI的幻觉带进生产环境。",
+      "usageTip": "和同事吐槽AI幻觉时：'上次AI跟我说这是feature，我信了。现在产品经理让我'解释一下这个feature为什么这样设计'。'",
+      "slot": "workday-morning",
+      "date": "2026-08-18",
+      "createdAt": "2026-08-18T10:35:00+08:00"
+    },
+    {
+      "id": "1787020525635-6",
+      "title": "让AI写Git commit，它写了三行，我删了两行",
+      "category": "devtools",
+      "categoryName": "开发工具",
+      "content": "你让AI根据diff生成commit message，它写了三行：第一行总结了改动，第二行解释了设计意图，第三行写了作者的哲学思考。你默默删掉了后两行，只留下了'fix: 修复了一个问题'。",
+      "explanation": "AI生成的commit message往往'过度包装'——它会把一次简单的bug修复描述成一次架构革新。这反映了AI在理解'工程规范'和'实际意图'之间的错位。好的commit message应该简洁、准确、可搜索，但AI显然不擅长'克制'。",
+      "usageTip": "同事聊起commit规范时：'我让AI写commit message，它给我写了个'通过引入新的范式来优化异步数据流'——我删了两行，留下了'fix: 修复了一个问题'。'",
+      "slot": "workday-morning",
+      "date": "2026-08-18",
+      "createdAt": "2026-08-18T10:35:00+08:00"
+    },
+    {
+      "id": "1787020525635-7",
+      "title": "React Native新架构，编译要20分钟，我够喝杯咖啡了",
+      "category": "rn",
+      "categoryName": "RN开发",
+      "content": "你升级到React Native新架构（Fabric/TurboModules），第一次EAS Build编译花了20分钟。期间你泡了杯咖啡，刷了会儿手机，思考了一下人生。编译终于完成，你打开App，闪屏多了0.5秒。",
+      "explanation": "React Native新架构虽然带来了性能提升和原生交互能力的飞跃，但开发体验上的痛点依然存在：编译慢、调试难、生态不成熟。尤其是EAS Build在CI上的编译时间，足以让程序员在等待中完成一次精神放空。这是RN开发的日常修行。",
+      "usageTip": "和RN同事吐槽新架构时：'新架构是好，就是每次编译都能让我完整体验一遍'上班迟到-泡咖啡-思考人生'的三部曲。'",
+      "slot": "workday-morning",
+      "date": "2026-08-18",
+      "createdAt": "2026-08-18T10:35:00+08:00"
+    },
     {
       "id": "1786963048955-0",
       "title": "React Native新架构：Fabric终于不'掉帧'了，但我的头发已经掉光了",
@@ -712,13 +808,13 @@
     }
   ],
   "generationStats": {
-    "model": "deepseek/deepseek-chat",
-    "lastRun": "2026-08-17T18:37:00+08:00",
-    "slot": "工作日晚间",
-    "promptTokens": 1015,
-    "completionTokens": 1128,
-    "totalTokens": 2143,
-    "cost": 0.00046,
-    "costNote": "$0.14/1M输入 + $0.28/1M输出"
+    "model": "dots-studio/dots-3-note-preview:free",
+    "lastRun": "2026-08-18T10:35:00+08:00",
+    "slot": "工作日早间",
+    "promptTokens": 891,
+    "completionTokens": 2953,
+    "totalTokens": 3844,
+    "cost": 0,
+    "costNote": "免费模型"
   }
 }
