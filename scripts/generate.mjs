@@ -48,6 +48,9 @@ const SOURCES = {
         '@bcherny (Boris Cherny) — Claude Code开发负责人，第一时间分享新工作流和实现细节',
         '@amanrsanger (Aman Sanger) — Cursor内部路由机制、开发者遥测数据',
         '@simonw (Simon Willison) — AI工具实测、提示注入安全、CLI工具、本地模型，帖子附代码和日志',
+        '@lilianweng (Lilian Weng) — ex-OpenAI安全负责人，深度技术博客（transformers/RLHF/agents），教科书级',
+        '@rasbt (Sebastian Raschka) — ML教科书作者，架构拆解和LLM实现教程，大量实操内容',
+        '@ggerganov (Georgi Gerganov) — llama.cpp创造者，让LLM跑在消费级硬件上，本地AI运动',
       ],
       'ai-tools': [
         '@sama (Sam Altman) — OpenAI CEO，产品方向暗示，一条推文引发全网解读',
@@ -55,10 +58,14 @@ const SOURCES = {
         '@emollick (Ethan Mollick) — 沃顿教授，基于数据的AI实验分析，高信噪比',
         '@levelsio (Levels.io) — 独立开发者，AI产品实测和模型对比，接地气',
         '@AndrewYNg (吴恩达) — AI教育、Agent实践、产业落地建议，发帖接地气',
+        '@rauchg (Guillermo Rauch) — Vercel CEO，AI开发工具、AI辅助Web开发，v0/AI SDK',
+        '@AravindSriniv (Aravind Srinivas) — Perplexity AI CEO，AI搜索、RAG、Agent产品',
+        '@logankilpatrick (Logan Kilpatrick) — Google AI/Gemini产品负责人，横跨OpenAI和Google两大实验室',
       ],
       'prompt': [
         '@mattshumer_ (Matt Shumer) — Prompt工程实验、模型工作流优化、速度测试',
         '@AmandaAskell__ (Amanda Askell) — RLHF、Claude角色调优内幕',
+        '@rilegoodside (Riley Goodside) — Prompt工程先驱，早期大模型能力测试，高互动',
       ],
       'ai-culture': [
         '@ylecun (Yann LeCun) — Meta首席AI科学家，LLM局限性质疑、开源模型倡导，每日输出观点',
@@ -67,6 +74,9 @@ const SOURCES = {
         '@swyx (swyx) — AI工程生态系统、开发者趋势分析',
         '@elonmusk (马斯克) — xAI/Grok，AI方向极强观点输出，评论区永远在吵',
         '@drfeifei (李飞飞) — ImageNet创始人、World Labs空间智能，AI研究+伦理视角',
+        '@fchollet (François Chollet) — Keras创造者、ARC-AGI基准，真正智能vs模式匹配的批判',
+        '@garymarcus (Gary Marcus) — AI怀疑论者，实质性批评而非纯黑，经常引发论战',
+        '@geehotz (George Hotz) — tinygrad/comma.ai创始人，原始工程视角，反主流AI观点',
       ],
       'rn': [
         '@satya164 (Satyajit Sahoo) — React Navigation核心维护者',
@@ -138,6 +148,20 @@ const SOURCES = {
       '掘金 (juejin.cn) — 中文开发者社区，前端/RN/AI技术文章，有热榜',
     ],
   },
+  podcasts: {
+    label: 'AI 深度访谈播客',
+    desc: '以下播客深度采访AI大佬（Dario Amodei、Karpathy、Hassabis等），嘉宾金句和观点碰撞是高质量梗的来源',
+    shows: [
+      'Dwarkesh Podcast (@dwarkesh_sp) — 3-5小时长篇深度访谈，Dario Amodei/Zuckerberg/Hassabis级别嘉宾，问题密度极高',
+      'Latent Space (@latentspacepod, swyx+Alessio) — AI工程类播客标杆，agents/inference/evals/production系统',
+      'Lex Fridman Podcast (@lexfridman) — 最高覆盖面的AI播客，Altman/Musk/Hassabis/Karpathy多次做客',
+      'The Cognitive Revolution (Nathan Labenz) — 模型评测深度，builder视角与研究者逐行讨论架构选择',
+      'No Priors (@nopriorspod, Sarah Guo+Elad Gil) — AI创业和公司建设，创始人和投资人访谈',
+      'Practical AI (Daniel Whitenack+Chris Benson) — 落地AI功能，MLOps/评测/实现细节',
+      'Last Week in AI (Andrey Kurenkov) — 每周AI新闻 roundup，最高效的追赶方式',
+      'Machine Learning Street Talk (Tim Scarfe) — 最深技术访谈，架构和理论',
+    ],
+  },
 };
 
 function buildSourcesText(categories) {
@@ -149,7 +173,7 @@ function buildSourcesText(categories) {
     if (rList) lines.push(`  Reddit: ${rList.join(' | ')}`);
   }
   if (lines.length === 0) return '';
-  return `\n### 信息源参考\n${SOURCES.x.desc}\n${SOURCES.reddit.desc}\n${SOURCES.hackernews.desc} (${SOURCES.hackernews.url})\n${SOURCES.chinese.desc}:\n  ${SOURCES.chinese.sources.join('\n  ')}\n${lines.join('\n')}`;
+  return `\n### 信息源参考\n${SOURCES.x.desc}\n${SOURCES.reddit.desc}\n${SOURCES.hackernews.desc} (${SOURCES.hackernews.url})\n${SOURCES.chinese.desc}:\n  ${SOURCES.chinese.sources.join('\n  ')}\n${SOURCES.podcasts.desc}:\n  ${SOURCES.podcasts.shows.join('\n  ')}\n${lines.join('\n')}`;
 }
 
 // ===== 时段判定 (上海时间 UTC+8) =====
