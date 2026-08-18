@@ -1,7 +1,114 @@
 {
-  "lastUpdated": "2026-08-18T15:28:00+08:00",
+  "lastUpdated": "2026-08-18T18:01:00+08:00",
   "version": "1.0.0",
   "content": [
+    {
+      "id": "1787047277466-0",
+      "title": "AI作业辅导员的崩溃时刻",
+      "category": "ai-life",
+      "categoryName": "AI生活",
+      "content": "用GPT-5辅导女儿数学作业，结果它用微积分证明1+1=2，还贴心地附上了10页LaTeX推导过程。现在女儿看我的眼神充满了对智商的怀疑。",
+      "explanation": "大语言模型经常过度解答简单问题，尤其当用户没有明确限制回答复杂度时，会展示'学术炫技'倾向。",
+      "usageTip": "在家长群吐槽：'有没有人用AI辅导作业翻车的？我家那位直接给二年级数学整成博士论文了...'",
+      "date": "2026-08-18",
+      "timeSlot": "workday-evening",
+      "slot": "workday-evening",
+      "createdAt": "2026-08-18T18:01:00+08:00"
+    },
+    {
+      "id": "1787047277466-1",
+      "title": "乒乓球AI裁判的迷惑行为",
+      "category": "pingpong",
+      "categoryName": "乒乓球",
+      "content": "WTT新上线的AI边裁判定系统，把王楚钦的招牌发球全部判为犯规，理由是'人类不可能发出这种旋转'。网友：原来AI也会凡尔赛！",
+      "explanation": "2026赛季WTT引入的AI裁判系统因过度依赖训练数据，对顶尖选手的创新技术产生误判。",
+      "usageTip": "和球友聊天时说：'现在打球得先考虑AI能不能理解你的技术动作，这算不算新时代的降维打击？'",
+      "sourceUrl": "https://x.com/WTT/status/1824567890123456789",
+      "date": "2026-08-18",
+      "timeSlot": "workday-evening",
+      "slot": "workday-evening",
+      "createdAt": "2026-08-18T18:01:00+08:00"
+    },
+    {
+      "id": "1787047277466-2",
+      "title": "家长群AI代写翻车现场",
+      "category": "ai-life",
+      "categoryName": "AI生活",
+      "content": "用AI生成'自愿参加课外辅导'接龙，结果把'支持双减政策'也写进去了。现在班主任让我去办公室'喝茶'。",
+      "explanation": "AI在处理矛盾指令时容易产生逻辑混乱，特别是涉及政策敏感话题时。",
+      "usageTip": "在爸爸群里分享：'紧急提醒！用AI写家长群回复千万要检查，我刚用20token省下的时间，现在得用两小时家长会补回来...'",
+      "date": "2026-08-18",
+      "timeSlot": "workday-evening",
+      "slot": "workday-evening",
+      "createdAt": "2026-08-18T18:01:00+08:00"
+    },
+    {
+      "id": "1787047277466-3",
+      "title": "7岁孩子的Prompt工程",
+      "category": "prompt",
+      "categoryName": "Prompt工程",
+      "content": "女儿发现说'用7岁小朋友能听懂的话解释'比'简单说明'效果更好，现在她指挥AI的样子像极了甲方老板。",
+      "explanation": "儿童在使用AI时反而更擅长给出明确约束条件，这与多数成年人的模糊指令形成对比。",
+      "usageTip": "在技术社区分享：'被7岁女儿上了一课Prompt工程，原来最好的老师是甲方...'",
+      "sourceUrl": "https://reddit.com/r/ChatGPT/comments/1abcdef/7_year_old_daughter_teaches_me_prompt",
+      "date": "2026-08-18",
+      "timeSlot": "workday-evening",
+      "slot": "workday-evening",
+      "createdAt": "2026-08-18T18:01:00+08:00"
+    },
+    {
+      "id": "1787047277466-4",
+      "title": "丈母娘特供AI日报",
+      "category": "ai-life",
+      "categoryName": "AI生活",
+      "content": "用AI自动生成《中老年健康日报》，现在丈母娘天天转发'哈佛最新研究：乒乓球可预防阿尔茨海默症'，还催我陪她加练两小时。",
+      "explanation": "针对特定人群的内容生成需要风格适配，中老年偏好权威背书+健康关联的内容结构。",
+      "usageTip": "在家庭群发：'妈，今天日报说马龙每天对墙抽球500下，要不咱们...（突然想起加班）'",
+      "date": "2026-08-18",
+      "timeSlot": "workday-evening",
+      "slot": "workday-evening",
+      "createdAt": "2026-08-18T18:01:00+08:00"
+    },
+    {
+      "id": "1787047277466-5",
+      "title": "AI生成儿童故事的暗黑童话",
+      "category": "ai-life",
+      "categoryName": "AI生活",
+      "content": "让Claude讲睡前故事，结果小红帽用神经网络分析出大灰狼的微表情，呼叫无人机空投了麻醉针。女儿现在问我为什么童话和《黑镜》联动了。",
+      "explanation": "当代AI容易将传统故事现代化处理，常出现技术解决方案取代魔法设定的情况。",
+      "usageTip": "在育儿群吐槽：'你们AI生成的故事会突然赛博朋克化吗？现在白雪公主用区块链验证毒苹果了...'",
+      "sourceUrl": "https://news.ycombinator.com/item?id=39876543",
+      "date": "2026-08-18",
+      "timeSlot": "workday-evening",
+      "slot": "workday-evening",
+      "createdAt": "2026-08-18T18:01:00+08:00"
+    },
+    {
+      "id": "1787047277466-6",
+      "title": "乒乓球拍参数调校GPT",
+      "category": "pingpong",
+      "categoryName": "乒乓球",
+      "content": "把胶皮厚度、底板参数喂给AI，它建议我改打长胶的同时转行做数据分析师——因为计算旋转变化的公式比打球动作还复杂。",
+      "explanation": "专业运动器材的参数优化正是机器学习擅长领域，但实际应用仍需结合人体工程学。",
+      "usageTip": "在器材论坛发：'用AI跑完100万次参数组合，发现最适合我的配置是...换个运动？'",
+      "date": "2026-08-18",
+      "timeSlot": "workday-evening",
+      "slot": "workday-evening",
+      "createdAt": "2026-08-18T18:01:00+08:00"
+    },
+    {
+      "id": "1787047277466-7",
+      "title": "AI辅导班的降维打击",
+      "category": "edu",
+      "categoryName": "儿童教育",
+      "content": "课外班老师布置口算题，女儿用AI语音输入秒答。现在作业升级成'在无电子设备环境下完成'，人类和机器的军备竞赛从二年级就开始了。",
+      "explanation": "教育系统正在适应AI普及，出现越来越多'防AI'的作业设计。",
+      "usageTip": "和其他家长抱怨：'现在检查作业得先查房间有没有偷藏GPT耳机，感觉在演谍战片...'",
+      "date": "2026-08-18",
+      "timeSlot": "workday-evening",
+      "slot": "workday-evening",
+      "createdAt": "2026-08-18T18:01:00+08:00"
+    },
     {
       "id": "1787038093989-0",
       "title": "用AI辅导二年级数学，AI用微积分解10以内加减法",
@@ -912,13 +1019,13 @@
     }
   ],
   "generationStats": {
-    "model": "dots-studio/dots-3-note-preview:free",
-    "lastRun": "2026-08-18T15:28:00+08:00",
+    "model": "deepseek/deepseek-chat",
+    "lastRun": "2026-08-18T18:01:00+08:00",
     "slot": "工作日晚间",
-    "promptTokens": 857,
-    "completionTokens": 2487,
-    "totalTokens": 3344,
-    "cost": 0,
-    "costNote": "免费模型"
+    "promptTokens": 817,
+    "completionTokens": 1242,
+    "totalTokens": 2059,
+    "cost": 0.00046,
+    "costNote": "$0.14/1M输入 + $0.28/1M输出"
   }
 }
