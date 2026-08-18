@@ -37,6 +37,106 @@ const DIRECTIONS = {
   ],
 };
 
+// ===== 高质量信息源 =====
+const SOURCES = {
+  x: {
+    label: 'X (Twitter) 高赞帖',
+    desc: '以下牛人发的帖经常高赞高评论，评论区是梗的宝库。关注他们近期的高互动帖子和评论区金句',
+    byCategory: {
+      'ai-coding': [
+        '@karpathy (Andrej Karpathy) — LLM训练、vibe coding概念创始人，帖子的idea密度极高',
+        '@bcherny (Boris Cherny) — Claude Code开发负责人，第一时间分享新工作流和实现细节',
+        '@amanrsanger (Aman Sanger) — Cursor内部路由机制、开发者遥测数据',
+        '@simonw (Simon Willison) — AI工具实测、提示注入安全、CLI工具、本地模型，帖子附代码和日志',
+      ],
+      'ai-tools': [
+        '@sama (Sam Altman) — OpenAI CEO，产品方向暗示，一条推文引发全网解读',
+        '@alexalbert__ (Alex Albert) — Anthropic API技巧、prompt caching、token路由',
+        '@emollick (Ethan Mollick) — 沃顿教授，基于数据的AI实验分析，高信噪比',
+        '@levelsio (Levels.io) — 独立开发者，AI产品实测和模型对比，接地气',
+      ],
+      'prompt': [
+        '@mattshumer_ (Matt Shumer) — Prompt工程实验、模型工作流优化、速度测试',
+        '@AmandaAskell__ (Amanda Askell) — RLHF、Claude角色调优内幕',
+      ],
+      'ai-culture': [
+        '@ylecun (Yann LeCun) — Meta首席AI科学家，LLM局限性质疑、开源模型倡导，每日输出观点',
+        '@_akhaliq (AK) — 每日AI论文和产品发布速递，第一时间',
+        '@ClementDelangue (Hugging Face CEO) — 开源AI生态、模型采用数据',
+        '@swyx (swyx) — AI工程生态系统、开发者趋势分析',
+      ],
+      'rn': [
+        '@satya164 (Satyajit Sahoo) — React Navigation核心维护者',
+        '@dabit3 (Nader Dabit) — RN/AWS/Serverless专家',
+        '@callstackio (Callstack) — RN核心贡献者团队，Repack/RNEF创建者',
+      ],
+      'frontend': [
+        '@dan_abramov (Dan Abramov) — React核心团队，删帖和长文引发讨论',
+        '@acdlite (Andrew Clark) — React核心团队',
+        '@cassidoo (Cassidy Williams) — 前端技术、开发者教育',
+      ],
+      'devtools': [
+        '@ID_AA_Carmack (John Carmack) — 系统级思考、性能权衡，VR/AI讨论',
+      ],
+    },
+  },
+  reddit: {
+    label: 'Reddit 高赞帖+评论区',
+    desc: '以下社区天天有大量更新，高赞帖和评论区讨论丰富。关注热门帖下的高赞评论——那些才是真正的梗',
+    byCategory: {
+      'ai-coding': [
+        'r/ChatGPTCoding — 多工具AI编程讨论（Claude Code/Cursor/Codex对比），真实使用体验',
+        'r/ClaudeAI — Claude Code工作流、上下文管理、终端agent配置',
+        'r/vibecoding — AI辅助开发实战、项目展示（89K成员），ship-focused',
+        'r/CodingWithAI — 编码AI资源汇总',
+      ],
+      'ai-tools': [
+        'r/ChatGPT — ChatGPT使用经验、创意prompt、翻车案例',
+        'r/OpenAI — OpenAI开发/API实现讨论',
+      ],
+      'prompt': [
+        'r/AIPromptProgramming — Prompt工程社区（69K成员），系统性prompt设计',
+      ],
+      'ai-culture': [
+        'r/LocalLLaMA — 本地LLM部署、开源模型社区，技术讨论深',
+        'r/singularity — AGI讨论、AI未来辩论，乐观派vs悲观派梗',
+        'r/AI_Agents — Agent框架、自主工具，生产力工具分享',
+        'r/StableDiffusion — 图像生成、模型对比、AI艺术梗',
+      ],
+      'rn': [
+        'r/reactnative — React Native开发者社区，踩坑和解决方案',
+      ],
+      'frontend': [
+        'r/reactjs — React社区（~470K），组件/状态管理/hooks讨论',
+        'r/webdev — Web开发综合社区',
+        'r/Frontend — 前端开发讨论',
+      ],
+      'devtools': [
+        'r/ExperiencedDevs — 资深开发者讨论，高信噪比',
+        'r/programming — 通用编程社区（5M+），热点技术新闻',
+        'r/git — Git技巧与翻车',
+      ],
+    },
+  },
+  hackernews: {
+    label: 'Hacker News',
+    url: 'https://news.ycombinator.com/',
+    desc: 'YC旗下技术新闻社区，每日高质量技术讨论。评论区是程序员的吐槽大会，金句频出',
+  },
+};
+
+function buildSourcesText(categories) {
+  const lines = [];
+  for (const cat of categories) {
+    const xList = SOURCES.x.byCategory[cat];
+    const rList = SOURCES.reddit.byCategory[cat];
+    if (xList) lines.push(`  X: ${xList.join(' | ')}`);
+    if (rList) lines.push(`  Reddit: ${rList.join(' | ')}`);
+  }
+  if (lines.length === 0) return '';
+  return `\n### 信息源参考\n${SOURCES.x.desc}\n${SOURCES.reddit.desc}\n${SOURCES.hackernews.desc} (${SOURCES.hackernews.url})\n${lines.join('\n')}`;
+}
+
 // ===== 时段判定 (上海时间 UTC+8) =====
 function getCurrentSlot() {
   const now = new Date();
@@ -65,13 +165,19 @@ function buildPrompt(slot) {
   const lifeDirs = DIRECTIONS.life.map(d => `- 【${d.categoryName}】${d.desc}`).join('\n');
 
   let focusDesc = '';
+  let focusCategories = [];
   if (slot.ratio.work === 1 && slot.ratio.life === 0) {
     focusDesc = `本次全部生成【工作向】内容，从以下方向中选择：\n${workDirs}`;
+    focusCategories = DIRECTIONS.work.map(d => d.category);
   } else if (slot.ratio.work === 0 && slot.ratio.life === 1) {
     focusDesc = `本次全部生成【生活向】内容，从以下方向中选择：\n${lifeDirs}`;
+    focusCategories = [];
   } else {
     focusDesc = `本次工作向和生活向各占约50%，从以下方向中选择：\n工作向：\n${workDirs}\n生活向：\n${lifeDirs}`;
+    focusCategories = DIRECTIONS.work.map(d => d.category);
   }
+
+  const sourcesText = buildSourcesText(focusCategories);
 
   const dateStr = `${slot.shanghai.getUTCFullYear()}-${String(slot.shanghai.getUTCMonth()+1).padStart(2,'0')}-${String(slot.shanghai.getUTCDate()).padStart(2,'0')}`;
 
@@ -92,7 +198,7 @@ ${slot.title}（${slot.desc}）
 ${mondayNote}
 ## 内容方向
 ${focusDesc}
-
+${sourcesText}
 ## 生成要求
 1. 生成 8 条梗，每条包含：title（标题）、category（分类key）、categoryName（分类名）、content（梗的描述，生动有趣）、explanation（梗的解释/背景，帮用户理解）、usageTip（怎么用这个梗，具体到可以怎么开口聊）、sourceUrl（可选，原始链接）
 2. 梗要有趣、接地气，能引发共鸣和笑声
@@ -102,7 +208,8 @@ ${focusDesc}
 6. usageTip 要具体，给出可以直接用的开场白或聊天切入方式
 7. category 必须是以下之一：rn, frontend, app-dev, ai-coding, ai-tools, prompt, ai-culture, devtools, ai-life, edu, pingpong, current, family, life
 8. 不要生成已有的重复内容，尽量有新意
-9. sourceUrl：如果梗来源于具体的文章、新闻、事件、热门帖子，尽量提供真实可访问的原始链接。如果是一般性经验/梗/段子，sourceUrl 留空。不要编造不存在的 URL！
+9. **信息源导向**：优先从上面列出的 X 牛人高赞帖、Reddit 热帖评论区、Hacker News 讨论中"找料"——这些地方天天有大量更新，评论区更是梗的宝库。想象你刚刚刷完这些信息源，把最有趣、最有话题性的内容提炼成梗
+10. sourceUrl：如果梗来源于具体的帖子/文章/新闻，提供真实的原始链接（如 x.com/xxx/status/xxx、reddit.com/r/xxx/comments/xxx、news.ycombinator.com/item?id=xxx）。如果是一般性经验/段子，sourceUrl 留空。不要编造不存在的 URL！
 
 ## 输出格式
 请直接输出 JSON 数组，不要包含 markdown 代码块标记，不要有其他文字：
