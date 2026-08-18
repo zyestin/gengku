@@ -48,7 +48,7 @@ function getCurrentSlot() {
 
   const slotConfig = {
     'workday-morning':   { title: '工作日早间',   ratio: { work: 1, life: 0 }, desc: '上班路上看，到公司和同事聊' },
-    'workday-evening':   { title: '工作日晚间',   ratio: { work: 1, life: 1 }, desc: '下班了，工作生活各一半' },
+    'workday-evening':   { title: '工作日晚间',   ratio: { work: 0, life: 1 }, desc: '下班了，切换到生活模式，和家人聊' },
     'weekend-morning':   { title: '周末早晨',     ratio: { work: 0, life: 1 }, desc: '和家人、孩子、附近家长聊' },
     'weekend-evening':   { title: '周末晚间',     ratio: { work: 0, life: 1 }, desc: '和家人聊聊今天的趣事' },
   };
@@ -72,6 +72,11 @@ function buildPrompt(slot) {
 
   const dateStr = `${slot.shanghai.getUTCFullYear()}-${String(slot.shanghai.getUTCMonth()+1).padStart(2,'0')}-${String(slot.shanghai.getUTCDate()).padStart(2,'0')}`;
 
+  const isMonday = slot.shanghai.getUTCDay() === 1;
+  const mondayNote = (isMonday && slot.slotId === 'workday-morning')
+    ? `\n## 特别提示\n今天是周一！用户从周五晚上到现在没有看过工作相关内容。请额外关注周五晚上到今天早上期间发生的科技/AI/编程领域的新梗和热点，帮用户快速追上周末错过的工作话题（至少包含 2-3 条周末期间发生的科技/AI 相关梗）。`
+    : '';
+
   return `你是一个"梗库"内容生成助手。你的任务是为用户生成有趣、实用的话题梗，用于日常社交聊天。
 
 ## 用户画像
@@ -81,7 +86,7 @@ function buildPrompt(slot) {
 ## 本次生成时段
 ${slot.title}（${slot.desc}）
 日期：${dateStr}
-
+${mondayNote}
 ## 内容方向
 ${focusDesc}
 
