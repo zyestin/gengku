@@ -54,6 +54,7 @@ const SOURCES = {
         '@alexalbert__ (Alex Albert) — Anthropic API技巧、prompt caching、token路由',
         '@emollick (Ethan Mollick) — 沃顿教授，基于数据的AI实验分析，高信噪比',
         '@levelsio (Levels.io) — 独立开发者，AI产品实测和模型对比，接地气',
+        '@AndrewYNg (吴恩达) — AI教育、Agent实践、产业落地建议，发帖接地气',
       ],
       'prompt': [
         '@mattshumer_ (Matt Shumer) — Prompt工程实验、模型工作流优化、速度测试',
@@ -64,6 +65,8 @@ const SOURCES = {
         '@_akhaliq (AK) — 每日AI论文和产品发布速递，第一时间',
         '@ClementDelangue (Hugging Face CEO) — 开源AI生态、模型采用数据',
         '@swyx (swyx) — AI工程生态系统、开发者趋势分析',
+        '@elonmusk (马斯克) — xAI/Grok，AI方向极强观点输出，评论区永远在吵',
+        '@drfeifei (李飞飞) — ImageNet创始人、World Labs空间智能，AI研究+伦理视角',
       ],
       'rn': [
         '@satya164 (Satyajit Sahoo) — React Navigation核心维护者',
@@ -123,6 +126,18 @@ const SOURCES = {
     url: 'https://news.ycombinator.com/',
     desc: 'YC旗下技术新闻社区，每日高质量技术讨论。评论区是程序员的吐槽大会，金句频出',
   },
+  chinese: {
+    label: '中文高质量信息源',
+    desc: '中文技术/AI社区每日更新，热文评论区同样有大量高质量讨论和梗',
+    sources: [
+      'InfoQ (infoq.cn) — 中文技术媒体，架构、编程趋势、技术大会内容，深度文章',
+      '量子位 (qbitai.com) — 中文AI媒体，每日AI新闻速递和深度解读，覆盖国内外',
+      '机器之心 (jiqizhixin.com) — 中文AI媒体，论文解读、产业报告、技术教程',
+      'V2EX (v2ex.com) — 中文开发者社区，类似Hacker News，技术讨论+生活吐槽',
+      '36氪 (36kr.com) — 科技创投媒体，AI创业、融资、产品发布',
+      '掘金 (juejin.cn) — 中文开发者社区，前端/RN/AI技术文章，有热榜',
+    ],
+  },
 };
 
 function buildSourcesText(categories) {
@@ -134,7 +149,7 @@ function buildSourcesText(categories) {
     if (rList) lines.push(`  Reddit: ${rList.join(' | ')}`);
   }
   if (lines.length === 0) return '';
-  return `\n### 信息源参考\n${SOURCES.x.desc}\n${SOURCES.reddit.desc}\n${SOURCES.hackernews.desc} (${SOURCES.hackernews.url})\n${lines.join('\n')}`;
+  return `\n### 信息源参考\n${SOURCES.x.desc}\n${SOURCES.reddit.desc}\n${SOURCES.hackernews.desc} (${SOURCES.hackernews.url})\n${SOURCES.chinese.desc}:\n  ${SOURCES.chinese.sources.join('\n  ')}\n${lines.join('\n')}`;
 }
 
 // ===== 时段判定 (上海时间 UTC+8) =====
