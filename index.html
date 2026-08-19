@@ -489,6 +489,144 @@ body {
   background: rgba(251, 191, 36, 0.1);
 }
 
+/* ===== Like & Comment ===== */
+.card-actions {
+  display: flex;
+  gap: 6px;
+}
+
+.action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 5px 10px;
+  border-radius: 100px;
+  border: 1px solid var(--card-border);
+  background: var(--card-bg);
+  color: var(--text-secondary);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.action-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.like-btn.liked {
+  background: var(--accent-light);
+  border-color: var(--accent);
+  color: var(--accent-dark);
+}
+
+[data-theme="dark"] .like-btn.liked {
+  background: rgba(251, 191, 36, 0.15);
+}
+
+.comment-section {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px dashed var(--card-border);
+}
+
+.comment-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+.comment-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  padding: 6px 10px;
+  background: var(--bg-secondary);
+  border-radius: 8px;
+  font-size: 13px;
+}
+
+.comment-text {
+  flex: 1;
+  color: var(--text);
+  line-height: 1.5;
+  word-break: break-word;
+}
+
+.comment-time {
+  color: var(--text-tertiary);
+  font-size: 11px;
+  white-space: nowrap;
+  margin-top: 2px;
+}
+
+.comment-del {
+  background: none;
+  border: none;
+  color: var(--text-tertiary);
+  cursor: pointer;
+  font-size: 14px;
+  padding: 0 2px;
+  opacity: 0.5;
+  transition: opacity 0.2s;
+}
+
+.comment-del:hover { opacity: 1; color: #ef4444; }
+
+.comment-empty {
+  color: var(--text-tertiary);
+  font-size: 13px;
+  font-style: italic;
+}
+
+.comment-input {
+  display: flex;
+  gap: 8px;
+  align-items: flex-end;
+}
+
+.comment-input textarea {
+  flex: 1;
+  padding: 8px 12px;
+  border: 1px solid var(--card-border);
+  border-radius: 10px;
+  background: var(--card-bg);
+  color: var(--text);
+  font-size: 13px;
+  font-family: inherit;
+  resize: vertical;
+  min-height: 36px;
+  outline: none;
+  transition: var(--transition);
+}
+
+.comment-input textarea:focus {
+  border-color: var(--accent);
+}
+
+.comment-input textarea::placeholder {
+  color: var(--text-tertiary);
+}
+
+.comment-submit {
+  padding: 8px 16px;
+  border-radius: 10px;
+  border: none;
+  background: var(--accent);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: var(--transition);
+  white-space: nowrap;
+}
+
+.comment-submit:hover {
+  background: var(--accent-dark);
+}
+
 /* ===== Empty State ===== */
 .empty-state {
   grid-column: 1 / -1;
@@ -1336,6 +1474,8 @@ function renderContent() {
       ? escapeHtml(item.sourceUrl)
       : 'https://www.google.com/search?q=' + encodeURIComponent(item.title);
     const srcDomain = item.sourceUrl ? getDomain(item.sourceUrl) : 'google.com';
+    const liked = isLiked(item.id);
+    const commentCount = getComments(item.id).length;
     return `
       <div class="card" style="animation-delay:${i * 0.06}s;">
         <div class="card-header">
@@ -1356,14 +1496,28 @@ function renderContent() {
           ${escapeHtml(item.usageTip)}
         </div>
         <div class="card-footer">
+          <div class="card-actions">
+            <button class="action-btn like-btn ${liked ? 'liked' : ''}" data-like="${escapeHtml(item.id)}">
+              ${liked ? '❤️' : '🤍'} ${commentCount > 0 ? '' : ''}
+            </button>
+            <button class="action-btn" data-comment="${escapeHtml(item.id)}">
+              💬 ${commentCount > 0 ? commentCount : ''}
+            </button>
+          </div>
           <span>🕐 ${formatDateTime(item.createdAt)}</span>
           <a href="${srcUrl}" class="source-btn" target="_blank" rel="noopener noreferrer">
             ${item.sourceUrl ? '🔗 来源: ' + escapeHtml(srcDomain) : '🔍 搜索相关'}
           </a>
         </div>
+        <div class="comment-section" id="cs-${escapeHtml(item.id)}" style="display:none;">
+          ${renderCommentSection(item.id)}
+        </div>
       </div>
     `;
   }).join('');
+
+  // Bind like & comment events
+  bindCardActions(grid);
 }
 
 // ===== Utils =====
@@ -1377,6 +1531,160 @@ function getDomain(url) {
     const u = new URL(url);
     return u.hostname.replace(/^www\./, '');
   } catch { return ''; }
+}
+
+// ===== Likes & Comments (localStorage) =====
+function getLikes() {
+  try { return JSON.parse(localStorage.getItem('gengku-likes') || '{}'); }
+  catch { return {}; }
+}
+
+function isLiked(id) {
+  return !!getLikes()[id];
+}
+
+function toggleLike(id) {
+  const likes = getLikes();
+  if (likes[id]) { delete likes[id]; }
+  else { likes[id] = Date.now(); }
+  localStorage.setItem('gengku-likes', JSON.stringify(likes));
+}
+
+function getComments(id) {
+  try {
+    const all = JSON.parse(localStorage.getItem('gengku-comments') || '{}');
+    return all[id] || [];
+  } catch { return []; }
+}
+
+function addComment(id, text) {
+  let all = {};
+  try { all = JSON.parse(localStorage.getItem('gengku-comments') || '{}'); } catch {}
+  if (!all[id]) all[id] = [];
+  all[id].push({ text, time: new Date().toISOString() });
+  localStorage.setItem('gengku-comments', JSON.stringify(all));
+}
+
+function deleteComment(id, idx) {
+  let all = {};
+  try { all = JSON.parse(localStorage.getItem('gengku-comments') || '{}'); } catch {}
+  if (all[id]) {
+    all[id].splice(idx, 1);
+    if (all[id].length === 0) delete all[id];
+    localStorage.setItem('gengku-comments', JSON.stringify(all));
+  }
+}
+
+function renderCommentSection(id) {
+  const comments = getComments(id);
+  const commentsHtml = comments.map((c, i) => `
+    <div class="comment-item">
+      <span class="comment-text">${escapeHtml(c.text)}</span>
+      <span class="comment-time">${new Date(c.time).toLocaleString('zh-CN', {month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'})}</span>
+      <button class="comment-del" data-del-id="${id}" data-del-idx="${i}">✕</button>
+    </div>
+  `).join('');
+  return `
+    <div class="comment-list">${commentsHtml || '<span class="comment-empty">还没有想法，写下第一个吧</span>'}</div>
+    <div class="comment-input">
+      <textarea placeholder="写下你联想到的想法碎片..." rows="2" data-textarea="${id}"></textarea>
+      <button class="comment-submit" data-submit="${id}">记录</button>
+    </div>
+  `;
+}
+
+// ===== Bind Like & Comment Events =====
+function bindCardActions(scope) {
+  // Like buttons
+  scope.querySelectorAll('.like-btn[data-like]').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const id = btn.dataset.like;
+      toggleLike(id);
+      const liked = isLiked(id);
+      btn.classList.toggle('liked', liked);
+      btn.innerHTML = liked ? '❤️' : '🤍';
+    });
+  });
+
+  // Comment toggle buttons
+  scope.querySelectorAll('[data-comment]').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const id = btn.dataset.comment;
+      const section = document.getElementById('cs-' + id);
+      if (section) {
+        const isHidden = section.style.display === 'none';
+        section.style.display = isHidden ? 'block' : 'none';
+        if (isHidden) {
+          section.innerHTML = renderCommentSection(id);
+          bindCommentSection(section, id);
+          const ta = section.querySelector('textarea');
+          if (ta) ta.focus();
+        }
+      }
+    });
+  });
+
+  // Pre-bound comment sections (those rendered with display:none)
+  scope.querySelectorAll('.comment-section').forEach(section => {
+    const id = section.id.replace('cs-', '');
+    bindCommentSection(section, id);
+  });
+}
+
+function bindCommentSection(section, id) {
+  // Submit button
+  section.querySelectorAll('[data-submit]').forEach(btn => {
+    if (btn.dataset.bound) return;
+    btn.dataset.bound = '1';
+    btn.addEventListener('click', () => {
+      const ta = section.querySelector(`[data-textarea="${id}"]`);
+      const text = ta ? ta.value.trim() : '';
+      if (!text) return;
+      addComment(id, text);
+      section.innerHTML = renderCommentSection(id);
+      bindCommentSection(section, id);
+      // Update comment count on the button
+      const countBtn = document.querySelector(`[data-comment="${id}"]`);
+      if (countBtn) {
+        const count = getComments(id).length;
+        countBtn.innerHTML = `💬 ${count > 0 ? count : ''}`;
+      }
+    });
+  });
+
+  // Enter to submit (Ctrl+Enter)
+  section.querySelectorAll('textarea').forEach(ta => {
+    if (ta.dataset.bound) return;
+    ta.dataset.bound = '1';
+    ta.addEventListener('keydown', (e) => {
+      if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+        e.preventDefault();
+        const submitBtn = section.querySelector('[data-submit]');
+        if (submitBtn) submitBtn.click();
+      }
+    });
+  });
+
+  // Delete buttons
+  section.querySelectorAll('[data-del-id]').forEach(btn => {
+    if (btn.dataset.bound) return;
+    btn.dataset.bound = '1';
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const cid = btn.dataset.delId;
+      const idx = parseInt(btn.dataset.delIdx);
+      deleteComment(cid, idx);
+      section.innerHTML = renderCommentSection(cid);
+      bindCommentSection(section, cid);
+      const countBtn = document.querySelector(`[data-comment="${cid}"]`);
+      if (countBtn) {
+        const count = getComments(cid).length;
+        countBtn.innerHTML = `💬 ${count > 0 ? count : ''}`;
+      }
+    });
+  });
 }
 
 // ===== Gengku Slot Banner =====
@@ -1482,6 +1790,8 @@ function renderParentingContent() {
       ? escapeHtml(item.sourceUrl)
       : 'https://www.google.com/search?q=' + encodeURIComponent(item.title);
     const srcDomain = item.sourceUrl ? getDomain(item.sourceUrl) : 'google.com';
+    const liked = isLiked(item.id);
+    const commentCount = getComments(item.id).length;
     return `
       <div class="pt-card" style="animation-delay:${i * 0.06}s;">
         <div class="pt-tags">
@@ -1496,9 +1806,20 @@ function renderParentingContent() {
           <button class="pt-expand-btn" data-id="${escapeHtml(item.id)}">
             ${isExpanded ? '收起 ⬆' : '爸爸讲述指南 ⬇'}
           </button>
+          <div class="card-actions">
+            <button class="action-btn like-btn ${liked ? 'liked' : ''}" data-like="${escapeHtml(item.id)}">
+              ${liked ? '❤️' : '🤍'}
+            </button>
+            <button class="action-btn" data-comment="${escapeHtml(item.id)}">
+              💬 ${commentCount > 0 ? commentCount : ''}
+            </button>
+          </div>
           <a href="${srcUrl}" class="source-btn" target="_blank" rel="noopener noreferrer">
             ${item.sourceUrl ? '🔗 来源: ' + escapeHtml(srcDomain) : '🔍 搜索相关'}
           </a>
+        </div>
+        <div class="comment-section" id="cs-${escapeHtml(item.id)}" style="display:none;">
+          ${renderCommentSection(item.id)}
         </div>
       </div>
     `;
@@ -1518,6 +1839,9 @@ function renderParentingContent() {
       renderParentingContent();
     });
   });
+
+  // Bind like & comment events
+  bindCardActions(grid);
 }
 
 // ===== Start =====
