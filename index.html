@@ -975,10 +975,27 @@ body {
 <!-- Generation Stats -->
 <div class="gen-stats" id="genStats"></div>
 
+<!-- Sync Panel -->
+<div id="syncPanel" style="display:none;position:fixed;bottom:20px;right:20px;z-index:1000;background:var(--card-bg);border:1px solid var(--card-border);border-radius:16px;padding:20px;box-shadow:var(--shadow-hover);max-width:340px;">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+    <strong style="font-size:15px;">☁️ 数据同步</strong>
+    <button onclick="document.getElementById('syncPanel').style.display='none'" style="background:none;border:none;font-size:18px;cursor:pointer;color:var(--text-secondary);">✕</button>
+  </div>
+  <p style="font-size:12px;color:var(--text-secondary);margin-bottom:10px;">把你的点赞和评论存到 GitHub Gist，换设备也不丢。</p>
+  <input id="ghTokenInput" type="password" placeholder="GitHub Personal Access Token (gist)" style="width:100%;padding:8px 12px;border:1px solid var(--card-border);border-radius:10px;background:var(--card-bg);color:var(--text);font-size:13px;margin-bottom:8px;outline:none;" />
+  <p id="syncStatus" style="font-size:12px;color:var(--text-tertiary);margin-bottom:10px;min-height:16px;"></p>
+  <div style="display:flex;gap:8px;">
+    <button id="syncUploadBtn" onclick="syncToGitHub()" style="flex:1;padding:8px;border-radius:10px;border:none;background:var(--accent);color:#fff;font-size:13px;font-weight:700;cursor:pointer;">☁️ 存到GitHub</button>
+    <button id="syncDownloadBtn" onclick="syncFromGitHub()" style="flex:1;padding:8px;border-radius:10px;border:none;background:var(--bg-secondary);color:var(--accent-dark);font-size:13px;font-weight:700;cursor:pointer;">📥 恢复</button>
+  </div>
+  <p style="font-size:11px;color:var(--text-tertiary);margin-top:8px;">Token 只存在浏览器本地，不会上传到任何服务器。</p>
+</ </div>
+
 <!-- Footer -->
 <footer class="footer">
   <p>梗库 GENGKU · AI 驱动的话题灵感库 · 最后更新: <span id="lastUpdated">--</span></p>
   <p style="margin-top:4px;opacity:0.7;">GitHub Actions + GitHub Pages · OpenRouter AI · 零本地依赖</p>
+  <button onclick="document.getElementById('syncPanel').style.display='block'" style="margin-top:6px;padding:4px 12px;border-radius:100px;border:1px solid var(--card-border);background:var(--bg-secondary);color:var(--accent-dark);font-size:12px;font-weight:600;cursor:pointer;">☁️ 同步数据</button>
 </footer>
 
 <script>
@@ -1009,12 +1026,14 @@ const SLOTS = {
 
 // ===== Parenting Config =====
 const PT_THEMES = {
-  'unique-path':     { name: '做唯一故事' },
-  'learning-meaning': { name: '学习的意义' },
+  'unique-path':       { name: '做唯一故事' },
+  'learning-meaning':  { name: '学习的意义' },
   'benefiting-others': { name: '惠及他人' },
-  'science-fun':     { name: '科学乐趣' },
-  'open-minded':     { name: '豁达人生' },
-  'math-beauty':     { name: '数学之美' },
+  'science-fun':       { name: '科学乐趣' },
+  'open-minded':       { name: '豁达人生' },
+  'math-beauty':       { name: '数学之美' },
+  'nutrition-fun':    { name: '营养超能力' },
+  'sports-spirit':     { name: '运动精神' },
 };
 
 const PT_INTERESTS = {
@@ -1022,7 +1041,9 @@ const PT_INTERESTS = {
   'insects':   { name: '昆虫', emoji: '🐛' },
   'voiceover': { name: '配音', emoji: '🎭' },
   'musical':   { name: '音乐剧', emoji: '🎬' },
-  'games':     { name: '游戏组织', emoji: '⚽' },
+  'games':     { name: '游戏组织', emoji: '🎮' },
+  'nutrition': { name: '营养认知', emoji: '🥗' },
+  'sports':    { name: '运动探索', emoji: '🏅' },
   'general':   { name: '通用', emoji: '📖' },
 };
 
@@ -1686,6 +1707,156 @@ function bindCommentSection(section, id) {
     });
   });
 }
+
+// ===== GitHub Gist Sync =====
+async function syncToGitHub() {
+  const tokenInput = document.getElementById('ghTokenInput');
+  const statusEl = document.getElementById('syncStatus');
+  let token = tokenInput.value.trim() || localStorage.getItem('gh-token') || '';
+
+  if (!token) {
+    statusEl.textContent = '请先输入 GitHub Token（需要 gist 权限）';
+    statusEl.style.color = '#ef4444';
+    return;
+  }
+
+  localStorage.setItem('gh-token', token);
+  statusEl.textContent = '正在上传...';
+  statusEl.style.color = 'var(--text-secondary)';
+
+  const likes = JSON.parse(localStorage.getItem('gengku-likes') || '{}');
+  const comments = JSON.parse(localStorage.getItem('gengku-comments') || '{}');
+  const data = { likes, comments, savedAt: new Date().toISOString() };
+  const gistId = localStorage.getItem('gh-gist-id');
+  const body = {
+    description: 'Gengku 点赞与评论数据备份',
+    public: false,
+    files: { 'gengku-data.json': { content: JSON.stringify(data, null, 2) } }
+  };
+
+  try {
+    const url = gistId
+      ? `https://api.github.com/gists/${gistId}`
+      : 'https://api.github.com/gists';
+    const method = gistId ? 'PATCH' : 'POST';
+    const res = await fetch(url, {
+      method,
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Accept': 'application/vnd.github.v3+json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(body)
+    });
+
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}));
+      throw new Error(err.message || `HTTP ${res.status}`);
+    }
+
+    const gist = await res.json();
+    if (!gistId) {
+      localStorage.setItem('gh-gist-id', gist.id);
+      statusEl.textContent = `首次上传成功！Gist ID: ${gist.id.slice(0,8)}...`;
+    } else {
+      statusEl.textContent = `更新成功！${Object.keys(likes).length} 赞 + ${Object.keys(comments).reduce((s,k)=>s+comments[k].length,0)} 条评论`;
+    }
+    statusEl.style.color = '#16a34a';
+  } catch (e) {
+    statusEl.textContent = `上传失败: ${e.message}`;
+    statusEl.style.color = '#ef4444';
+  }
+}
+
+async function syncFromGitHub() {
+  const tokenInput = document.getElementById('ghTokenInput');
+  const statusEl = document.getElementById('syncStatus');
+  let token = tokenInput.value.trim() || localStorage.getItem('gh-token') || '';
+  let gistId = localStorage.getItem('gh-gist-id') || '';
+
+  if (!token) {
+    statusEl.textContent = '请先输入 GitHub Token';
+    statusEl.style.color = '#ef4444';
+    return;
+  }
+
+  if (!gistId) {
+    gistId = prompt('首次恢复：请输入 Gist ID（首次上传后页面会显示，或在 github.com/<你的用户名>/gists 查看）');
+    if (!gistId) return;
+    localStorage.setItem('gh-gist-id', gistId.trim());
+  }
+
+  localStorage.setItem('gh-token', token);
+  statusEl.textContent = '正在下载...';
+  statusEl.style.color = 'var(--text-secondary)';
+
+  try {
+    const res = await fetch(`https://api.github.com/gists/${gistId}`, {
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Accept': 'application/vnd.github.v3+json'
+      }
+    });
+
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}));
+      throw new Error(err.message || `HTTP ${res.status}`);
+    }
+
+    const gist = await res.json();
+    const file = gist.files['gengku-data.json'];
+    if (!file) throw new Error('Gist 中找不到 gengku-data.json');
+
+    const data = JSON.parse(file.content);
+    const likeCount = Object.keys(data.likes || {}).length;
+    const commentCount = Object.keys(data.comments || {}).reduce((s,k) => s + (data.comments[k]?.length || 0), 0);
+
+    // Merge: don't overwrite local data, merge
+    const localLikes = JSON.parse(localStorage.getItem('gengku-likes') || '{}');
+    const localComments = JSON.parse(localStorage.getItem('gengku-comments') || '{}');
+
+    // Merge likes (union)
+    const mergedLikes = { ...localLikes, ...(data.likes || {}) };
+
+    // Merge comments (append remote ones that don't exist locally)
+    const mergedComments = { ...localComments };
+    for (const [id, remoteComments] of Object.entries(data.comments || {})) {
+      if (!mergedComments[id]) {
+        mergedComments[id] = remoteComments;
+      } else {
+        // Merge by text+time to avoid duplicates
+        const existing = new Set(mergedComments[id].map(c => c.text + c.time));
+        for (const rc of remoteComments) {
+          if (!existing.has(rc.text + rc.time)) {
+            mergedComments[id].push(rc);
+          }
+        }
+      }
+    }
+
+    localStorage.setItem('gengku-likes', JSON.stringify(mergedLikes));
+    localStorage.setItem('gengku-comments', JSON.stringify(mergedComments));
+
+    statusEl.textContent = `恢复成功！${likeCount} 赞 + ${commentCount} 条评论已合并`;
+    statusEl.style.color = '#16a34a';
+
+    // Re-render current tab
+    renderAll();
+  } catch (e) {
+    statusEl.textContent = `恢复失败: ${e.message}`;
+    statusEl.style.color = '#ef4444';
+  }
+}
+
+// Auto-fill token on load
+window.addEventListener('DOMContentLoaded', () => {
+  const token = localStorage.getItem('gh-token') || '';
+  const gistId = localStorage.getItem('gh-gist-id') || '';
+  const tokenInput = document.getElementById('ghTokenInput');
+  const statusEl = document.getElementById('syncStatus');
+  if (tokenInput && token) tokenInput.value = token;
+  if (statusEl && gistId) statusEl.textContent = `已绑定 Gist: ${gistId.slice(0,8)}...`;
+});
 
 // ===== Gengku Slot Banner =====
 function renderSlotBanner() {

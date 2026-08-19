@@ -263,6 +263,8 @@ const PT_THEMES = {
   'science-fun':       { name: '科学乐趣', desc: '牛顿煮手表、爱因斯坦拒当总统——科学家不是因为有用才做科学，是因为太好玩了' },
   'open-minded':       { name: '豁达人生', desc: '苏轼被贬海南还发明美食、王阳明被贬龙场反而悟道——困难不可怕，失去好奇心才可怕' },
   'math-beauty':       { name: '数学之美', desc: '向日葵种子螺旋、斐波那契数列、蜂巢六边形——数学是大自然的密码，不是作业' },
+  'nutrition-fun':     { name: '营养超能力', desc: '维生素是超级英雄、蛋白质是身体的修理工、膳食纤维是肠道清道夫——吃对东西就是给身体加buff' },
+  'sports-spirit':     { name: '运动精神', desc: '坚持的魔力、失败的礼物、团队的力量——运动不只是出汗，是修炼内心' },
 };
 
 const PT_INTERESTS = {
@@ -271,25 +273,41 @@ const PT_INTERESTS = {
   'voiceover': { name: '配音', desc: '一人配多角、英语通过配音自然学、声音技巧练习' },
   'musical':   { name: '音乐剧', desc: '家庭剧场当小导演、Lin-Manuel Miranda式创新、连接配音+英语' },
   'games':     { name: '游戏组织', desc: '分析游戏设计、创造新游戏、写规则手册、教领导力原则' },
+  'nutrition': { name: '营养认知', desc: '认识食物里的维生素和矿物质、理解为什么吃这个不吃那个、建立健康饮食习惯' },
+  'sports':    { name: '运动探索', desc: '羽毛球/乒乓球/足球/跳绳等适合女孩的运动、从真实运动员故事中感受坚持与热爱' },
   'general':   { name: '通用', desc: '跨兴趣的通用教育主题' },
 };
 
+// 2-week rotation: covers all 8 themes + 7 interests
 const PT_ROTATION = [
-  'benefiting-others',  // Sunday
+  // Week 1
+  'sports-spirit',      // Sunday
   'science-fun',         // Monday
-  'drawing',            // Tuesday (interest-based)
-  'open-minded',         // Wednesday
-  'voiceover',          // Thursday (interest-based)
+  'drawing',            // Tuesday (interest)
+  'nutrition-fun',      // Wednesday
+  'voiceover',          // Thursday (interest)
   'unique-path',        // Friday
   'math-beauty',        // Saturday
+  // Week 2
+  'benefiting-others',  // Sunday
+  'open-minded',         // Monday
+  'insects',            // Tuesday (interest)
+  'learning-meaning',   // Wednesday
+  'musical',            // Thursday (interest)
+  'sports',             // Friday (interest)
+  'nutrition',          // Saturday (interest)
 ];
 
 function getParentingSlot() {
   const now = new Date();
   const shanghai = new Date(now.getTime() + 8 * 3600 * 1000);
   const day = shanghai.getUTCDay();
+  // Calculate which week of the 2-week cycle we're in
+  const dayOfYear = Math.floor((shanghai - new Date(shanghai.getUTCFullYear(), 0, 0)) / 86400000);
+  const weekOffset = Math.floor(dayOfYear / 7) % 2;
+  const rotIndex = weekOffset * 7 + day;
   const dateStr = `${shanghai.getUTCFullYear()}-${String(shanghai.getUTCMonth()+1).padStart(2,'0')}-${String(shanghai.getUTCDate()).padStart(2,'0')}`;
-  const rotKey = PT_ROTATION[day];
+  const rotKey = PT_ROTATION[rotIndex];
 
   let theme = null, interest = null;
   if (PT_THEMES[rotKey]) {
@@ -320,6 +338,44 @@ function buildParentingPrompt(slot) {
     focusHint = `今日兴趣方向：${slot.interest.name}（${slot.interest.key}）——${slot.interest.desc}。请围绕这个兴趣选择真实人物和事件。`;
   }
 
+  // Special guidance for nutrition/sports themes
+  let specialGuide = '';
+  if (slot.theme?.key === 'nutrition-fun' || slot.interest?.key === 'nutrition') {
+    specialGuide = `
+## 🥗 营养专题特别指导
+今日主题是营养/饮食，请严格遵循以下要求：
+1. **营养学必须准确**：维生素/矿物质的功能、缺乏症、食物来源，必须是医学/营养学公认的事实，不能编造
+2. **用比喻让孩子秒懂**：维C像修城墙的工人（保护皮肤/血管），蛋白质像身体里的修理工（修肌肉/做抗体），铁像运氧的小卡车（缺了就贫血没力气），钙像骨头里的钢筋（缺了骨头就软），膳食纤维像肠道里的扫帚
+3. **真实历史案例**：
+   - James Lind和柑橘实验（维C与坏血病）— https://en.wikipedia.org/wiki/James_Lind_(physician)
+   - 维A与夜盲症（古代人就知道吃肝治夜盲）
+   - 碘与甲状腺（碘盐的故事）
+   - 坏血病曾杀死更多水手 than战争
+4. **食物来源要具体**：哪些常吃菜含什么（西兰花=维C+维K，胡萝卜=维A，鸡蛋=蛋白质+胆碱，牛奶=钙+维D，菠菜=铁+叶酸）
+5. **核心目标**：孩子听完愿意主动吃菜/尝试新食物，理解"吃这个=给身体加什么buff"
+`;
+  }
+  if (slot.theme?.key === 'sports-spirit' || slot.interest?.key === 'sports') {
+    specialGuide = `
+## ⚽ 运动专题特别指导
+今日主题是运动/体育，请严格遵循以下要求：
+1. **运动员必须真实**：选真实的、查得到资料的女运动员或适合女孩参考的运动员
+   - 乒乓球：邓亚萍（身高1.55m被说太矮，拿了4枚奥运金牌）
+   - 羽毛球：李雪芮/陈雨菲（中国羽毛球女单奥运冠军）
+   - 足球：王霜/孙雯（中国女足传奇）
+   - 跳绳：可讲跳绳世界纪录保持者或学校跳绳比赛的真实故事
+   - 游泳：张雨霏（残奥精神）或傅园慧
+   - 坚持精神：伏明霞14岁奥运跳水冠军
+2. **不是只讲冠军**：也可以讲坚持运动但不一定拿冠军的真实人物，重点是"坚持"和"热爱"
+3. **家长沟通技巧**：在dadScript里，示范教练式/鼓励式沟通：
+   - "比上次多跳了3个！你在进步"而不是"怎么才跳这么少"
+   - "你觉得刚才哪个动作最顺？"引导自我觉察
+   - "累了我们就休息一下，休息完了你想再来几组？"尊重孩子节奏
+   - Carol Dweck成长型思维：夸努力不夸天赋
+4. **activity建议运动相关**：跳绳挑战、颠球计数、运动后拉伸游戏等
+`;
+  }
+
   const dateStr = slot.dateStr;
 
   return `你是一个育儿故事内容生成助手。你的任务是为一位父亲生成可以讲给7岁女儿（团团，二年级）听的故事。
@@ -327,21 +383,23 @@ function buildParentingPrompt(slot) {
 ## 核心教育理念
 "做唯一，不卷第一"——不让孩子在别人设定的赛道上争第一，而是帮她找到属于自己的赛道，做到无可替代。
 
-## 孩子的兴趣（5个方向）
+## 孩子的兴趣（7个方向）
 ${interestsDesc}
 
-## 教育主题（6个方向）
+## 教育主题（8个方向）
 ${themesDesc}
 
 ## 今日内容
 日期：${dateStr}
 ${focusHint || '今日自由生成，请从上述主题和兴趣中选择有趣的组合，但必须基于真实人物和事件。'}
+${specialGuide}
 
 ## ⚠️ 最重要规则：必须真实
 1. **每条故事必须基于真实人物、真实事件、真实历史**。可以是科学家、艺术家、运动员、历史人物、当代人物的真实经历。
 2. **严禁编造虚构故事**。不能是"有个小女孩..."这种自己编的寓言。必须是查得到、对得上号的人和事。
 3. **故事内容可以润色**：为了7岁孩子能懂、觉得有趣，你可以简化、加画面感、调整语言风格，但核心事实（人物、事件、因果关系）必须真实。
-4. **sourceUrl 必填**：每条故事必须提供至少一个真实可访问的源链接。优先使用：
+4. **营养/运动知识必须科学准确**：维生素功能、缺乏症、运动机制等，必须是医学/体育科学公认的事实，不能编造。
+5. **sourceUrl 必填**：每条故事必须提供至少一个真实可访问的源链接。优先使用：
    - 维基百科：https://zh.wikipedia.org/wiki/xxx 或 https://en.wikipedia.org/wiki/xxx
    - BBC/CNN/National Geographic 等权威媒体报道
    - 人物官方网站、博物馆页面
@@ -363,19 +421,23 @@ ${focusHint || '今日自由生成，请从上述主题和兴趣中选择有趣�
 - 王阳明、苏轼（中国历史人物）
 - Lin-Manuel Miranda（音乐剧创新）
 - Miyazaki Hayao（宫崎骏，动画+自然）
-- 友好提示：优先选择与孩子兴趣（画画/昆虫/配音/音乐剧/游戏）相关的真实人物
+- 邓亚萍（乒乓球，1.55m身高4枚奥运金牌）
+- 王霜（女足，突破与坚持）
+- James Lind（医生，发现柑橘治坏血病）
+- Christiaan Eijkman（发现维生素B1，诺贝尔奖）
+- 友好提示：优先选择与孩子兴趣（画画/昆虫/配音/音乐剧/游戏/营养/运动）相关的真实人物
 
 ## 生成要求
 生成 3 条故事，每条包含：
 - title: 标题，简洁有趣，能引起7岁孩子好奇
-- theme: 主题key（从上述6个中选）
+- theme: 主题key（从上述8个中选）
 - themeName: 主题名
-- interest: 兴趣key（从上述6个中选，通用用general）
+- interest: 兴趣key（从上述8个中选，通用用general）
 - interestName: 兴趣名
 - story: 真实故事，3-5句话，7岁能懂，有画面感，生动有趣
 - dadScript: 爸爸的开场白，以"团团，你知道吗？"开头，口语化，可以直接照着说
 - discussionPrompts: 2个开放式问题数组，讲完故事后可以问孩子
-- activity: 一个简单的后续活动建议（画画/观察/游戏等），可以当天做
+- activity: 一个简单的后续活动建议（画画/观察/游戏/运动/饮食等），可以当天做
 - sourceUrl: **必填**，真实可访问的源链接（维基百科/媒体报道/官方网站等）
 - personName: 真实人物姓名（如果是关于特定人物的故事）
 
