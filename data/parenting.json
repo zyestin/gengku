@@ -1,7 +1,70 @@
 {
-  "lastUpdated": "2026-08-19T08:00:00+08:00",
+  "lastUpdated": "2026-08-19T12:43:00+08:00",
   "version": "2.0.0",
   "content": [
+    {
+      "id": "1787114580508-0",
+      "title": "轮椅上的星空探险家",
+      "theme": "open-minded",
+      "themeName": "豁达人生",
+      "interest": "general",
+      "interestName": "通用",
+      "story": "霍金爷爷21岁时就得了很严重的病，医生说他只能活两年。但他不仅活到了76岁，还用电脑合成的声音给我们讲宇宙的故事。他不能走路、不能说话，却用眨眼睛的方式‘写’出了《时间简史》，连黑洞照片都是按他理论拍到的呢！",
+      "dadScript": "团团，你知道吗？有个爷爷像被关在太空舱里一样不能动，但他脑袋里装着整个宇宙！",
+      "discussionPrompts": [
+        "如果只能用眨眼睛交流，你想和爸爸妈妈说什么秘密？",
+        "你觉得星星会怎么和黑洞说悄悄话呢？"
+      ],
+      "activity": "用乐高搭一个会说话的轮椅机器人",
+      "personName": "Stephen Hawking",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/%E5%8F%B2%E8%92%82%E8%8A%AC%C2%B7%E9%9C%8D%E9%87%91",
+      "date": "2026-08-19",
+      "timeSlot": "evening",
+      "slot": "parenting-daily",
+      "createdAt": "2026-08-19T12:43:00+08:00"
+    },
+    {
+      "id": "1787114580509-1",
+      "title": "画框里的蝴蝶医生",
+      "theme": "open-minded",
+      "themeName": "豁达人生",
+      "interest": "drawing",
+      "interestName": "画画",
+      "story": "弗里达阿姨6岁得了小儿麻痹，18岁又遇到车祸，全身打满石膏。她在病床上让爸爸在床头装镜子，画出了第一幅自画像。后来她那些带着蝴蝶和猴子的画，现在全世界博物馆都在抢着展览呢！",
+      "dadScript": "团团，你知道吗？有个阿姨把疼痛变成了彩虹色的画，连她的眉毛都会跳舞！",
+      "discussionPrompts": [
+        "如果给你床头装面魔法镜子，镜子里会出现什么？",
+        "你觉得小猴子为什么总出现在她的画里？"
+      ],
+      "activity": "画一张有秘密动物的自画像",
+      "personName": "Frida Kahlo",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/%E5%BC%97%E9%87%8C%E8%BE%BE%C2%B7%E5%8D%A1%E7%BD%97",
+      "date": "2026-08-19",
+      "timeSlot": "evening",
+      "slot": "parenting-daily",
+      "createdAt": "2026-08-19T12:43:00+08:00"
+    },
+    {
+      "id": "1787114580509-2",
+      "title": "给毛毛虫写日记的妈妈",
+      "theme": "open-minded",
+      "themeName": "豁达人生",
+      "interest": "insects",
+      "interestName": "昆虫",
+      "story": "梅里安奶奶52岁时，带着女儿坐船去南美雨林探险。当时大家都以为昆虫是魔鬼变的，她却发现毛毛虫会变成蝴蝶！她把昆虫成长过程画成连环画，现在科学家们还在用她的观察记录呢。",
+      "dadScript": "团团，你知道吗？有个奶奶像你一样爱观察虫子，她坐大船去找蝴蝶的样子像不像海盗？",
+      "discussionPrompts": [
+        "如果让你带三样东西去雨林探险会带什么？",
+        "你觉得蝴蝶会不会记得自己当过毛毛虫？"
+      ],
+      "activity": "用连环画形式记录蚂蚁搬食物",
+      "personName": "Maria Sibylla Merian",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/%E7%8E%9B%E5%88%A9%E4%BA%9A%C2%B7%E8%A5%BF%E6%AF%94%E6%8B%89%C2%B7%E6%A2%85%E9%87%8C%E5%AE%89",
+      "date": "2026-08-19",
+      "timeSlot": "evening",
+      "slot": "parenting-daily",
+      "createdAt": "2026-08-19T12:43:00+08:00"
+    },
     {
       "id": "pt001",
       "date": "2026-08-18",
@@ -289,13 +352,13 @@
     }
   ],
   "generationStats": {
-    "model": "seed-data-v2",
-    "lastRun": "2026-08-19T08:00:00+08:00",
-    "slot": "种子数据v2（全部真实人物+真实来源）",
-    "promptTokens": 0,
-    "completionTokens": 0,
-    "totalTokens": 0,
-    "cost": 0,
-    "costNote": "种子数据，无AI生成"
+    "model": "deepseek/deepseek-chat",
+    "lastRun": "2026-08-19T12:43:00+08:00",
+    "slot": "育儿每日故事",
+    "promptTokens": 1223,
+    "completionTokens": 811,
+    "totalTokens": 2034,
+    "cost": 0.0004,
+    "costNote": "$0.14/1M输入 + $0.28/1M输出"
   }
 }
