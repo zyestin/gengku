@@ -652,6 +652,7 @@ body {
 
 .pt-tag.theme { background: rgba(139,92,246,0.12); color: #8b5cf6; }
 .pt-tag.interest { background: rgba(16,185,129,0.12); color: #10b981; }
+.pt-tag.person { background: rgba(34,197,94,0.12); color: #16a34a; font-weight: 600; }
 
 .pt-title {
   font-size: 17px;
@@ -1486,6 +1487,7 @@ function renderParentingContent() {
         <div class="pt-tags">
           <span class="pt-tag theme">${escapeHtml(theme.name)}</span>
           <span class="pt-tag interest">${interest.emoji} ${escapeHtml(interest.name)}</span>
+          ${item.personName ? `<span class="pt-tag person">👤 ${escapeHtml(item.personName)}</span>` : ''}
         </div>
         <div class="pt-title">${escapeHtml(item.title)}</div>
         <div class="pt-story">${escapeHtml(item.story)}</div>

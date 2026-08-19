@@ -315,9 +315,9 @@ function buildParentingPrompt(slot) {
 
   let focusHint = '';
   if (slot.theme) {
-    focusHint = `今日主题方向：${slot.theme.name}（${slot.theme.key}）——${slot.theme.desc}。请围绕这个主题生成内容，但也欢迎自然延伸。`;
+    focusHint = `今日主题方向：${slot.theme.name}（${slot.theme.key}）——${slot.theme.desc}。请围绕这个主题选择真实人物和事件。`;
   } else if (slot.interest) {
-    focusHint = `今日兴趣方向：${slot.interest.name}（${slot.interest.key}）——${slot.interest.desc}。请围绕这个兴趣生成内容，也欢迎连接其他兴趣。`;
+    focusHint = `今日兴趣方向：${slot.interest.name}（${slot.interest.key}）——${slot.interest.desc}。请围绕这个兴趣选择真实人物和事件。`;
   }
 
   const dateStr = slot.dateStr;
@@ -335,7 +335,35 @@ ${themesDesc}
 
 ## 今日内容
 日期：${dateStr}
-${focusHint || '今日自由生成，请从上述主题和兴趣中选择有趣的组合。'}
+${focusHint || '今日自由生成，请从上述主题和兴趣中选择有趣的组合，但必须基于真实人物和事件。'}
+
+## ⚠️ 最重要规则：必须真实
+1. **每条故事必须基于真实人物、真实事件、真实历史**。可以是科学家、艺术家、运动员、历史人物、当代人物的真实经历。
+2. **严禁编造虚构故事**。不能是"有个小女孩..."这种自己编的寓言。必须是查得到、对得上号的人和事。
+3. **故事内容可以润色**：为了7岁孩子能懂、觉得有趣，你可以简化、加画面感、调整语言风格，但核心事实（人物、事件、因果关系）必须真实。
+4. **sourceUrl 必填**：每条故事必须提供至少一个真实可访问的源链接。优先使用：
+   - 维基百科：https://zh.wikipedia.org/wiki/xxx 或 https://en.wikipedia.org/wiki/xxx
+   - BBC/CNN/National Geographic 等权威媒体报道
+   - 人物官方网站、博物馆页面
+   - TED Talks、纪录片页面
+   - 不要编造不存在的URL！如果不确定具体URL，提供维基百科搜索链接
+
+## 真实人物参考（可拓展，不限于此）
+- Frida Kahlo（画家，受伤后对着镜子画自己）
+- Maria Sibylla Merian（博物插画师，画昆虫变态）
+- Leonardo da Vinci（画画+科学+工程）
+- Albert Einstein（好奇心、想象力）
+- Isaac Newton（苹果、光的实验）
+- Marie Curie（两次诺贝尔奖）
+- Charles Darwin（环球旅行观察自然）
+- Jane Goodall（观察黑猩猩）
+- Helen Keller（失聪失明后学会沟通）
+- Temple Grandin（自闭症，用图像思考改变畜牧业）
+- Stephen Hawking（身体受限但思想自由）
+- 王阳明、苏轼（中国历史人物）
+- Lin-Manuel Miranda（音乐剧创新）
+- Miyazaki Hayao（宫崎骏，动画+自然）
+- 友好提示：优先选择与孩子兴趣（画画/昆虫/配音/音乐剧/游戏）相关的真实人物
 
 ## 生成要求
 生成 3 条故事，每条包含：
@@ -344,15 +372,16 @@ ${focusHint || '今日自由生成，请从上述主题和兴趣中选择有趣�
 - themeName: 主题名
 - interest: 兴趣key（从上述6个中选，通用用general）
 - interestName: 兴趣名
-- story: 故事内容，3-5句话，7岁能懂，有画面感，生动有趣
+- story: 真实故事，3-5句话，7岁能懂，有画面感，生动有趣
 - dadScript: 爸爸的开场白，以"团团，你知道吗？"开头，口语化，可以直接照着说
 - discussionPrompts: 2个开放式问题数组，讲完故事后可以问孩子
 - activity: 一个简单的后续活动建议（画画/观察/游戏等），可以当天做
-- sourceUrl: 可选，如果故事基于真实人物或事件，提供原始链接
+- sourceUrl: **必填**，真实可访问的源链接（维基百科/媒体报道/官方网站等）
+- personName: 真实人物姓名（如果是关于特定人物的故事）
 
 ## 输出格式
 输出 JSON 数组，3个对象。不要输出其他内容。
-[{"title":"...","theme":"...","themeName":"...","interest":"...","interestName":"...","story":"...","dadScript":"...","discussionPrompts":["...","..."],"activity":"...","sourceUrl":""}]`;
+[{"title":"...","theme":"...","themeName":"...","interest":"...","interestName":"...","story":"...","dadScript":"...","discussionPrompts":["...","..."],"activity":"...","sourceUrl":"https://...","personName":"..."}]`;
 }
 
 // ===== 获取免费模型 =====
