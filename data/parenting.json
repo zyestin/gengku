@@ -1,7 +1,70 @@
 {
-  "lastUpdated": "2026-08-19T10:00:00+08:00",
+  "lastUpdated": "2026-08-19T21:03:00+08:00",
   "version": "3.0.0",
   "content": [
+    {
+      "id": "1787144630591-0",
+      "title": "毛毛虫变蝴蝶的秘密画师",
+      "theme": "learning-meaning",
+      "themeName": "学习的意义",
+      "interest": "insects",
+      "interestName": "昆虫",
+      "story": "350多年前的德国，小玛丽亚·梅里安不信大人说的\"毛毛虫是魔鬼从泥里变出来的\"。她像个小侦探，把毛毛虫养在盒子里，天天画日记：今天长绿毛了、今天吐丝了、哇！破茧变蝴蝶了！长大后她甚至独自坐船去南美丛林，只为画出没人见过的昆虫变身全过程。她不是为考试，纯粹是太想知道\"它们怎么长大的\"了。",
+      "dadScript": "团团，你知道吗？几百年前有个小女孩像你一样爱抓毛毛虫，大人都说她脏、说她傻，可她偏不信，非要盯着看、画下来，最后成了世界上最懂昆虫的\"画画科学家\"。",
+      "discussionPrompts": [
+        "如果你养一只毛毛虫，你最想画下它哪个瞬间？",
+        "你有没有遇到过大人不懂、但你特别想搞清楚的事？"
+      ],
+      "activity": "去小区花坛或公园找一片有虫子的叶子，带本子画下来它的样子、颜色、在干嘛，连续观察3天记录变化。",
+      "personName": "Maria Sibylla Merian",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/玛丽亚·西比拉·梅里安",
+      "date": "2026-08-19",
+      "timeSlot": "evening",
+      "slot": "parenting-daily",
+      "createdAt": "2026-08-19T21:03:00+08:00"
+    },
+    {
+      "id": "1787144630591-1",
+      "title": "闭着眼修收音机的\"魔法师\"",
+      "theme": "learning-meaning",
+      "themeName": "学习的意义",
+      "interest": "general",
+      "interestName": "通用",
+      "story": "小时候的费曼（后来得了诺贝尔奖）特别爱拆收音机。邻居家收音机坏了，他坐在那儿闭着眼睛想啊想，突然跑去拧了个螺丝——好了！大家惊呆了：\"你怎么知道坏哪儿？\" 他笑说：\"我没修过这台，但我懂电流怎么跑，在脑子里跑一遍就知道卡哪了。\" 他学物理不是为分数，是因为\"搞懂世界怎么运转，贼好玩\"。",
+      "dadScript": "团团，你知道吗？有个叫费曼的小男孩，修收音机不用螺丝刀先用脑子，他说学东西不是为了考一百分，是为了把世界当个大玩具拆开看看。",
+      "discussionPrompts": [
+        "你有没有拆过什么东西想看看里面长啥样？",
+        "如果不用考试，你最想把哪样东西\"拆开\"研究透？"
+      ],
+      "activity": "找一个废弃的旧玩具、手电筒或遥控器，和爸爸一起拆开来，画张\"零件地图\"，猜猜每个零件是干嘛的。",
+      "personName": "Richard Feynman",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/理查德·费曼",
+      "date": "2026-08-19",
+      "timeSlot": "evening",
+      "slot": "parenting-daily",
+      "createdAt": "2026-08-19T21:03:00+08:00"
+    },
+    {
+      "id": "1787144630591-2",
+      "title": "给水手吃柠檬的\"神医\"",
+      "theme": "learning-meaning",
+      "themeName": "学习的意义",
+      "interest": "nutrition",
+      "interestName": "营养认知",
+      "story": "200多年前，大船出远门水手总得怪病：牙龈烂、腿肿紫、累得动不了，叫\"坏血病\"。林德医生不信\"命\", 他把12个病水手分6组，喝苹果汁、喝醋、喝海水、吃柠檬橙子……只有吃柠檬那组神奇好了！他不知道\"维生素C\"是啥（那时候还没这词），但他好奇\"到底啥管用\"，非要亲自试出来。",
+      "dadScript": "团团，你知道吗？以前水手出远门容易得怪病，有个医生不信邪，把病人分成六堆喂不同东西，最后发现——柠檬橙子能救命！他不懂维生素，就靠好奇心和认真试，救了无数人。",
+      "discussionPrompts": [
+        "为什么医生不直接给所有人吃柠檬，非要分组试？",
+        "你觉得我们吃饭时，哪些食物可能藏着类似柠檬的\"超能力\"？"
+      ],
+      "activity": "打开冰箱找3样不同颜色的蔬果，查一下它们各自含有什么维生素（爸爸帮忙查），在餐桌上给它们贴上\"超能力标签\"（如：胡萝卜=夜视眼、西兰花=护盾甲）。",
+      "personName": "James Lind",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/詹姆斯·林德",
+      "date": "2026-08-19",
+      "timeSlot": "evening",
+      "slot": "parenting-daily",
+      "createdAt": "2026-08-19T21:03:00+08:00"
+    },
     {
       "id": "1787114580508-0",
       "title": "轮椅上的星空探险家",
@@ -466,13 +529,13 @@
     }
   ],
   "generationStats": {
-    "model": "deepseek/deepseek-chat",
-    "lastRun": "2026-08-19T12:43:00+08:00",
+    "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+    "lastRun": "2026-08-19T21:03:00+08:00",
     "slot": "育儿每日故事",
-    "promptTokens": 1223,
-    "completionTokens": 811,
-    "totalTokens": 2034,
-    "cost": 0.0004,
-    "costNote": "$0.14/1M输入 + $0.28/1M输出"
+    "promptTokens": 1944,
+    "completionTokens": 2389,
+    "totalTokens": 4333,
+    "cost": 0,
+    "costNote": "免费模型"
   }
 }
