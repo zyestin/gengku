@@ -1,7 +1,85 @@
 {
-  "lastUpdated": "2026-08-20T07:47:00+08:00",
+  "lastUpdated": "2026-08-20T18:03:00+08:00",
   "version": "1.0.0",
   "content": [
+    {
+      "id": "1787220219967-0",
+      "title": "AI作业辅导员",
+      "category": "ai-life",
+      "categoryName": "AI生活",
+      "content": "现在辅导女儿作业，我都先让AI过一遍，自己再检查AI的答案。结果昨天AI把'8+5'算成了12，女儿说：'爸爸，你的AI老师该回幼儿园重修了！'",
+      "explanation": "很多家长开始用AI辅导孩子作业，但AI在基础算术上偶尔会犯低级错误，形成反差萌",
+      "usageTip": "可以在家长群吐槽：'你们敢信吗？我家AI辅导作业，把8+5算成12，现在孩子说要教AI背九九乘法表...'",
+      "date": "2026-08-20",
+      "timeSlot": "workday-evening",
+      "slot": "workday-evening",
+      "createdAt": "2026-08-20T18:03:00+08:00"
+    },
+    {
+      "id": "1787220219967-1",
+      "title": "家长群AI代骂",
+      "category": "ai-life",
+      "categoryName": "AI生活",
+      "content": "用AI生成家长群发言，不小心把'感谢老师辛苦'写成了'建议老师多布置作业'，现在全班家长都在追杀我...",
+      "explanation": "家长常用AI代写群消息，但提示词没设好容易翻车",
+      "usageTip": "在家长会开玩笑说：'现在用AI写群消息都得加三重安全提示词，上次差点引发家长世界大战...'",
+      "date": "2026-08-20",
+      "timeSlot": "workday-evening",
+      "slot": "workday-evening",
+      "createdAt": "2026-08-20T18:03:00+08:00"
+    },
+    {
+      "id": "1787220219968-2",
+      "title": "儿童编程焦虑",
+      "category": "edu",
+      "categoryName": "儿童教育",
+      "content": "7岁女儿用AI生成器做了个会骂人的电子宠物，现在我很纠结：这算编程天赋还是骂人天赋？",
+      "explanation": "低龄儿童编程教育普及后，经常出现让人哭笑不得的'作品'",
+      "usageTip": "在程序员群里吐槽：'现在小孩学编程太野了，我女儿做的电子宠物会对着我说'代码写得菜'...'",
+      "date": "2026-08-20",
+      "timeSlot": "workday-evening",
+      "slot": "workday-evening",
+      "createdAt": "2026-08-20T18:03:00+08:00"
+    },
+    {
+      "id": "1787220219968-3",
+      "title": "AI生成童话",
+      "category": "ai-life",
+      "categoryName": "AI生活",
+      "content": "让AI给女儿编睡前故事，结果生成《白雪公主用Python毒死皇后》，现在孩子天天问递归函数是什么...",
+      "explanation": "AI生成内容经常出现专业术语乱入的搞笑情况",
+      "usageTip": "和同事闲聊时说：'建议别用AI给孩子讲故事，现在我女儿觉得灰姑娘的水晶鞋是用React写的...'",
+      "date": "2026-08-20",
+      "timeSlot": "workday-evening",
+      "slot": "workday-evening",
+      "createdAt": "2026-08-20T18:03:00+08:00"
+    },
+    {
+      "id": "1787220219968-4",
+      "title": "乒乓球拍玄学",
+      "category": "pingpong",
+      "categoryName": "乒乓球",
+      "content": "丈母娘坚信她的老红双喜比我的Visaria好打，我用运动传感器测了数据给她看，她说：'AI不懂什么叫手感！'",
+      "explanation": "老球友对新科技器材测评普遍持怀疑态度",
+      "usageTip": "在球馆聊天时说：'现在跟老球友解释器材参数，比跟产品经理讲技术方案还难...'",
+      "date": "2026-08-20",
+      "timeSlot": "workday-evening",
+      "slot": "workday-evening",
+      "createdAt": "2026-08-20T18:03:00+08:00"
+    },
+    {
+      "id": "1787220219968-5",
+      "title": "父女编程时间",
+      "category": "family",
+      "categoryName": "家庭育儿",
+      "content": "教女儿用Scratch编程，她给我做了个《爸爸加班模拟器》，点击按钮就会弹出'马上就好'和'再改最后一版'...",
+      "explanation": "程序员子女经常用编程表达对父母工作的观察",
+      "usageTip": "发朋友圈配图：'被7岁女儿精准拿捏职业生涯...求问这个bug该怎么修？'",
+      "date": "2026-08-20",
+      "timeSlot": "workday-evening",
+      "slot": "workday-evening",
+      "createdAt": "2026-08-20T18:03:00+08:00"
+    },
     {
       "id": "1787183232740-0",
       "title": "AI Debug 循环：当 AI 帮你 debug 时，它也在 debug 自己",
@@ -1333,12 +1411,12 @@
   ],
   "generationStats": {
     "model": "deepseek/deepseek-chat",
-    "lastRun": "2026-08-20T07:47:00+08:00",
-    "slot": "工作日早间",
-    "promptTokens": 2688,
-    "completionTokens": 1360,
-    "totalTokens": 4048,
-    "cost": 0.00076,
+    "lastRun": "2026-08-20T18:03:00+08:00",
+    "slot": "工作日晚间",
+    "promptTokens": 817,
+    "completionTokens": 1098,
+    "totalTokens": 1915,
+    "cost": 0.00042,
     "costNote": "$0.14/1M输入 + $0.28/1M输出"
   }
 }
