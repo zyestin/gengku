@@ -1,7 +1,70 @@
 {
-  "lastUpdated": "2026-08-19T21:03:00+08:00",
+  "lastUpdated": "2026-08-20T21:05:00+08:00",
   "version": "3.0.0",
   "content": [
+    {
+      "id": "1787231134392-0",
+      "title": "音乐剧天才的奇妙旅程",
+      "theme": "unique-path",
+      "themeName": "做唯一故事",
+      "interest": "musical",
+      "interestName": "音乐剧",
+      "story": "Lin-Manuel Miranda是一位音乐剧天才，他创作了《汉密尔顿》。他把历史人物变成了音乐剧里的说唱歌手，让观众们觉得自己在听一场嘻哈演唱会。他不仅写剧本，还亲自扮演汉密尔顿，一人分饰多个角色。他的音乐剧风格独特，没有人能模仿他。",
+      "dadScript": "团团，你知道吗？有一个人用说唱的方式讲故事，还成了全球最火的音乐剧导演！",
+      "discussionPrompts": [
+        "你觉得为什么Lin-Manuel Miranda的音乐剧这么受欢迎？",
+        "如果你是音乐剧导演，你会用什么方式来讲述一个故事？"
+      ],
+      "activity": "在家里组织一个小型音乐剧，团团可以当导演，爸爸妈妈当演员，用唱歌和动作来表演一个小故事。",
+      "personName": "Lin-Manuel Miranda",
+      "sourceUrl": "https://en.wikipedia.org/wiki/Lin-Manuel_Miranda",
+      "date": "2026-08-20",
+      "timeSlot": "evening",
+      "slot": "parenting-daily",
+      "createdAt": "2026-08-20T21:05:00+08:00"
+    },
+    {
+      "id": "1787231134393-1",
+      "title": "从新闻主播到音乐剧明星",
+      "theme": "unique-path",
+      "themeName": "做唯一故事",
+      "interest": "musical",
+      "interestName": "音乐剧",
+      "story": "Debbie Allen原本是一位新闻主播，但她发现自己更喜欢跳舞和表演。她后来成为了著名的舞蹈家和音乐剧导演，甚至在《名扬四海》中担任编舞和导演。她的舞蹈风格独特，充满力量，激励了无数人追求自己的梦想。",
+      "dadScript": "团团，你知道吗？有一位新闻主播放弃了稳定的工作，成为了全球知名的音乐剧导演！",
+      "discussionPrompts": [
+        "你觉得新闻主播和音乐剧导演有什么不同？",
+        "如果你发现自己在某方面特别擅长，你会怎么做？"
+      ],
+      "activity": "在家里跳一支舞，模仿Debbie Allen的舞蹈风格，看看谁能跳出最有力量的动作。",
+      "personName": "Debbie Allen",
+      "sourceUrl": "https://en.wikipedia.org/wiki/Debbie_Allen",
+      "date": "2026-08-20",
+      "timeSlot": "evening",
+      "slot": "parenting-daily",
+      "createdAt": "2026-08-20T21:05:00+08:00"
+    },
+    {
+      "id": "1787231134393-2",
+      "title": "用音乐剧改变世界",
+      "theme": "benefiting-others",
+      "themeName": "惠及他人",
+      "interest": "musical",
+      "interestName": "音乐剧",
+      "story": "安德鲁·劳埃德·韦伯创作了《猫》和《歌剧魅影》，这些音乐剧让观众感受到了爱与勇气。他还成立了一个基金，帮助年轻人学习音乐和戏剧，让更多人通过艺术找到自信和快乐。",
+      "dadScript": "团团，你知道吗？有一位音乐剧大师不仅创作了经典作品，还帮助了很多人实现艺术梦想！",
+      "discussionPrompts": [
+        "你觉得音乐剧能带给人们什么？",
+        "如果你有能力帮助别人，你会选择什么方式？"
+      ],
+      "activity": "在家里创作一个短小精悍的音乐剧，讲述一个关于爱与勇气的故事，然后表演给家人看。",
+      "personName": "安德鲁·劳埃德·韦伯",
+      "sourceUrl": "https://en.wikipedia.org/wiki/Andrew_Lloyd_Webber",
+      "date": "2026-08-20",
+      "timeSlot": "evening",
+      "slot": "parenting-daily",
+      "createdAt": "2026-08-20T21:05:00+08:00"
+    },
     {
       "id": "1787144630591-0",
       "title": "毛毛虫变蝴蝶的秘密画师",
@@ -529,13 +592,13 @@
     }
   ],
   "generationStats": {
-    "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
-    "lastRun": "2026-08-19T21:03:00+08:00",
+    "model": "deepseek/deepseek-chat",
+    "lastRun": "2026-08-20T21:05:00+08:00",
     "slot": "育儿每日故事",
-    "promptTokens": 1944,
-    "completionTokens": 2389,
-    "totalTokens": 4333,
-    "cost": 0,
-    "costNote": "免费模型"
+    "promptTokens": 1443,
+    "completionTokens": 712,
+    "totalTokens": 2155,
+    "cost": 0.0004,
+    "costNote": "$0.14/1M输入 + $0.28/1M输出"
   }
 }
