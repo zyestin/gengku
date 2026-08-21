@@ -42,5 +42,6 @@ jobs:
             echo "没有新内容需要提交"
           else
             git commit -m "chore: 更新梗库内容 $(date -u -d '+8 hours' '+%Y-%m-%d %H:%M CST')"
+            git pull --rebase origin main || true
             git push
           fi
