@@ -1,7 +1,70 @@
 {
-  "lastUpdated": "2026-08-20T21:05:00+08:00",
+  "lastUpdated": "2026-08-21T21:09:00+08:00",
   "version": "3.0.0",
   "content": [
+    {
+      "id": "1787317765055-0",
+      "title": "邓亚萍：小个子大梦想",
+      "theme": "unique-path",
+      "themeName": "做唯一故事",
+      "interest": "sports",
+      "interestName": "运动探索",
+      "story": "邓亚萍只有1.55米高，很多人说她太矮不适合打乒乓球。但她不放弃，每天练习到深夜，最终成为奥运冠军，赢得了4枚金牌！她用实力证明，身高不是问题，热爱和努力才是关键。",
+      "dadScript": "团团，你知道吗？邓亚萍阿姨虽然个子不高，但她用自己的努力证明，每个人都可以找到自己的独特道路！",
+      "discussionPrompts": [
+        "你觉得邓亚萍阿姨的故事中，哪一点最让你感动？",
+        "如果你是邓亚萍阿姨，你会怎么面对那些说你不行的人？"
+      ],
+      "activity": "今天我们一起练习乒乓球，看看谁能连续颠球20次！",
+      "personName": "邓亚萍",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/%E9%82%93%E4%BA%9A%E8%90%8D",
+      "date": "2026-08-21",
+      "timeSlot": "evening",
+      "slot": "parenting-daily",
+      "createdAt": "2026-08-21T21:09:00+08:00"
+    },
+    {
+      "id": "1787317765055-1",
+      "title": "李雪芮：羽毛球女王",
+      "theme": "sports-spirit",
+      "themeName": "运动精神",
+      "interest": "sports",
+      "interestName": "运动探索",
+      "story": "李雪芮是中国羽毛球队的骄傲，她在2012年伦敦奥运会上夺得女单金牌。她不仅技术精湛，更重要的是她在比赛中展现出的坚持和冷静。即使面对伤病，她也从未放弃，继续努力训练，最终再次站上领奖台。",
+      "dadScript": "团团，你知道吗？李雪芮姐姐在比赛中遇到很多困难，但她总是坚持到底，从不轻言放弃！",
+      "discussionPrompts": [
+        "你觉得李雪芮姐姐的坚持对你有什么启发？",
+        "如果你在运动时遇到困难，你会怎么做？"
+      ],
+      "activity": "今天我们一起来打羽毛球，看看谁能坚持最久不放弃！",
+      "personName": "李雪芮",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/%E6%9D%8E%E9%9B%AA%E8%8A%AE",
+      "date": "2026-08-21",
+      "timeSlot": "evening",
+      "slot": "parenting-daily",
+      "createdAt": "2026-08-21T21:09:00+08:00"
+    },
+    {
+      "id": "1787317765055-2",
+      "title": "王霜：足球场上的奇迹",
+      "theme": "benefiting-others",
+      "themeName": "惠及他人",
+      "interest": "sports",
+      "interestName": "运动探索",
+      "story": "王霜是中国女足的明星球员，她在球场上不仅技术出色，还总是帮助队友。她在2018年亚洲杯上表现出色，帮助中国队取得了好成绩。王霜用她的球技和团队精神，激励了无数喜欢足球的女孩。",
+      "dadScript": "团团，你知道吗？王霜姐姐不仅自己踢得好，还总想着帮助队友，她用足球让更多人感受到了快乐！",
+      "discussionPrompts": [
+        "你觉得王霜姐姐在球场上最重要的是什么？",
+        "如果你是王霜姐姐，你会怎么帮助你的队友？"
+      ],
+      "activity": "今天我们一起来玩足球，看看谁能踢得最准，还能帮助队友进球！",
+      "personName": "王霜",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/%E7%8E%8B%E9%9C%9C",
+      "date": "2026-08-21",
+      "timeSlot": "evening",
+      "slot": "parenting-daily",
+      "createdAt": "2026-08-21T21:09:00+08:00"
+    },
     {
       "id": "1787231134392-0",
       "title": "音乐剧天才的奇妙旅程",
@@ -593,12 +656,12 @@
   ],
   "generationStats": {
     "model": "deepseek/deepseek-chat",
-    "lastRun": "2026-08-20T21:05:00+08:00",
+    "lastRun": "2026-08-21T21:09:00+08:00",
     "slot": "育儿每日故事",
-    "promptTokens": 1443,
-    "completionTokens": 712,
-    "totalTokens": 2155,
-    "cost": 0.0004,
+    "promptTokens": 1750,
+    "completionTokens": 728,
+    "totalTokens": 2478,
+    "cost": 0.00045,
     "costNote": "$0.14/1M输入 + $0.28/1M输出"
   }
 }
