@@ -219,6 +219,8 @@ function buildPrompt(slot) {
   const sourcesText = buildSourcesText(focusCategories);
 
   const dateStr = `${slot.shanghai.getUTCFullYear()}-${String(slot.shanghai.getUTCMonth()+1).padStart(2,'0')}-${String(slot.shanghai.getUTCDate()).padStart(2,'0')}`;
+  const yesterday = new Date(slot.shanghai.getTime() - 86400000);
+  const yesterdayStr = `${yesterday.getUTCFullYear()}-${String(yesterday.getUTCMonth()+1).padStart(2,'0')}-${String(yesterday.getUTCDate()).padStart(2,'0')}`;
 
   const isMonday = slot.shanghai.getUTCDay() === 1;
   const mondayNote = (isMonday && slot.slotId === 'workday-morning')
@@ -238,17 +240,23 @@ ${mondayNote}
 ## 内容方向
 ${focusDesc}
 ${sourcesText}
+## ⚠️ 最重要规则：内容必须新鲜！
+1. **优先使用今天（${dateStr}）发生/发布的内容**。这些信息源（X/Reddit/Hacker News/中文媒体）天天有大量更新，你要想象自己刚刚刷完这些信息源，把今天最热门、最有话题性的内容提炼成梗。
+2. **当天实在没有的，可以用昨天（${yesterdayStr}）的**。但绝不能用一周前甚至更早的旧闻——那些用户可能已经看过了，没有聊天价值。
+3. **每条梗必须在 explanation 里注明时间**：比如"今天X上..."、"昨天Reddit r/xxx上..."、"今早Hacker News热帖..."。让用户一眼知道这是最新的。
+4. **宁可少几条也要保证新鲜**：如果某个方向今天实在没有好内容，跳过它，不要用旧内容凑数。
+5. **追热点速度要快**：AI模型发布、框架更新、名人发言、 viral帖子——这些往往几小时内就会刷屏，用户需要的是"今天就能和同事/家人聊"的内容。
+
 ## 生成要求
 1. 生成 8 条梗，每条包含：title（标题）、category（分类key）、categoryName（分类名）、content（梗的描述，生动有趣）、explanation（梗的解释/背景，帮用户理解）、usageTip（怎么用这个梗，具体到可以怎么开口聊）、sourceUrl（可选，原始链接）
 2. 梗要有趣、接地气，能引发共鸣和笑声
 3. **重点往 AI 使用方面找料**——用户深度使用 AI，AI 编程、AI 工具、Prompt 工程、AI 文化（token 烧钱、AI 幻觉、AI 焦虑等）方面的梗要多生成，这是用户最感兴趣的方向
-4. 内容要有时效性，结合 2026 年近期热点（如果有的话）
-5. 解读要清晰，让不完全了解背景的人也能听懂
-6. usageTip 要具体，给出可以直接用的开场白或聊天切入方式
-7. category 必须是以下之一：rn, frontend, app-dev, ai-coding, ai-tools, prompt, ai-culture, devtools, ai-life, edu, pingpong, current, family, life
-8. 不要生成已有的重复内容，尽量有新意
-9. **信息源导向**：优先从上面列出的 X 牛人高赞帖、Reddit 热帖评论区、Hacker News 讨论中"找料"——这些地方天天有大量更新，评论区更是梗的宝库。想象你刚刚刷完这些信息源，把最有趣、最有话题性的内容提炼成梗
-10. sourceUrl：如果梗来源于具体的帖子/文章/新闻，提供真实的原始链接（如 x.com/xxx/status/xxx、reddit.com/r/xxx/comments/xxx、news.ycombinator.com/item?id=xxx）。如果是一般性经验/段子，sourceUrl 留空。不要编造不存在的 URL！
+4. 解读要清晰，让不完全了解背景的人也能听懂
+5. usageTip 要具体，给出可以直接用的开场白或聊天切入方式
+6. category 必须是以下之一：rn, frontend, app-dev, ai-coding, ai-tools, prompt, ai-culture, devtools, ai-life, edu, pingpong, current, family, life
+7. 不要生成已有的重复内容，尽量有新意
+8. **信息源导向**：优先从上面列出的 X 牛人高赞帖、Reddit 热帖评论区、Hacker News 讨论中"找料"——这些地方天天有大量更新，评论区更是梗的宝库。想象你刚刚刷完这些信息源，把最有趣、最有话题性的内容提炼成梗
+9. sourceUrl：如果梗来源于具体的帖子/文章/新闻，提供真实的原始链接（如 x.com/xxx/status/xxx、reddit.com/r/xxx/comments/xxx、news.ycombinator.com/item?id=xxx）。如果是一般性经验/段子，sourceUrl 留空。不要编造不存在的 URL！
 
 ## 输出格式
 请直接输出 JSON 数组，不要包含 markdown 代码块标记，不要有其他文字：
