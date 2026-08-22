@@ -1,7 +1,70 @@
 {
-  "lastUpdated": "2026-08-21T21:09:00+08:00",
+  "lastUpdated": "2026-08-22T20:57:00+08:00",
   "version": "3.0.0",
   "content": [
+    {
+      "id": "1787403437214-0",
+      "title": "柑橘船长的神奇发现",
+      "theme": "science-fun",
+      "themeName": "科学乐趣",
+      "interest": "nutrition",
+      "interestName": "营养认知",
+      "story": "1747年，苏格兰医生詹姆斯·林德在海军船上做了个有趣实验。他把12个牙龈出血的水手分成6组，每组吃不同东西：有的喝苹果酒，有的喝海水，最幸运的两人每天吃两个橙子和一个柠檬。结果只有吃柑橘的两人康复了！原来柑橘里的维生素C就像身体的小工人，能修复血管和皮肤。这个发现拯救了无数水手的生命。",
+      "dadScript": "团团，你知道吗？以前的水手在海上会得一种可怕的病叫坏血病，牙龈流血连牙齿都会掉光。直到有个聪明的医生发现，只要每天吃柑橘水果就能治好，就像给身体派去了修城墙的小工人！",
+      "discussionPrompts": [
+        "如果让你设计一艘太空船，你会带什么水果保护宇航员的健康？",
+        "为什么维生素C这么厉害，它还在哪些水果里藏着呢？"
+      ],
+      "activity": "今晚吃含有维C的食物（如橙子/草莓/西兰花），和孩子一起数咀嚼次数，比赛谁发现更多维C食物",
+      "personName": "James Lind",
+      "sourceUrl": "https://en.wikipedia.org/wiki/James_Lind_(physician)",
+      "date": "2026-08-22",
+      "timeSlot": "evening",
+      "slot": "parenting-daily",
+      "createdAt": "2026-08-22T20:57:00+08:00"
+    },
+    {
+      "id": "1787403437214-1",
+      "title": "夜盲症与胡萝卜侠",
+      "theme": "nutrition-fun",
+      "themeName": "营养超能力",
+      "interest": "nutrition",
+      "interestName": "营养认知",
+      "story": "古埃及人早就发现吃动物肝脏能治夜盲症，但直到1920年科学家才明白是维生素A在起作用。维生素A就像眼睛里的夜视仪，缺了它天黑就看不清。二战时英国飞行员故意吃很多胡萝卜，传说这样能在夜间看得更远（其实是为了掩盖雷达技术秘密）。不过胡萝卜确实富含β-胡萝卜素，能在体内变成维生素A哦！",
+      "dadScript": "团团，你知道吗？胡萝卜里藏着真正的超能力！里面的维生素A就像给你眼睛装上小夜视仪，古代战士打仗前都要吃动物肝脏补充它，现在我们知道吃橙色蔬菜也能获得这种超能力。",
+      "discussionPrompts": [
+        "如果维生素A是超级英雄，你觉得它的绝招会是什么？",
+        "除了胡萝卜，还有哪些食物是'夜视侠'的好朋友？"
+      ],
+      "activity": "用胡萝卜/红薯/菠菜做彩色拼盘，编一个'营养超人战队'的故事",
+      "personName": "古埃及医书《埃伯斯纸草卷》",
+      "sourceUrl": "https://en.wikipedia.org/wiki/Vitamin_A",
+      "date": "2026-08-22",
+      "timeSlot": "evening",
+      "slot": "parenting-daily",
+      "createdAt": "2026-08-22T20:57:00+08:00"
+    },
+    {
+      "id": "1787403437214-2",
+      "title": "碘盐大冒险",
+      "theme": "benefiting-others",
+      "themeName": "惠及他人",
+      "interest": "nutrition",
+      "interestName": "营养认知",
+      "story": "100年前，美国有些地方很多人脖子肿得像戴着隐形围巾（甲状腺肿）。医生戴维·马林发现这些地区土壤缺碘，人们吃的食物里没有这种重要矿物质。碘就像脖子里的空调遥控器，缺了它甲状腺就会失调。后来政府在食盐里加碘，这个简单方法让甲状腺肿几乎消失了！现在全球都在用碘盐保护人们健康。",
+      "dadScript": "团团，你知道吗？我们每天吃的盐里藏着秘密武器！里面的碘就像脖子里的迷你遥控器，能指挥甲状腺正常工作。100年前有位医生发现往盐里加碘，就能让很多人不再生病，这比吃药还简单呢！",
+      "discussionPrompts": [
+        "如果让你设计一种能保护牙齿的魔法盐，你会往里面加什么？",
+        "为什么科学家要想办法把营养加到日常食物里？"
+      ],
+      "activity": "观察食盐包装袋上的营养标签，用放大镜看碘盐晶体，画一幅'矿物质王国'的想象图",
+      "personName": "David Marine",
+      "sourceUrl": "https://en.wikipedia.org/wiki/Iodised_salt",
+      "date": "2026-08-22",
+      "timeSlot": "evening",
+      "slot": "parenting-daily",
+      "createdAt": "2026-08-22T20:57:00+08:00"
+    },
     {
       "id": "1787317765055-0",
       "title": "邓亚萍：小个子大梦想",
@@ -656,12 +719,12 @@
   ],
   "generationStats": {
     "model": "deepseek/deepseek-chat",
-    "lastRun": "2026-08-21T21:09:00+08:00",
+    "lastRun": "2026-08-22T20:57:00+08:00",
     "slot": "育儿每日故事",
-    "promptTokens": 1750,
-    "completionTokens": 728,
-    "totalTokens": 2478,
-    "cost": 0.00045,
+    "promptTokens": 1727,
+    "completionTokens": 917,
+    "totalTokens": 2644,
+    "cost": 0.0005,
     "costNote": "$0.14/1M输入 + $0.28/1M输出"
   }
 }
