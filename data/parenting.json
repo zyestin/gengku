@@ -1,7 +1,70 @@
 {
-  "lastUpdated": "2026-08-22T20:57:00+08:00",
+  "lastUpdated": "2026-08-23T20:58:00+08:00",
   "version": "3.0.0",
   "content": [
+    {
+      "id": "1787489903390-0",
+      "title": "把昆虫的秘密画给世界看",
+      "theme": "benefiting-others",
+      "themeName": "惠及他人",
+      "interest": "drawing",
+      "interestName": "画画",
+      "story": "300多年前，德国女孩玛丽亚·西比拉·梅里安特别爱看毛毛虫变蝴蝶。那时候大家都觉得昆虫是脏东西，没人研究它们怎么长大。玛丽亚不光养了满屋子毛毛虫，还拿画笔一笔一笔画下它们破茧成蝶的全过程。1699年，52岁的她独自带着女儿坐船去热带雨林苏里南，冒着疟疾和毒蛇的危险，画了两年多，画出《苏里南昆虫变态图谱》。这本书让欧洲科学家第一次看清：昆虫不是泥里生出来的脏虫，它们有神奇的生命循环！",
+      "dadScript": "团团，你知道吗？有个奶奶级的画家，52岁还敢独自带闺女去热带雨林冒险，就为了把毛毛虫变蝴蝶的样子画给全世界看。",
+      "discussionPrompts": [
+        "如果你能画一种没人见过的生物变化，你最想画什么？",
+        "玛丽亚奶奶不怕困难去画画，你觉得她最想让谁看到这些画？"
+      ],
+      "activity": "去小区花园或公园找一片叶子，仔细观察有没有虫卵或毛毛虫，用画笔记录下它今天的样子，过几天再画一次，做成《我的昆虫观察日记》",
+      "personName": "Maria Sibylla Merian",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/%E7%8E%9B%E9%87%8C%E5%AE%89",
+      "date": "2026-08-23",
+      "timeSlot": "evening",
+      "slot": "parenting-daily",
+      "createdAt": "2026-08-23T20:58:00+08:00"
+    },
+    {
+      "id": "1787489903390-1",
+      "title": "用\"图像思考\"让牛不再害怕",
+      "theme": "benefiting-others",
+      "themeName": "惠及他人",
+      "interest": "general",
+      "interestName": "通用",
+      "story": "坦普尔·格兰丁小时候不说话、怕拥抱、听不懂别人脸上的表情，医生说她要送进疗养院。但她妈妈没放弃，发现她有一种超能力——\"用图像思考\"，像放电影一样在脑子里看画面。长大后，坦普尔去牧场发现：牛走直线通道会恐慌撞墙，因为它们看见前面有死角。她设计了弯弯曲曲的曲线畜栏，让牛觉得\"前面有路\"就不害怕了。现在美国一半以上的牛都在她设计的通道里平静通过，她还得到了动物保护组织的大奖。",
+      "dadScript": "团团，你知道吗？有个自闭症的女孩，小时候不会说话，长大后却用她特别的大脑——像看电影一样思考——帮几百万头牛不再害怕、不再受伤。",
+      "discussionPrompts": [
+        "你有没有过\"脑子里在放电影\"的时候？是什么样子的？",
+        "如果你能用你的特长帮一种动物，你想帮谁？怎么帮？"
+      ],
+      "activity": "一起看《坦普尔·格兰丁》这部电影（或找她的TED演讲片段），然后聊聊：每个人的大脑都不一样，这种\"不一样\"怎么能变成帮别人的超能力？",
+      "personName": "Temple Grandin",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/%E5%9D%A6%E6%99%AE%E5%B0%94%C2%B7%E6%A0%BC%E5%85%B0%E4%B8%81",
+      "date": "2026-08-23",
+      "timeSlot": "evening",
+      "slot": "parenting-daily",
+      "createdAt": "2026-08-23T20:58:00+08:00"
+    },
+    {
+      "id": "1787489903390-2",
+      "title": "用嘻哈把历史唱给从没上过百老汇的孩子听",
+      "theme": "benefiting-others",
+      "themeName": "惠及他人",
+      "interest": "musical",
+      "interestName": "音乐剧",
+      "story": "林-曼努尔·米兰达读到一本厚厚的《汉密尔顿传》，脑子里突然蹦出节奏：建国元勋们吵架、写文章、打仗、搞政治，简直就像嘻哈Battle！他花了7年，把美国建国史变成一场说唱音乐剧，还让黑人、拉丁裔、亚裔演员扮演白人建国之父。首演那天，奥巴马总统带女儿们看了两遍。更酷的是，剧组把票价降低、巡演进学校、把剧本公开给中学排练，让从没进过剧院的孩子也能唱着《My Shot》觉得：\"历史也是我的，未来也能由我写。\"",
+      "dadScript": "团团，你知道吗？有个作曲家读传记读着读着突然想rap，他把建国元勋变成说唱歌手，让一群从没上过百老汇的孩子觉得——原来历史也是属于我们的。",
+      "discussionPrompts": [
+        "如果你要用嘻哈或唱歌讲一个历史故事，你想讲谁？",
+        "林曼努尔让不同肤色的人演建国之父，你觉得这改变了什么？"
+      ],
+      "activity": "打开《汉密尔顿》原声带听《My Shot》或《The Schuyler Sisters》，试着用中文rap几句团团最喜欢的历史人物或课本故事",
+      "personName": "Lin-Manuel Miranda",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/%E6%9E%97-%E6%9B%BC%E5%8A%AA%E7%88%BE%C2%B7%E7%B1%B3%E5%85%B0%E8%BE%BE",
+      "date": "2026-08-23",
+      "timeSlot": "evening",
+      "slot": "parenting-daily",
+      "createdAt": "2026-08-23T20:58:00+08:00"
+    },
     {
       "id": "1787403437214-0",
       "title": "柑橘船长的神奇发现",
@@ -718,13 +781,13 @@
     }
   ],
   "generationStats": {
-    "model": "deepseek/deepseek-chat",
-    "lastRun": "2026-08-22T20:57:00+08:00",
+    "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+    "lastRun": "2026-08-23T20:58:00+08:00",
     "slot": "育儿每日故事",
-    "promptTokens": 1727,
-    "completionTokens": 917,
-    "totalTokens": 2644,
-    "cost": 0.0005,
-    "costNote": "$0.14/1M输入 + $0.28/1M输出"
+    "promptTokens": 1961,
+    "completionTokens": 2166,
+    "totalTokens": 4127,
+    "cost": 0,
+    "costNote": "免费模型"
   }
 }
