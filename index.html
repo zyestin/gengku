@@ -943,6 +943,7 @@ body {
 <div class="tab-bar">
   <button class="tab-btn active" data-tab="gengku">💼 梗库</button>
   <button class="tab-btn" data-tab="parenting">👪 育儿</button>
+  <button class="tab-btn" data-tab="wife">💝 媳妇</button>
 </div>
 
 <!-- Slot Banner -->
@@ -1008,6 +1009,11 @@ body {
         <div style="color:var(--accent-dark);margin-top:4px;">周一早间额外包含周五晚~周日的"周末追梗"</div>
         <div style="color:var(--accent-dark);margin-top:2px;">内容要求当天新鲜，最迟前一天</div>
       </div>
+      <div style="font-weight:700;color:var(--text);margin-top:10px;margin-bottom:6px;">💝 媳妇（哄媳妇频道）</div>
+      <div style="padding-left:12px;">
+        <div>每天晚间 <strong>20:30</strong> · 6条内容（土味情话/挖坑应对/热门分享/美食约会/情绪价值/感恩劳动）</div>
+        <div>信息源：微博/知乎/小红书/豆瓣/抖音 · 内容要求当天新鲜</div>
+      </div>
       <div style="font-weight:700;color:var(--text);margin-top:10px;margin-bottom:6px;">👪 育儿（每日故事）</div>
       <div style="padding-left:12px;">
         <div>每天晚间 <strong>20:00</strong> · 3条真实人物故事</div>
@@ -1016,13 +1022,13 @@ body {
       </div>
       <div style="font-weight:700;color:var(--text);margin-top:10px;margin-bottom:6px;">📅 每周时间表</div>
       <div style="padding-left:12px;">
-        <div>周一 07:30 梗库(工作) · 20:00 育儿</div>
-        <div>周二 07:30 梗库(工作) · 17:30 梗库(生活) · 20:00 育儿</div>
-        <div>周三 07:30 梗库(工作) · 17:30 梗库(生活) · 20:00 育儿</div>
-        <div>周四 07:30 梗库(工作) · 17:30 梗库(生活) · 20:00 育儿</div>
-        <div>周五 07:30 梗库(工作) · 17:30 梗库(生活) · 20:00 育儿</div>
-        <div>周六 09:00 梗库(生活) · 18:00 梗库(生活) · 20:00 育儿</div>
-        <div>周日 09:00 梗库(生活) · 18:00 梗库(生活) · 20:00 育儿</div>
+        <div>周一 07:30 梗库(工作) · 20:00 育儿 · 20:30 媳妇</div>
+        <div>周二 07:30 梗库(工作) · 17:30 梗库(生活) · 20:00 育儿 · 20:30 媳妇</div>
+        <div>周三 07:30 梗库(工作) · 17:30 梗库(生活) · 20:00 育儿 · 20:30 媳妇</div>
+        <div>周四 07:30 梗库(工作) · 17:30 梗库(生活) · 20:00 育儿 · 20:30 媳妇</div>
+        <div>周五 07:30 梗库(工作) · 17:30 梗库(生活) · 20:00 育儿 · 20:30 媳妇</div>
+        <div>周六 09:00 梗库(生活) · 18:00 梗库(生活) · 20:00 育儿 · 20:30 媳妇</div>
+        <div>周日 09:00 梗库(生活) · 18:00 梗库(生活) · 20:00 育儿 · 20:30 媳妇</div>
       </div>
     </div>
   </details>
@@ -1054,6 +1060,16 @@ const SLOTS = {
   'weekend-evening':   { title: '周末晚间',   desc: '一天结束，和家人聊聊今天的趣事', badge: '🌙 100% 生活' },
 };
 
+// ===== Wife Config =====
+const WIFE_CATEGORIES = {
+  'sweet-talk':     { name: '土味情话',  emoji: '💝', color: '#ec4899', bg: 'rgba(236,72,153,0.12)' },
+  'trap-response':  { name: '挖坑应对',  emoji: '🪤', color: '#f59e0b', bg: 'rgba(245,158,11,0.12)' },
+  'trending-share': { name: '热门分享',  emoji: '🔥', color: '#ef4444', bg: 'rgba(239,68,68,0.12)' },
+  'food-date':      { name: '美食约会',  emoji: '🍜', color: '#f97316', bg: 'rgba(249,115,22,0.12)' },
+  'emotional-value':{ name: '情绪价值',  emoji: '🌸', color: '#8b5cf6', bg: 'rgba(139,92,246,0.12)' },
+  'appreciate':     { name: '感恩劳动',  emoji: '🙏', color: '#10b981', bg: 'rgba(16,185,129,0.12)' },
+};
+
 // ===== Parenting Config =====
 const PT_THEMES = {
   'unique-path':       { name: '做唯一故事' },
@@ -1082,6 +1098,7 @@ let currentTab = 'gengku';
 const tabState = {
   gengku: { rawData: null, allContent: [], activeDate: 'all', activeSlot: 'all', activeCategory: 'all', allDates: [], scrollY: 0 },
   parenting: { rawData: null, allContent: [], activeDate: 'all', activeTheme: 'all', activeInterest: 'all', allDates: [], expandedCards: new Set(), scrollY: 0 },
+  wife: { rawData: null, allContent: [], activeDate: 'all', activeWifeCategory: 'all', allDates: [], scrollY: 0 },
 };
 
 // ===== State (aliases to current tab) =====
@@ -1094,6 +1111,7 @@ let allDates = [];
 let expandedCards = new Set();
 let activeTheme = 'all';
 let activeInterest = 'all';
+let activeWifeCategory = 'all';
 
 // ===== Smart Default Tab =====
 function getDefaultTab() {
@@ -1116,10 +1134,12 @@ function saveTabState() {
   if (currentTab === 'gengku') {
     s.activeSlot = activeSlot;
     s.activeCategory = activeCategory;
-  } else {
+  } else if (currentTab === 'parenting') {
     s.activeTheme = activeTheme || 'all';
     s.activeInterest = activeInterest || 'all';
     s.expandedCards = expandedCards;
+  } else if (currentTab === 'wife') {
+    s.activeWifeCategory = activeWifeCategory || 'all';
   }
 }
 
@@ -1132,10 +1152,12 @@ function restoreTabState(tab) {
   if (tab === 'gengku') {
     activeSlot = s.activeSlot || 'all';
     activeCategory = s.activeCategory || 'all';
-  } else {
+  } else if (tab === 'parenting') {
     activeTheme = s.activeTheme || 'all';
     activeInterest = s.activeInterest || 'all';
     expandedCards = s.expandedCards || new Set();
+  } else if (tab === 'wife') {
+    activeWifeCategory = s.activeWifeCategory || 'all';
   }
 }
 
@@ -1150,7 +1172,9 @@ async function switchTab(tab) {
   });
   // Load data if needed
   if (!tabState[tab].rawData) {
-    const file = tab === 'gengku' ? 'data/content.json' : 'data/parenting.json';
+    const file = tab === 'gengku' ? 'data/content.json'
+      : tab === 'parenting' ? 'data/parenting.json'
+      : 'data/wife.json';
     try {
       const res = await fetch(file);
       tabState[tab].rawData = await res.json();
@@ -1176,14 +1200,115 @@ function renderAll() {
     renderStats();
     renderGenStats();
     renderContent();
-  } else {
+  } else if (currentTab === 'parenting') {
     renderPtSlotBanner();
     renderDateNav();
     renderPtFilters();
     renderPtStats();
     renderGenStats();
     renderParentingContent();
+  } else if (currentTab === 'wife') {
+    renderWifeBanner();
+    renderDateNav();
+    renderWifeFilters();
+    renderWifeStats();
+    renderGenStats();
+    renderWifeContent();
   }
+}
+
+// ===== Wife Banner =====
+function renderWifeBanner() {
+  document.getElementById('slotTitle').textContent = '媳妇频道';
+  document.getElementById('slotDesc').textContent = '土味情话·挖坑应对·热门分享·情绪价值——做一个会说话的老公';
+  document.getElementById('slotBadge').textContent = '💝 媳妇';
+}
+
+// ===== Wife Filters =====
+function renderWifeFilters() {
+  const filters = document.getElementById('filters');
+  let html = `<button class="filter-chip ${activeWifeCategory === 'all' ? 'active' : ''}" data-wfcat="all">全部</button>`;
+  for (const [key, cat] of Object.entries(WIFE_CATEGORIES)) {
+    html += `<button class="filter-chip ${activeWifeCategory === key ? 'active' : ''}" data-wfcat="${key}" style="${activeWifeCategory === key ? `border-color:${cat.color};color:${cat.color}` : ''}">${cat.emoji} ${cat.name}</button>`;
+  }
+  filters.innerHTML = html;
+  filters.querySelectorAll('[data-wfcat]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      activeWifeCategory = btn.dataset.wfcat;
+      renderWifeFilters();
+      renderWifeContent();
+    });
+  });
+}
+
+// ===== Wife Stats =====
+function renderWifeStats() {
+  document.getElementById('statsBar').innerHTML = `<span class="stat-item">📊 共 ${allContent.length} 条内容</span>`;
+}
+
+// ===== Wife Content =====
+function renderWifeContent() {
+  const grid = document.getElementById('contentGrid');
+  let filtered = allContent;
+  if (activeDate !== 'all') filtered = filtered.filter(c => c.date === activeDate);
+  if (activeWifeCategory !== 'all') filtered = filtered.filter(c => c.category === activeWifeCategory);
+
+  if (filtered.length === 0) {
+    grid.innerHTML = '<p style="text-align:center;padding:40px;color:var(--text-secondary);">暂无内容，等待AI生成中...</p>';
+    return;
+  }
+
+  grid.innerHTML = filtered.map((item, i) => {
+    const cat = WIFE_CATEGORIES[item.category] || { name: '其他', emoji: '📦', color: '#6b7280', bg: 'rgba(107,114,128,0.12)' };
+    const srcUrl = item.sourceUrl
+      ? escapeHtml(item.sourceUrl)
+      : 'https://www.google.com/search?q=' + encodeURIComponent(item.title);
+    const srcDomain = item.sourceUrl ? getDomain(item.sourceUrl) : 'google.com';
+    const liked = isLiked(item.id);
+    const commentCount = getComments(item.id).length;
+    const trendingTag = item.trendingTopic
+      ? `<div class="card-explanation" style="margin-top:8px;"><span class="label">🔥 关联热点</span>${escapeHtml(item.trendingTopic)}</div>`
+      : '';
+    return `
+      <div class="card" style="animation-delay:${i * 0.06}s;">
+        <div class="card-header">
+          <span class="card-category" style="color:${cat.color};background:${cat.bg};">
+            <span style="width:8px;height:8px;border-radius:50%;background:${cat.color};display:inline-block;"></span>
+            ${cat.emoji} ${cat.name}
+          </span>
+        </div>
+        <div class="card-title">${escapeHtml(item.title)}</div>
+        <div class="card-content">${escapeHtml(item.content)}</div>
+        <div class="card-explanation">
+          <span class="label">💡 怎么用</span>
+          ${escapeHtml(item.explanation)}
+        </div>
+        <div class="card-usage">
+          <span class="label">💬 话术</span>
+          ${escapeHtml(item.usageTip)}
+        </div>
+        ${trendingTag}
+        <div class="card-footer">
+          <div class="card-actions">
+            <button class="action-btn like-btn ${liked ? 'liked' : ''}" data-like="${escapeHtml(item.id)}">
+              ${liked ? '❤️' : '🤍'}
+            </button>
+            <button class="action-btn" data-comment="${escapeHtml(item.id)}">
+              💬 ${commentCount > 0 ? commentCount : ''}
+            </button>
+          </div>
+          <a href="${srcUrl}" class="source-btn" target="_blank" rel="noopener noreferrer">
+            ${item.sourceUrl ? '🔗 来源: ' + escapeHtml(srcDomain) : '🔍 搜索相关'}
+          </a>
+        </div>
+        <div class="comment-section" id="cs-${escapeHtml(item.id)}" style="display:none;">
+          ${renderCommentSection(item.id)}
+        </div>
+      </div>
+    `;
+  }).join('');
+
+  bindCardActions(grid);
 }
 
 // ===== Parenting Slot Banner =====
@@ -1235,6 +1360,16 @@ async function init() {
     const todayStr = formatDateStr(now);
     tabState.parenting.activeDate = tabState.parenting.allDates.includes(todayStr) ? todayStr : (tabState.parenting.allDates[0] || 'all');
   } catch (e) { console.error('Load parenting:', e); }
+
+  // Load wife data
+  try {
+    const res = await fetch('data/wife.json');
+    tabState.wife.rawData = await res.json();
+    tabState.wife.allContent = tabState.wife.rawData.content || [];
+    tabState.wife.allDates = [...new Set(tabState.wife.allContent.map(c => c.date))].sort().reverse();
+    const todayStr2 = formatDateStr(now);
+    tabState.wife.activeDate = tabState.wife.allDates.includes(todayStr2) ? todayStr2 : (tabState.wife.allDates[0] || 'all');
+  } catch (e) { console.error('Load wife:', e); }
 
   // Update tab buttons for default
   document.querySelectorAll('.tab-btn').forEach(btn => {

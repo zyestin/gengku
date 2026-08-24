@@ -6,6 +6,8 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const MODE = process.argv.includes('--mode') ? process.argv[process.argv.indexOf('--mode') + 1] : 'gengku';
 const DATA_PATH = MODE === 'parenting'
   ? join(__dirname, '..', 'data', 'parenting.json')
+  : MODE === 'wife'
+  ? join(__dirname, '..', 'data', 'wife.json')
   : join(__dirname, '..', 'data', 'content.json');
 const API_KEY = process.env.OPENROUTER_API_KEY;
 const MODEL = process.env.OPENROUTER_MODEL || 'deepseek/deepseek-chat';
@@ -261,6 +263,108 @@ ${sourcesText}
 ## 输出格式
 请直接输出 JSON 数组，不要包含 markdown 代码块标记，不要有其他文字：
 [{"title":"...","category":"...","categoryName":"...","content":"...","explanation":"...","usageTip":"...","sourceUrl":"..."}, ...]`;
+}
+
+// ===== 媳妇模式配置 =====
+const WIFE_CATEGORIES = {
+  'sweet-talk':    { name: '土味情话', emoji: '💝', desc: '结合当下热门话题的土味情话/甜言蜜语，让媳妇开心、被撩到' },
+  'trap-response': { name: '挖坑应对', emoji: '🪤', desc: '媳妇挖坑（如"我要减肥了""你是不是觉得xxx好看"）时的幽默正确应对，千万别掉坑里' },
+  'trending-share': { name: '热门分享', emoji: '🔥', desc: '微博/知乎/小红书上女性关注的热门话题（电影/电视剧/明星/短剧），有料可聊、有梗可玩' },
+  'food-date':     { name: '美食约会', emoji: '🍜', desc: '发现好吃的、好看的店或菜，用浪漫幽默的语气邀约，有细节有画面感' },
+  'emotional-value': { name: '情绪价值', emoji: '🌸', desc: '对她的日常（化妆/面膜/刷剧/打扫/做饭）给出同理心回应和情绪价值，让她被看见、被理解' },
+  'appreciate':    { name: '感恩劳动', emoji: '🙏', desc: '发现并真诚感恩她做的家务/妙计/付出，不忽视不理所当然，具体到细节' },
+};
+
+const WIFE_INFO_SOURCES = {
+  weibo: {
+    label: '微博热搜',
+    desc: '女性话题/明星动态/热门剧综的第一阵地，热搜评论区是梗的宝库',
+    url: 'https://s.weibo.com/top/summary',
+  },
+  zhihu: {
+    label: '知乎',
+    desc: '深度讨论/情感话题/两性关系/生活方式，高赞回答有料有梗',
+    url: 'https://www.zhihu.com/hot',
+  },
+  xiaohongshu: {
+    label: '小红书',
+    desc: '美妆/穿搭/美食/旅行/追剧/种草，女性生活方式风向标',
+    url: 'https://www.xiaohongshu.com/explore',
+  },
+  douban: {
+    label: '豆瓣',
+    desc: '电影/电视剧/书籍评分和评论，文艺女性聚集地，影评书评有深度',
+    url: 'https://www.douban.com',
+  },
+  douyin: {
+    label: '抖音热梗',
+    desc: '短视频热梗/热门BGM/出圈挑战，传播速度极快',
+    url: 'https://www.douyin.com/hot',
+  },
+};
+
+function buildWifePrompt(slot) {
+  const catsDesc = Object.entries(WIFE_CATEGORIES).map(([k,v]) => `- ${v.name}（${k}）: ${v.desc}`).join('\n');
+  const sourcesDesc = Object.entries(WIFE_INFO_SOURCES).map(([k,v]) => `- ${v.label} (${v.url}): ${v.desc}`).join('\n');
+
+  const dateStr = `${slot.shanghai.getUTCFullYear()}-${String(slot.shanghai.getUTCMonth()+1).padStart(2,'0')}-${String(slot.shanghai.getUTCDate()).padStart(2,'0')}`;
+  const yesterday = new Date(slot.shanghai.getTime() - 86400000);
+  const yesterdayStr = `${yesterday.getUTCFullYear()}-${String(yesterday.getUTCMonth()+1).padStart(2,'0')}-${String(yesterday.getUTCDate()).padStart(2,'0')}`;
+
+  return `你是一个"哄媳妇"内容生成助手。你的任务是为一位丈夫生成可以用来和媳妇互动、提供情绪价值的内容。
+
+## 用户画像
+- 丈夫，7岁女孩的爸爸
+- 媳妇：关注明星动态/热播剧/美妆/美食/旅行，喜欢刷微博/小红书/抖音
+- 夫妻关系好，但丈夫有时不够细心、不会说话
+
+## ⚠️ 红线规则：这些事绝对不能做！
+1. **不能和她讲道理、论对错**——家不是法庭，赢了道理输了感情
+2. **不能忽视她的劳动成果**——打扫家务、偶尔做饭、出一个妙计，都要被看见、被感恩
+3. **不能敷衍**——"嗯""哦""还行"是毒药，要给出具体的、有细节的回应
+4. **不能掉进挖坑**——"我要减肥了"≠让你说"确实该减了"，"那个女生好看吗"≠让你评价
+5. **不能太干太死**——分享东西要有细节、有画面感、有情绪，不能三句话完事
+
+## ✅ 要主动做的事
+1. **幽默应对挖坑**——用玩笑化解，让她笑着打你一下
+2. **土味情话+热点**——结合当下热门女性关注的话题（电影/明星/短剧），把土味情话融入进去，又甜又有趣
+3. **发现好吃的分享细节**——不是"这家不错"，是"他们家的招牌是XX，口感XX，我查了评价都说XX，周末带你去？"
+4. **对她的日常给情绪价值**——她化妆/敷面膜/刷剧时，装出同理心（"你这个口红颜色好显白""面膜味道好好闻""这剧我也想看了你给我讲讲"）
+5. **感恩劳动要具体**——不是"辛苦了"，是"你昨天把阳台收搭得那么好，我今早站在阳台感觉都不一样了"
+
+## 内容分类
+${catsDesc}
+
+## 信息源（当天新鲜！）
+${sourcesDesc}
+
+## ⚠️ 最重要规则：内容必须新鲜！
+1. **优先今天（${dateStr}）的热门话题**——微博热搜、小红书热门、抖音热梗
+2. **当天没有可用昨天（${yesterdayStr}）的**，绝不能用一周前的旧闻
+3. **土味情话必须结合当下热点**——不要用万年前的老土味情话，要融入最新电影/明星/短剧/热梗
+4. **每条content注明信息来源和时间**："今天微博热搜上...""小红书上最近火的...""抖音上今天刷到的..."
+
+## 生成要求
+生成 6 条内容，分类分布建议：
+- 2条 sweet-talk（土味情话，必须结合当下热点）
+- 1条 trap-response（挖坑应对）
+- 1条 trending-share（热门分享，有细节有聊点）
+- 1条 food-date（美食约会，有画面感）
+- 1条 emotional-value 或 appreciate（情绪价值/感恩劳动）
+
+每条包含：
+- title: 标题，有趣有吸引力
+- category: 分类key
+- categoryName: 分类名
+- content: 具体内容，生动有趣，有细节有画面感，不要太短太干
+- explanation: 这条内容怎么用、什么时候用、为什么有效
+- usageTip: 可以直接照着说的开场白/话术模板
+- trendingTopic: 关联的热门话题/电影/明星/热梗（如有）
+- sourceUrl: 真实可访问的源链接（微博/小红书/豆瓣等）。如是一般性经验可留空
+
+## 输出格式
+请直接输出 JSON 数组，不要包含 markdown 代码块标记，不要有其他文字：
+[{"title":"...","category":"...","categoryName":"...","content":"...","explanation":"...","usageTip":"...","trendingTopic":"...","sourceUrl":"..."}, ...]`;
 }
 
 // ===== 育儿模式配置 =====
@@ -560,7 +664,9 @@ async function main() {
   // 生成新内容（先获取免费模型，带 fallback）
   const freeModels = await getFreeModels();
   const modelsToTry = [...freeModels, MODEL];
-  const prompt = MODE === 'parenting' ? buildParentingPrompt(slot) : buildPrompt(slot);
+  const prompt = MODE === 'parenting' ? buildParentingPrompt(slot)
+    : MODE === 'wife' ? buildWifePrompt(slot)
+    : buildPrompt(slot);
   console.log('⏳ 正在生成内容...');
 
   let newItems, usage, usedModel;
