@@ -1,7 +1,70 @@
 {
-  "lastUpdated": "2026-08-24T21:12:00+08:00",
+  "lastUpdated": "2026-08-25T21:04:00+08:00",
   "version": "3.0.0",
   "content": [
+    {
+      "id": "1787663050170-0",
+      "title": "画昆虫的神秘女士",
+      "theme": "unique-path",
+      "themeName": "做唯一故事",
+      "interest": "insects",
+      "interestName": "昆虫",
+      "story": "在很久以前的德国，有个叫玛丽亚·西比拉·梅里安的女人，她特别喜欢昆虫。她不仅观察它们，还用画笔把它们的变化过程画下来。那时候，人们都觉得昆虫很可怕，但玛丽亚觉得它们很神奇。她甚至还去了南美洲，专门研究那里的昆虫，画了很多漂亮的博物插画。",
+      "dadScript": "团团，你知道吗？在几百年前的德国，有一位叫玛丽亚的女士，她特别喜欢昆虫，还用画笔把它们的变化画下来，让人们看到了昆虫的美丽。",
+      "discussionPrompts": [
+        "你觉得为什么玛丽亚会喜欢昆虫？",
+        "如果你也能画出昆虫的变化，你最想画哪一种昆虫？"
+      ],
+      "activity": "今天我们可以一起去院子里观察昆虫，然后试着把它们的样子画下来。",
+      "personName": "玛丽亚·西比拉·梅里安",
+      "sourceUrl": "https://en.wikipedia.org/wiki/Maria_Sibylla_Merian",
+      "date": "2026-08-25",
+      "timeSlot": "evening",
+      "slot": "parenting-daily",
+      "createdAt": "2026-08-25T21:04:00+08:00"
+    },
+    {
+      "id": "1787663050170-1",
+      "title": "达尔文的昆虫探险",
+      "theme": "science-fun",
+      "themeName": "科学乐趣",
+      "interest": "insects",
+      "interestName": "昆虫",
+      "story": "查尔斯·达尔文是个特别喜欢观察自然的人。他曾经坐着船环游世界，在途中看到了很多奇怪的昆虫。有一次，他发现了一种特别的甲虫，甚至用手去抓它，结果被另一只甲虫咬了一口。达尔文没有生气，反而觉得这些昆虫太有趣了，于是他开始研究它们，后来写出了《物种起源》这本书。",
+      "dadScript": "团团，你知道吗？有个叫达尔文的科学家，他环游世界时发现了很多有趣的昆虫，甚至被甲虫咬了一口，但他一点都不生气，反而觉得它们很有趣。",
+      "discussionPrompts": [
+        "你觉得达尔文为什么会对昆虫这么感兴趣？",
+        "如果你也能环游世界，你最想发现什么昆虫？"
+      ],
+      "activity": "我们可以去公园里找找看有没有甲虫，然后试着记录它们的样子和活动。",
+      "personName": "查尔斯·达尔文",
+      "sourceUrl": "https://en.wikipedia.org/wiki/Charles_Darwin",
+      "date": "2026-08-25",
+      "timeSlot": "evening",
+      "slot": "parenting-daily",
+      "createdAt": "2026-08-25T21:04:00+08:00"
+    },
+    {
+      "id": "1787663050170-2",
+      "title": "昆虫插画的奇妙世界",
+      "theme": "benefiting-others",
+      "themeName": "惠及他人",
+      "interest": "insects",
+      "interestName": "昆虫",
+      "story": "在日本，有一位叫手塚治虫的漫画家，他不仅喜欢画漫画，还特别喜欢画昆虫。他甚至给自己的笔名里加了一个“虫”字。手塚治虫通过漫画让很多人了解了昆虫的生活，尤其是他画的《火之鸟》里有很多关于昆虫的故事，让小朋友们觉得昆虫世界既神奇又美丽。",
+      "dadScript": "团团，你知道吗？在日本有位叫手塚治虫的漫画家，他特别喜欢画昆虫，还通过漫画让很多人了解了昆虫的奇妙世界。",
+      "discussionPrompts": [
+        "你觉得为什么手塚治虫会用漫画来画昆虫？",
+        "如果你也能用画画来告诉大家关于昆虫的故事，你最想画什么？"
+      ],
+      "activity": "今天我们可以试着用画笔画一幅关于你最喜欢的昆虫的图画，然后讲一个关于它的故事。",
+      "personName": "手塚治虫",
+      "sourceUrl": "https://en.wikipedia.org/wiki/Osamu_Tezuka",
+      "date": "2026-08-25",
+      "timeSlot": "evening",
+      "slot": "parenting-daily",
+      "createdAt": "2026-08-25T21:04:00+08:00"
+    },
     {
       "id": "1787577130714-0",
       "title": "苏东坡被流放海南，竟发明了\"东坡肉\"",
@@ -844,13 +907,13 @@
     }
   ],
   "generationStats": {
-    "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
-    "lastRun": "2026-08-24T21:12:00+08:00",
+    "model": "deepseek/deepseek-chat",
+    "lastRun": "2026-08-25T21:04:00+08:00",
     "slot": "育儿每日故事",
-    "promptTokens": 1969,
-    "completionTokens": 2748,
-    "totalTokens": 4717,
-    "cost": 0,
-    "costNote": "免费模型"
+    "promptTokens": 1441,
+    "completionTokens": 788,
+    "totalTokens": 2229,
+    "cost": 0.00042,
+    "costNote": "$0.14/1M输入 + $0.28/1M输出"
   }
 }
