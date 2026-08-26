@@ -1,7 +1,70 @@
 {
-  "lastUpdated": "2026-08-25T21:04:00+08:00",
+  "lastUpdated": "2026-08-26T21:09:00+08:00",
   "version": "3.0.0",
   "content": [
+    {
+      "id": "1787749772149-0",
+      "title": "柑橘医生的神奇发现",
+      "theme": "nutrition-fun",
+      "themeName": "营养超能力",
+      "interest": "general",
+      "interestName": "通用",
+      "story": "18世纪的英国医生James Lind发现，船上很多水手因为牙龈出血、皮肤肿胀而病倒。他试着给不同组的水手吃不同的食物，只有吃了柑橘类水果的那组水手康复了。这让他发现了维生素C的神奇力量，柑橘就像修城墙的工人，保护着我们的皮肤和血管。",
+      "dadScript": "团团，你知道吗？很久以前有一群水手在海上航行时得了怪病，牙龈出血、皮肤肿胀，看起来可怕极了。后来有一位聪明的医生James Lind发现，给水手吃柑橘类水果就能治好他们的病。这就是维生素C的魔法！",
+      "discussionPrompts": [
+        "你觉得柑橘为什么这么神奇？",
+        "你最喜欢吃的富含维生素C的水果是什么？"
+      ],
+      "activity": "准备一份水果沙拉，选择富含维生素C的水果，比如橙子、草莓和猕猴桃。",
+      "personName": "James Lind",
+      "sourceUrl": "https://en.wikipedia.org/wiki/James_Lind_(physician)",
+      "date": "2026-08-26",
+      "timeSlot": "evening",
+      "slot": "parenting-daily",
+      "createdAt": "2026-08-26T21:09:00+08:00"
+    },
+    {
+      "id": "1787749772149-1",
+      "title": "能修复身体的超级英雄",
+      "theme": "nutrition-fun",
+      "themeName": "营养超能力",
+      "interest": "general",
+      "interestName": "通用",
+      "story": "蛋白质就像是身体里的修理工，它们可以修复肌肉、制造抗体。20世纪初，科学家Christiaan Eijkman在研究一种叫脚气病的怪病时，发现人们是因为缺乏维生素B1才得病的。而鸡蛋、牛奶和肉类中富含的蛋白质和维生素B1，就像是给身体加buff的超级英雄。",
+      "dadScript": "团团，你知道吗？我们的身体里有一种超级英雄叫蛋白质，它可以修复肌肉、制造抗体。科学家Christiaan Eijkman还发现，如果缺少维生素B1，人们会得一种叫脚气病的怪病。所以我们每天都要吃鸡蛋、喝牛奶，让这些超级英雄帮我们保持健康！",
+      "discussionPrompts": [
+        "你觉得蛋白质是怎么修复我们的身体的？",
+        "你最喜欢的富含蛋白质的食物是什么？"
+      ],
+      "activity": "一起做一顿富含蛋白质的晚餐，比如煎鸡蛋、牛奶和鸡肉沙拉。",
+      "personName": "Christiaan Eijkman",
+      "sourceUrl": "https://en.wikipedia.org/wiki/Christiaan_Eijkman",
+      "date": "2026-08-26",
+      "timeSlot": "evening",
+      "slot": "parenting-daily",
+      "createdAt": "2026-08-26T21:09:00+08:00"
+    },
+    {
+      "id": "1787749772149-2",
+      "title": "肠道里的小扫帚",
+      "theme": "nutrition-fun",
+      "themeName": "营养超能力",
+      "interest": "general",
+      "interestName": "通用",
+      "story": "膳食纤维就像是肠道里的小扫帚，它可以帮助我们清理肠道，让排便更顺畅。古代中国人早就知道吃粗粮对身体好，因为他们发现粗粮里富含膳食纤维。西兰花、胡萝卜和菠菜都是膳食纤维的好来源，它们就像给肠道加buff的小助手。",
+      "dadScript": "团团，你知道吗？我们的肠道里有一把小扫帚叫膳食纤维，它可以帮助我们清理肠道，让排便更顺畅。古代中国人早就知道吃粗粮对身体好，因为他们发现粗粮里富含膳食纤维。所以我们每天都要多吃西兰花、胡萝卜和菠菜，让这些小助手帮我们保持健康！",
+      "discussionPrompts": [
+        "你觉得膳食纤维是怎么帮助我们的肠道的？",
+        "你最喜欢的富含膳食纤维的蔬菜是什么？"
+      ],
+      "activity": "一起做一份富含膳食纤维的蔬菜沙拉，比如西兰花、胡萝卜和菠菜。",
+      "personName": "无",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/%E9%A3%9F%E7%B9%A9",
+      "date": "2026-08-26",
+      "timeSlot": "evening",
+      "slot": "parenting-daily",
+      "createdAt": "2026-08-26T21:09:00+08:00"
+    },
     {
       "id": "1787663050170-0",
       "title": "画昆虫的神秘女士",
@@ -908,12 +971,12 @@
   ],
   "generationStats": {
     "model": "deepseek/deepseek-chat",
-    "lastRun": "2026-08-25T21:04:00+08:00",
+    "lastRun": "2026-08-26T21:09:00+08:00",
     "slot": "育儿每日故事",
-    "promptTokens": 1441,
-    "completionTokens": 788,
-    "totalTokens": 2229,
-    "cost": 0.00042,
+    "promptTokens": 1740,
+    "completionTokens": 820,
+    "totalTokens": 2560,
+    "cost": 0.00047,
     "costNote": "$0.14/1M输入 + $0.28/1M输出"
   }
 }
