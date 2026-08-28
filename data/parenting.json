@@ -1,7 +1,70 @@
 {
-  "lastUpdated": "2026-08-28T06:11:00+08:00",
+  "lastUpdated": "2026-08-29T06:11:00+08:00",
   "version": "3.0.0",
   "content": [
+    {
+      "id": "1787955099052-0",
+      "title": "向日葵里的数学秘密",
+      "theme": "math-beauty",
+      "themeName": "数学之美",
+      "interest": "drawing",
+      "interestName": "画画",
+      "story": "很久以前，有一个苏格兰大叔叫邓肯·门罗（Duncan Monroe），他特别喜欢看花。有一天他盯着向日葵的花盘数啊数，发现了一个超级有趣的秘密：葵花籽排列成两条螺旋线，一条顺时针、一条逆时针，而且两边的螺旋数刚好是斐波那契数列里挨着的两个数字！后来聪明的数学家们发现，松果、菠萝、甚至星系都是按这个秘密排列的，大自然简直像一位隐藏的数学家。",
+      "dadScript": "团团，你知道吗？向日葵的花盘里藏着一个数学秘密！那些葵花籽不是随便长的，它们转圈圈的方式，连数学家都要惊呼'太酷了'！",
+      "discussionPrompts": [
+        "如果你是一朵向日葵，你想让种子怎么排队？",
+        "你觉得为什么大自然喜欢这个数字秘密呢？"
+      ],
+      "activity": "找一朵向日葵（或打印一张），用彩笔沿着种子排列的方向画螺旋线，数一数顺时针和逆时针各有多少圈。",
+      "personName": "邓肯·门罗 (Duncan Monroe)",
+      "sourceUrl": "https://en.wikipedia.org/wiki/Patterns_in_nature",
+      "date": "2026-08-29",
+      "timeSlot": "evening",
+      "slot": "parenting-daily",
+      "createdAt": "2026-08-29T06:11:00+08:00"
+    },
+    {
+      "id": "1787955099052-1",
+      "title": "蜜蜂数学家六边形",
+      "theme": "math-beauty",
+      "themeName": "数学之美",
+      "interest": "insects",
+      "interestName": "昆虫",
+      "story": "古希腊有个超厉害的数学家叫帕普斯（Pappus of Alexandria），他专门研究蜜蜂的蜂巢。他发现小蜜蜂盖房子用的形状是六边形，这个形状超级聪明——用同样多的蜂蜡，能装下最多的蜂蜜，而且墙壁还最结实！蜜蜂没有上过学，却比人类早几千万年就用上了最完美的数学形状，帕普斯叔叔都忍不住感叹：'蜜蜂是天生的几何大师！'",
+      "dadScript": "团团，你知道吗？有一种小昆虫，比人类早几千万年就会做数学题了！它就是——小蜜蜂！它们盖的房子藏着大秘密。",
+      "discussionPrompts": [
+        "如果你是一只小蜜蜂，你会用什么形状盖房子？为什么？",
+        "你觉得小蜜蜂没有上学，怎么知道六边形最厉害？"
+      ],
+      "activity": "用六根冰棍棒（或牙签+软糖）拼一个六边形，和正方形比一比哪个装的东西多，直观感受六边形的魔力。",
+      "personName": "帕普斯 (Pappus of Alexandria)",
+      "sourceUrl": "https://en.wikipedia.org/wiki/Pappus_of_Alexandria",
+      "date": "2026-08-29",
+      "timeSlot": "evening",
+      "slot": "parenting-daily",
+      "createdAt": "2026-08-29T06:11:00+08:00"
+    },
+    {
+      "id": "1787955099052-2",
+      "title": "达·芬奇画鸡蛋画出了科学",
+      "theme": "math-beauty",
+      "themeName": "数学之美",
+      "interest": "drawing",
+      "interestName": "画画",
+      "story": "达·芬奇（Leonardo da Vinci）小时候老师让他画鸡蛋，他画了一个又一个，画了好几年！别人都觉得无聊，但达·芬奇从鸡蛋里看出了：光怎么照在曲面上、影子怎么变化、形状怎么从不同角度看都不同。他后来画出了世界上最美的画，还设计了直升机和坦克！原来画鸡蛋不是简单的画画，是在学'世界是怎么构成的'——形状、光影、数学，全藏在里面。",
+      "dadScript": "团团，你知道吗？世界上最有名的画家达·芬奇，小时候画了好几年鸡蛋！不是因为老师罚他，而是因为——鸡蛋里有大学问！",
+      "discussionPrompts": [
+        "如果你要画一个苹果，你最想画出它的什么？颜色、形状，还是光线？",
+        "达·芬奇觉得画画和数学是一回事，你觉得呢？"
+      ],
+      "activity": "挑一个水果（苹果、橘子、梨），从三个不同角度各画一遍，注意光影的变化，像小达·芬奇一样观察。",
+      "personName": "列奥纳多·达·芬奇 (Leonardo da Vinci)",
+      "sourceUrl": "https://en.wikipedia.org/wiki/Leonardo_da_Vinci",
+      "date": "2026-08-29",
+      "timeSlot": "evening",
+      "slot": "parenting-daily",
+      "createdAt": "2026-08-29T06:11:00+08:00"
+    },
     {
       "id": "1787868689535-0",
       "title": "画自画像的墨西哥姐姐",
@@ -1037,11 +1100,11 @@
   ],
   "generationStats": {
     "model": "minimax/minimax-m3:free",
-    "lastRun": "2026-08-28T06:11:00+08:00",
+    "lastRun": "2026-08-29T06:11:00+08:00",
     "slot": "育儿每日故事",
-    "promptTokens": 1530,
-    "completionTokens": 1056,
-    "totalTokens": 2586,
+    "promptTokens": 1537,
+    "completionTokens": 916,
+    "totalTokens": 2453,
     "cost": 0,
     "costNote": "免费模型"
   }
