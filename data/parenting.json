@@ -1,7 +1,70 @@
 {
-  "lastUpdated": "2026-08-30T00:38:00+08:00",
+  "lastUpdated": "2026-08-31T00:34:00+08:00",
   "version": "3.0.0",
   "content": [
+    {
+      "id": "1788107688192-0",
+      "title": "牛顿煮手表",
+      "theme": "science-fun",
+      "themeName": "科学乐趣",
+      "interest": "general",
+      "interestName": "通用",
+      "story": "牛顿是个非常专注的科学家。有一次他在研究一个科学问题时，完全忘记了时间。他拿起一个鸡蛋准备煮，结果不小心把自己的手表放进了锅里。等他发现时，手表已经煮熟了！牛顿的专注让他做出了很多伟大的发现，比如万有引力定律。",
+      "dadScript": "团团，你知道吗？牛顿曾经因为太专注于研究，竟然把自己的手表当成鸡蛋煮了！",
+      "discussionPrompts": [
+        "你觉得为什么牛顿会忘记自己在煮什么？",
+        "你有没有因为太专注而忘记过什么事情？"
+      ],
+      "activity": "今天我们一起煮一个鸡蛋，看看需要多长时间，然后讨论一下我们如何保持专注。",
+      "personName": "Isaac Newton",
+      "sourceUrl": "https://en.wikipedia.org/wiki/Isaac_Newton",
+      "date": "2026-08-31",
+      "timeSlot": "evening",
+      "slot": "parenting-daily",
+      "createdAt": "2026-08-31T00:34:00+08:00"
+    },
+    {
+      "id": "1788107688192-1",
+      "title": "爱因斯坦的想象力",
+      "theme": "science-fun",
+      "themeName": "科学乐趣",
+      "interest": "general",
+      "interestName": "通用",
+      "story": "爱因斯坦小时候一直被认为是个奇怪的孩子。他不喜欢死记硬背，而是喜欢想象自己在骑着一束光旅行。这种想象力帮助他后来提出了相对论，彻底改变了我们对时间和空间的理解。",
+      "dadScript": "团团，你知道吗？爱因斯坦小时候喜欢想象自己骑着一束光旅行，这种想象力帮助他成为了一位伟大的科学家！",
+      "discussionPrompts": [
+        "你觉得骑着一束光旅行会是什么感觉？",
+        "你有没有用想象力解决过问题？"
+      ],
+      "activity": "今天我们一起用想象力画一幅画，看看我们能创造出什么有趣的东西。",
+      "personName": "Albert Einstein",
+      "sourceUrl": "https://en.wikipedia.org/wiki/Albert_Einstein",
+      "date": "2026-08-31",
+      "timeSlot": "evening",
+      "slot": "parenting-daily",
+      "createdAt": "2026-08-31T00:34:00+08:00"
+    },
+    {
+      "id": "1788107688192-2",
+      "title": "居里夫人的实验室",
+      "theme": "science-fun",
+      "themeName": "科学乐趣",
+      "interest": "general",
+      "interestName": "通用",
+      "story": "居里夫人是第一个获得诺贝尔奖的女性科学家。她在简陋的实验室里研究放射性元素，发现了镭和钋。她的实验室条件很差，但她从不放弃，因为她觉得科学太有趣了！",
+      "dadScript": "团团，你知道吗？居里夫人在一个非常简陋的实验室里研究放射性元素，发现了镭和钋，因为她觉得科学太有趣了！",
+      "discussionPrompts": [
+        "你觉得居里夫人为什么会觉得科学有趣？",
+        "你有没有因为觉得某件事有趣而不放弃的经历？"
+      ],
+      "activity": "今天我们一起做一个简单的科学实验，看看我们能发现什么有趣的现象。",
+      "personName": "Marie Curie",
+      "sourceUrl": "https://en.wikipedia.org/wiki/Marie_Curie",
+      "date": "2026-08-31",
+      "timeSlot": "evening",
+      "slot": "parenting-daily",
+      "createdAt": "2026-08-31T00:34:00+08:00"
+    },
     {
       "id": "1788021532049-0",
       "title": "1米5的小巨人——邓亚萍的乒乓球魔法",
@@ -1162,13 +1225,13 @@
     }
   ],
   "generationStats": {
-    "model": "minimax/minimax-m3:free",
-    "lastRun": "2026-08-30T00:38:00+08:00",
+    "model": "deepseek/deepseek-chat",
+    "lastRun": "2026-08-31T00:34:00+08:00",
     "slot": "育儿每日故事",
-    "promptTokens": 1819,
-    "completionTokens": 1211,
-    "totalTokens": 3030,
-    "cost": 0,
-    "costNote": "免费模型"
+    "promptTokens": 1447,
+    "completionTokens": 633,
+    "totalTokens": 2080,
+    "cost": 0.00038,
+    "costNote": "$0.14/1M输入 + $0.28/1M输出"
   }
 }
