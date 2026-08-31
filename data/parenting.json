@@ -1,7 +1,70 @@
 {
-  "lastUpdated": "2026-08-31T00:34:00+08:00",
+  "lastUpdated": "2026-09-01T03:06:00+08:00",
   "version": "3.0.0",
   "content": [
+    {
+      "id": "1788203163583-0",
+      "title": "蝴蝶婆婆的放大镜——17世纪最酷的画家奶奶",
+      "theme": "unique-path",
+      "themeName": "做唯一故事",
+      "interest": "drawing",
+      "interestName": "画画",
+      "story": "300多年前，德国有个叫玛丽亚·梅里安（Maria Sibylla Merian）的奶奶，她特别喜欢画画。但她不画城堡，也不画公主，她画——毛毛虫！那时候大家都觉得虫子脏兮兮的，没人愿意看。可梅里安奶奶拿着放大镜趴在地上，一趴就是一整天，看毛毛虫怎么变成蝴蝶，然后把它们画下来。她的画漂亮极了，300年过去了，人们还在博物馆里收藏呢！",
+      "dadScript": "团团，你知道吗？300多年前有个奶奶，大家都觉得她很奇怪，因为她喜欢趴在地上看毛毛虫。可是她画出来的东西，现在全世界的人都说'哇，太好看了！'你猜她画的是什么？",
+      "discussionPrompts": [
+        "如果你可以趴在地上看一种小虫子一整天，你会选什么？为什么？",
+        "梅里安奶奶画的蝴蝶和真蝴蝶一样吗？你觉得画画是要画得一模一样，还是要画得有感觉？"
+      ],
+      "activity": "我们下楼去找一只小虫子（蚂蚁、蜗牛、瓢虫都行），用放大镜仔细观察它，然后你用彩笔画下来。不需要画得像，画出你看到的感觉就好！",
+      "personName": "Maria Sibylla Merian",
+      "sourceUrl": "https://en.wikipedia.org/wiki/Maria_Sibylla_Merian",
+      "date": "2026-09-01",
+      "timeSlot": "evening",
+      "slot": "parenting-daily",
+      "createdAt": "2026-09-01T03:06:00+08:00"
+    },
+    {
+      "id": "1788203163583-1",
+      "title": "摔断脊梁骨的画家姐姐",
+      "theme": "sports-spirit",
+      "themeName": "运动精神",
+      "interest": "drawing",
+      "interestName": "画画",
+      "story": "弗里达·卡罗（Frida Kahlo）是个墨西哥小姐姐，6岁的时候得了一种很可怕的病，小儿麻痹症，让她的腿变得很细很长，再也没法跟小朋友一起跑跑跳跳。18岁的时候又出了严重车祸，脊梁骨断了好几截，只能躺在床上。她很伤心——但她拿起了画笔！她买了一面镜子挂在天花板上，对着自己画自己。镜子里那个穿着彩色裙子、眉毛连在一起的姐姐，就成了全世界最有名的画家之一！",
+      "dadScript": "团团，你知道吗？有个画画特别厉害的姐姐，小时候因为生病和受伤，好多年都只能躺在床上。你猜她怎么办？她让人把镜子挂在天花板上，然后躺着画自己！",
+      "discussionPrompts": [
+        "如果你生病了一整年只能躺在床上，你会做什么让自己不无聊？",
+        "弗里达姐姐画的自己，眼睛连在一起，像两只小鸟。她为什么要这样画自己呢？"
+      ],
+      "activity": "我们一起照镜子，画一幅自画像。不用画得像，试试看弗里达那种'有感觉'的画法——把你今天的心情画进眼睛里！",
+      "personName": "Frida Kahlo",
+      "sourceUrl": "https://en.wikipedia.org/wiki/Frida_Kahlo",
+      "date": "2026-09-01",
+      "timeSlot": "evening",
+      "slot": "parenting-daily",
+      "createdAt": "2026-09-01T03:06:00+08:00"
+    },
+    {
+      "id": "1788203163583-2",
+      "title": "画鸡蛋画到烦的画家爷爷",
+      "theme": "learning-meaning",
+      "themeName": "学习的意义",
+      "interest": "drawing",
+      "interestName": "画画",
+      "story": "达·芬奇爷爷（Leonardo da Vinci）画画超厉害，画出了全世界最神秘的微笑——蒙娜丽莎。可你知道吗？他刚开始学画画的时候，老师让他画鸡蛋！不是画一个，是画一千个！每天早上一个，傍晚一个，画了好几年。他差点烦哭了，跑去问老师：'为什么要一直画鸡蛋？'老师说：'因为世界上没有两个一模一样的鸡蛋呀。'达·芬奇突然明白了——画画不是要画'像'，是要看见每个东西不一样的地方。",
+      "dadScript": "团团，你知道吗？画《蒙娜丽莎》那个超有名的爷爷，第一份'作业'是画鸡蛋！他画了好几年，画到差点不想画了。你猜他后来发现了什么秘密？",
+      "discussionPrompts": [
+        "如果老师让你画一千个苹果，你会觉得烦吗？怎么才能不烦？",
+        "达·芬奇爷爷发现每个鸡蛋都不一样。那你家的杯子、你的鞋子，你仔细看过，它们哪里不一样？"
+      ],
+      "activity": "我们来找三片树叶，仔细看它们——形状一样吗？叶脉一样吗？然后你用彩笔把三片叶子画下来，画出它们'不一样'的地方！",
+      "personName": "Leonardo da Vinci",
+      "sourceUrl": "https://en.wikipedia.org/wiki/Leonardo_da_Vinci",
+      "date": "2026-09-01",
+      "timeSlot": "evening",
+      "slot": "parenting-daily",
+      "createdAt": "2026-09-01T03:06:00+08:00"
+    },
     {
       "id": "1788107688192-0",
       "title": "牛顿煮手表",
@@ -1225,13 +1288,13 @@
     }
   ],
   "generationStats": {
-    "model": "deepseek/deepseek-chat",
-    "lastRun": "2026-08-31T00:34:00+08:00",
+    "model": "minimax/minimax-m3:free",
+    "lastRun": "2026-09-01T03:06:00+08:00",
     "slot": "育儿每日故事",
-    "promptTokens": 1447,
-    "completionTokens": 633,
-    "totalTokens": 2080,
-    "cost": 0.00038,
-    "costNote": "$0.14/1M输入 + $0.28/1M输出"
+    "promptTokens": 1525,
+    "completionTokens": 854,
+    "totalTokens": 2379,
+    "cost": 0,
+    "costNote": "免费模型"
   }
 }
