@@ -8,6 +8,8 @@ const DATA_PATH = MODE === 'parenting'
   ? join(__dirname, '..', 'data', 'parenting.json')
   : MODE === 'wife'
   ? join(__dirname, '..', 'data', 'wife.json')
+  : MODE === 'tech'
+  ? join(__dirname, '..', 'data', 'tech.json')
   : join(__dirname, '..', 'data', 'content.json');
 const API_KEY = process.env.OPENROUTER_API_KEY;
 const MODEL = process.env.OPENROUTER_MODEL || 'deepseek/deepseek-chat';
@@ -263,6 +265,82 @@ ${sourcesText}
 ## 输出格式
 请直接输出 JSON 数组，不要包含 markdown 代码块标记，不要有其他文字：
 [{"title":"...","category":"...","categoryName":"...","content":"...","explanation":"...","usageTip":"...","sourceUrl":"..."}, ...]`;
+}
+
+// ===== 科技圈吃瓜模式配置 =====
+const TECH_CATEGORIES = {
+  'drama':     { name: '吃瓜大戏', emoji: '🍉', desc: '科技圈人物事件——孙宇晨各种操作、老罗的各种大动作、大佬翻车/逆袭，有剧情有反转' },
+  'big-move':  { name: '大动作', emoji: '🚀', desc: '新产品/新项目/战略转型——老罗说要搞电视、某厂突然入局某赛道、大厂组织架构调整' },
+  'hot-take':  { name: '大佬观点', emoji: '🎤', desc: '科技大佬的争议发言/出圈金句——可以是深刻的也可以是翻车的' },
+  'feud':      { name: '隔空互怼', emoji: '⚔️', desc: '大佬之间的公开互怼/暗讽——黄仁勋vs苏妈、库克vs马斯克、国内大佬互怼' },
+  'product':   { name: '新品速递', emoji: '📱', desc: '有意思的新产品发布——不干巴巴报参数，要有梗有槽点有亮点' },
+  'industry':  { name: '行业风向', emoji: '🌬️', desc: '行业趋势/资本动态——融资/IPO/裁员/并购，用吃瓜的视角讲' },
+};
+
+const TECH_INFO_SOURCES = {
+  '36kr':      { label: '36氪', desc: '科技创投媒体，融资/IPO/创业动态第一线', url: 'https://36kr.com' },
+  'huxiu':     { label: '虎嗅', desc: '科技商业评论，深度+犀利', url: 'https://www.huxiu.com' },
+  'geekpark':  { label: '极客公园', desc: '科技产品/大佬访谈，有料的科技媒体', url: 'https://www.geekpark.net' },
+  'weibo':     { label: '微博科技', desc: '科技大佬动态/热搜话题，评论区是吃瓜主战场', url: 'https://s.weibo.com/top/summary' },
+  'zhihu':     { label: '知乎', desc: '科技话题深度讨论/大佬AMA，高赞回答有料', url: 'https://www.zhihu.com/hot' },
+  'jike':      { label: '即刻', desc: '科技圈动态/产品经理/开发者聚集地，消息快', url: 'https://web.okjike.com' },
+  'hn':        { label: 'Hacker News', desc: '海外科技讨论，硅谷大佬评论区', url: 'https://news.ycombinator.com' },
+  'x':         { label: 'X/Twitter', desc: '马斯克/黄仁勋/库克等大佬动态，科技吃瓜全球源', url: 'https://x.com' },
+};
+
+function buildTechPrompt(slot) {
+  const catsDesc = Object.entries(TECH_CATEGORIES).map(([k,v]) => `- ${v.name}（${k}）: ${v.desc}`).join('\n');
+  const sourcesDesc = Object.entries(TECH_INFO_SOURCES).map(([k,v]) => `- ${v.label} (${v.url}): ${v.desc}`).join('\n');
+
+  const dateStr = `${slot.shanghai.getUTCFullYear()}-${String(slot.shanghai.getUTCMonth()+1).padStart(2,'0')}-${String(slot.shanghai.getUTCDate()).padStart(2,'0')}`;
+  const yesterday = new Date(slot.shanghai.getTime() - 86400000);
+  const yesterdayStr = `${yesterday.getUTCFullYear()}-${String(yesterday.getUTCMonth()+1).padStart(2,'0')}-${String(yesterday.getUTCDate()).padStart(2,'0')}`;
+
+  return `你是一个"科技圈吃瓜"内容生成助手。你的任务是为用户生成科技圈最新的人物事件、大动作、大佬观点等吃瓜内容，有趣有料有梗。
+
+## 用户画像
+- RN开发/App开发/前端程序员，深度关注科技行业
+- 喜欢看科技圈人物故事、大佬发言、行业drama
+- 需要的是"有剧情、有反转、有槽点"的吃瓜内容，不是干巴巴的新闻稿
+
+## 内容分类
+${catsDesc}
+
+## 信息源（当天新鲜！）
+${sourcesDesc}
+
+## ⚠️ 最重要规则：内容必须新鲜！
+1. **优先今天（${dateStr}）的热门话题**——36氪/虎嗅/微博/即刻上的科技动态
+2. **当天没有可用昨天（${yesterdayStr}）的**，绝不能用一周前的旧闻
+3. **每条content注明信息来源和时间**："今天36氪上...""微博上今天...""即刻上刚刷到..."
+4. **要有吃瓜视角**：不是转述新闻稿，是用"哇这个事情太有意思了"的语气讲，有梗有槽点
+5. **人物故事优先**：科技圈最有趣的是人的故事——老罗的各种大动作、孙宇晨的各种操作、马斯克的嘴炮、黄仁勋的皮衣——人物比参数有意思
+
+## 关注的科技圈人物（可拓展，不限于此）
+- 罗永浩（老罗）——各种大动作、创业/转型/直播/说要搞电视等
+- 孙宇晨——各种操作、营销/争议/吃瓜
+- 马斯克——推特/X动态、AI/Robotaxi/火星、各种嘴炮
+- 黄仁勋——NVIDIA/皮衣/AI芯片、各种金句
+- 库克——Apple动态/Vision Pro/AI
+- 扎克伯格——Meta/VR/Llama
+- 国内大佬：雷军/余承东/王兴/程维/张一鸣等
+- AI圈：Sam Altman/Ilya/Karpathy等
+- 新锐创业者/翻车创业者
+
+## 生成要求
+生成 8 条内容，分类分布灵活但尽量覆盖多个分类。每条包含：
+- title: 标题，有吸引力，让人想点进来看
+- category: 分类key
+- categoryName: 分类名
+- content: 具体内容，生动有趣，有剧情有画面感，用吃瓜的语气讲，不要太干
+- explanation: 背景信息/为什么有意思/怎么跟同事聊这个
+- usageTip: 可以怎么开口聊——具体到可以用的开场白
+- trendingTopic: 关联的人物/事件/热词（如有）
+- sourceUrl: 真实可访问的源链接（36氪/微博/虎嗅等）。如是一般性经验可留空。不要编造URL
+
+## 输出格式
+请直接输出 JSON 数组，不要包含 markdown 代码块标记，不要有其他文字：
+[{"title":"...","category":"...","categoryName":"...","content":"...","explanation":"...","usageTip":"...","trendingTopic":"...","sourceUrl":"..."}, ...]`;
 }
 
 // ===== 媳妇模式配置 =====
@@ -666,6 +744,7 @@ async function main() {
   const modelsToTry = [...freeModels, MODEL];
   const prompt = MODE === 'parenting' ? buildParentingPrompt(slot)
     : MODE === 'wife' ? buildWifePrompt(slot)
+    : MODE === 'tech' ? buildTechPrompt(slot)
     : buildPrompt(slot);
   console.log('⏳ 正在生成内容...');
 

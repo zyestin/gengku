@@ -942,6 +942,7 @@ body {
 <!-- Tab Bar -->
 <div class="tab-bar">
   <button class="tab-btn active" data-tab="gengku">💼 梗库</button>
+  <button class="tab-btn" data-tab="tech">🍉 科技吃瓜</button>
   <button class="tab-btn" data-tab="parenting">👪 育儿</button>
   <button class="tab-btn" data-tab="wife">💝 媳妇</button>
 </div>
@@ -1009,6 +1010,11 @@ body {
         <div style="color:var(--accent-dark);margin-top:4px;">周一早间额外包含周五晚~周日的"周末追梗"</div>
         <div style="color:var(--accent-dark);margin-top:2px;">内容要求当天新鲜，最迟前一天</div>
       </div>
+      <div style="font-weight:700;color:var(--text);margin-top:10px;margin-bottom:6px;">🍉 科技吃瓜</div>
+      <div style="padding-left:12px;">
+        <div>每天午间 <strong>12:00</strong> · 8条吃瓜内容（大佬drama/大动作/隔空互怼/新品/行业风向）</div>
+        <div>信息源：36氪/虎嗅/极客公园/微博/知乎/即刻/HN/X · 内容要求当天新鲜</div>
+      </div>
       <div style="font-weight:700;color:var(--text);margin-top:10px;margin-bottom:6px;">💝 媳妇（哄媳妇频道）</div>
       <div style="padding-left:12px;">
         <div>每天晚间 <strong>20:30</strong> · 6条内容（土味情话/挖坑应对/热门分享/美食约会/情绪价值/感恩劳动）</div>
@@ -1022,13 +1028,13 @@ body {
       </div>
       <div style="font-weight:700;color:var(--text);margin-top:10px;margin-bottom:6px;">📅 每周时间表</div>
       <div style="padding-left:12px;">
-        <div>周一 07:30 梗库(工作) · 20:00 育儿 · 20:30 媳妇</div>
-        <div>周二 07:30 梗库(工作) · 17:30 梗库(生活) · 20:00 育儿 · 20:30 媳妇</div>
-        <div>周三 07:30 梗库(工作) · 17:30 梗库(生活) · 20:00 育儿 · 20:30 媳妇</div>
-        <div>周四 07:30 梗库(工作) · 17:30 梗库(生活) · 20:00 育儿 · 20:30 媳妇</div>
-        <div>周五 07:30 梗库(工作) · 17:30 梗库(生活) · 20:00 育儿 · 20:30 媳妇</div>
-        <div>周六 09:00 梗库(生活) · 18:00 梗库(生活) · 20:00 育儿 · 20:30 媳妇</div>
-        <div>周日 09:00 梗库(生活) · 18:00 梗库(生活) · 20:00 育儿 · 20:30 媳妇</div>
+        <div>周一 07:30 梗库(工作) · 12:00 科技吃瓜 · 20:00 育儿 · 20:30 媳妇</div>
+        <div>周二 07:30 梗库(工作) · 12:00 科技吃瓜 · 17:30 梗库(生活) · 20:00 育儿 · 20:30 媳妇</div>
+        <div>周三 07:30 梗库(工作) · 12:00 科技吃瓜 · 17:30 梗库(生活) · 20:00 育儿 · 20:30 媳妇</div>
+        <div>周四 07:30 梗库(工作) · 12:00 科技吃瓜 · 17:30 梗库(生活) · 20:00 育儿 · 20:30 媳妇</div>
+        <div>周五 07:30 梗库(工作) · 12:00 科技吃瓜 · 17:30 梗库(生活) · 20:00 育儿 · 20:30 媳妇</div>
+        <div>周六 09:00 梗库(生活) · 12:00 科技吃瓜 · 18:00 梗库(生活) · 20:00 育儿 · 20:30 媳妇</div>
+        <div>周日 09:00 梗库(生活) · 12:00 科技吃瓜 · 18:00 梗库(生活) · 20:00 育儿 · 20:30 媳妇</div>
       </div>
     </div>
   </details>
@@ -1058,6 +1064,16 @@ const SLOTS = {
   'workday-evening':   { title: '工作日晚间', desc: '下班了，工作生活各一半，切换模式', badge: '🌗 50% 工作 + 50% 生活' },
   'weekend-morning':   { title: '周末早晨',   desc: '和家人、孩子、附近家长聊的生活话题', badge: '🏠 100% 生活' },
   'weekend-evening':   { title: '周末晚间',   desc: '一天结束，和家人聊聊今天的趣事', badge: '🌙 100% 生活' },
+};
+
+// ===== Tech Config =====
+const TECH_CATEGORIES = {
+  'drama':     { name: '吃瓜大戏', emoji: '🍉', color: '#f97316', bg: 'rgba(249,115,22,0.12)' },
+  'big-move':  { name: '大动作',  emoji: '🚀', color: '#3b82f6', bg: 'rgba(59,130,246,0.12)' },
+  'hot-take':  { name: '大佬观点', emoji: '🎤', color: '#8b5cf6', bg: 'rgba(139,92,246,0.12)' },
+  'feud':      { name: '隔空互怼', emoji: '⚔️', color: '#ef4444', bg: 'rgba(239,68,68,0.12)' },
+  'product':   { name: '新品速递', emoji: '📱', color: '#10b981', bg: 'rgba(16,185,129,0.12)' },
+  'industry':  { name: '行业风向', emoji: '🌬️', color: '#06b6d4', bg: 'rgba(6,182,212,0.12)' },
 };
 
 // ===== Wife Config =====
@@ -1097,6 +1113,7 @@ const PT_INTERESTS = {
 let currentTab = 'gengku';
 const tabState = {
   gengku: { rawData: null, allContent: [], activeDate: 'all', activeSlot: 'all', activeCategory: 'all', allDates: [], scrollY: 0 },
+  tech: { rawData: null, allContent: [], activeDate: 'all', activeTechCategory: 'all', allDates: [], scrollY: 0 },
   parenting: { rawData: null, allContent: [], activeDate: 'all', activeTheme: 'all', activeInterest: 'all', allDates: [], expandedCards: new Set(), scrollY: 0 },
   wife: { rawData: null, allContent: [], activeDate: 'all', activeWifeCategory: 'all', allDates: [], scrollY: 0 },
 };
@@ -1112,6 +1129,7 @@ let expandedCards = new Set();
 let activeTheme = 'all';
 let activeInterest = 'all';
 let activeWifeCategory = 'all';
+let activeTechCategory = 'all';
 
 // ===== Smart Default Tab =====
 function getDefaultTab() {
@@ -1140,6 +1158,8 @@ function saveTabState() {
     s.expandedCards = expandedCards;
   } else if (currentTab === 'wife') {
     s.activeWifeCategory = activeWifeCategory || 'all';
+  } else if (currentTab === 'tech') {
+    s.activeTechCategory = activeTechCategory || 'all';
   }
 }
 
@@ -1158,6 +1178,8 @@ function restoreTabState(tab) {
     expandedCards = s.expandedCards || new Set();
   } else if (tab === 'wife') {
     activeWifeCategory = s.activeWifeCategory || 'all';
+  } else if (tab === 'tech') {
+    activeTechCategory = s.activeTechCategory || 'all';
   }
 }
 
@@ -1174,7 +1196,8 @@ async function switchTab(tab) {
   if (!tabState[tab].rawData) {
     const file = tab === 'gengku' ? 'data/content.json'
       : tab === 'parenting' ? 'data/parenting.json'
-      : 'data/wife.json';
+      : tab === 'wife' ? 'data/wife.json'
+      : 'data/tech.json';
     try {
       const res = await fetch(file);
       tabState[tab].rawData = await res.json();
@@ -1214,7 +1237,108 @@ function renderAll() {
     renderWifeStats();
     renderGenStats();
     renderWifeContent();
+  } else if (currentTab === 'tech') {
+    renderTechBanner();
+    renderDateNav();
+    renderTechFilters();
+    renderTechStats();
+    renderGenStats();
+    renderTechContent();
   }
+}
+
+// ===== Tech Banner =====
+function renderTechBanner() {
+  document.getElementById('slotTitle').textContent = '科技圈吃瓜';
+  document.getElementById('slotDesc').textContent = '大佬drama·大动作·隔空互怼·行业风向——当天新鲜热乎的';
+  document.getElementById('slotBadge').textContent = '🍉 吃瓜';
+}
+
+// ===== Tech Filters =====
+function renderTechFilters() {
+  const filters = document.getElementById('filters');
+  let html = `<button class="filter-chip ${activeTechCategory === 'all' ? 'active' : ''}" data-tcat="all">全部</button>`;
+  for (const [key, cat] of Object.entries(TECH_CATEGORIES)) {
+    html += `<button class="filter-chip ${activeTechCategory === key ? 'active' : ''}" data-tcat="${key}" style="${activeTechCategory === key ? `border-color:${cat.color};color:${cat.color}` : ''}">${cat.emoji} ${cat.name}</button>`;
+  }
+  filters.innerHTML = html;
+  filters.querySelectorAll('[data-tcat]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      activeTechCategory = btn.dataset.tcat;
+      renderTechFilters();
+      renderTechContent();
+    });
+  });
+}
+
+// ===== Tech Stats =====
+function renderTechStats() {
+  document.getElementById('statsBar').innerHTML = `<span class="stat-item">📊 共 ${allContent.length} 条吃瓜内容</span>`;
+}
+
+// ===== Tech Content =====
+function renderTechContent() {
+  const grid = document.getElementById('contentGrid');
+  let filtered = allContent;
+  if (activeDate !== 'all') filtered = filtered.filter(c => c.date === activeDate);
+  if (activeTechCategory !== 'all') filtered = filtered.filter(c => c.category === activeTechCategory);
+
+  if (filtered.length === 0) {
+    grid.innerHTML = '<p style="text-align:center;padding:40px;color:var(--text-secondary);">暂无内容，等待AI生成中...</p>';
+    return;
+  }
+
+  grid.innerHTML = filtered.map((item, i) => {
+    const cat = TECH_CATEGORIES[item.category] || { name: '其他', emoji: '📦', color: '#6b7280', bg: 'rgba(107,114,128,0.12)' };
+    const srcUrl = item.sourceUrl
+      ? escapeHtml(item.sourceUrl)
+      : 'https://www.google.com/search?q=' + encodeURIComponent(item.title);
+    const srcDomain = item.sourceUrl ? getDomain(item.sourceUrl) : 'google.com';
+    const liked = isLiked(item.id);
+    const commentCount = getComments(item.id).length;
+    const trendingTag = item.trendingTopic
+      ? `<div class="card-explanation" style="margin-top:8px;"><span class="label">🔥 关联热点</span>${escapeHtml(item.trendingTopic)}</div>`
+      : '';
+    return `
+      <div class="card" style="animation-delay:${i * 0.06}s;">
+        <div class="card-header">
+          <span class="card-category" style="color:${cat.color};background:${cat.bg};">
+            <span style="width:8px;height:8px;border-radius:50%;background:${cat.color};display:inline-block;"></span>
+            ${cat.emoji} ${cat.name}
+          </span>
+        </div>
+        <div class="card-title">${escapeHtml(item.title)}</div>
+        <div class="card-content">${escapeHtml(item.content)}</div>
+        <div class="card-explanation">
+          <span class="label">📖 背景</span>
+          ${escapeHtml(item.explanation)}
+        </div>
+        <div class="card-usage">
+          <span class="label">💬 怎么聊</span>
+          ${escapeHtml(item.usageTip)}
+        </div>
+        ${trendingTag}
+        <div class="card-footer">
+          <div class="card-actions">
+            <button class="action-btn like-btn ${liked ? 'liked' : ''}" data-like="${escapeHtml(item.id)}">
+              ${liked ? '❤️' : '🤍'}
+            </button>
+            <button class="action-btn" data-comment="${escapeHtml(item.id)}">
+              💬 ${commentCount > 0 ? commentCount : ''}
+            </button>
+          </div>
+          <a href="${srcUrl}" class="source-btn" target="_blank" rel="noopener noreferrer">
+            ${item.sourceUrl ? '🔗 来源: ' + escapeHtml(srcDomain) : '🔍 搜索相关'}
+          </a>
+        </div>
+        <div class="comment-section" id="cs-${escapeHtml(item.id)}" style="display:none;">
+          ${renderCommentSection(item.id)}
+        </div>
+      </div>
+    `;
+  }).join('');
+
+  bindCardActions(grid);
 }
 
 // ===== Wife Banner =====
@@ -1370,6 +1494,16 @@ async function init() {
     const todayStr2 = formatDateStr(now);
     tabState.wife.activeDate = tabState.wife.allDates.includes(todayStr2) ? todayStr2 : (tabState.wife.allDates[0] || 'all');
   } catch (e) { console.error('Load wife:', e); }
+
+  // Load tech data
+  try {
+    const res = await fetch('data/tech.json');
+    tabState.tech.rawData = await res.json();
+    tabState.tech.allContent = tabState.tech.rawData.content || [];
+    tabState.tech.allDates = [...new Set(tabState.tech.allContent.map(c => c.date))].sort().reverse();
+    const todayStr3 = formatDateStr(now);
+    tabState.tech.activeDate = tabState.tech.allDates.includes(todayStr3) ? todayStr3 : (tabState.tech.allDates[0] || 'all');
+  } catch (e) { console.error('Load tech:', e); }
 
   // Update tab buttons for default
   document.querySelectorAll('.tab-btn').forEach(btn => {
