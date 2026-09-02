@@ -10,6 +10,8 @@ const DATA_PATH = MODE === 'parenting'
   ? join(__dirname, '..', 'data', 'wife.json')
   : MODE === 'tech'
   ? join(__dirname, '..', 'data', 'tech.json')
+  : MODE === 'ai'
+  ? join(__dirname, '..', 'data', 'ai.json')
   : join(__dirname, '..', 'data', 'content.json');
 const API_KEY = process.env.OPENROUTER_API_KEY;
 const MODEL = process.env.OPENROUTER_MODEL || 'deepseek/deepseek-chat';
@@ -270,7 +272,9 @@ ${sourcesText}
 // ===== 科技圈吃瓜模式配置 =====
 const TECH_CATEGORIES = {
   'drama':     { name: '吃瓜大戏', emoji: '🍉', desc: '科技圈人物事件——孙宇晨各种操作、老罗的各种大动作、大佬翻车/逆袭，有剧情有反转' },
-  'big-move':  { name: '大动作', emoji: '🚀', desc: '新产品/新项目/战略转型——老罗说要搞电视、某厂突然入局某赛道、大厂组织架构调整' },
+  'leader':    { name: '大佬动态', emoji: '👤', desc: '科技领军人物的最新动态——马斯克SpaceX/无人驾驶/Cursor、黄仁勋NVIDIA、雷军小米汽车、余承东华为、库克Apple等大佬在做什么、发什么、搞什么' },
+  'company':   { name: '公司动态', emoji: '🏢', desc: '头部科技公司最新动态——最新成果/战略变化/组织架构调整/裁员增员/财报/收购并购，聚焦大厂内部变化' },
+  'big-move':  { name: '大动作', emoji: '🚀', desc: '新产品/新项目/战略转型——某厂突然入局某赛道、跨界搞事情、发布颠覆性产品' },
   'hot-take':  { name: '大佬观点', emoji: '🎤', desc: '科技大佬的争议发言/出圈金句——可以是深刻的也可以是翻车的' },
   'feud':      { name: '隔空互怼', emoji: '⚔️', desc: '大佬之间的公开互怼/暗讽——黄仁勋vs苏妈、库克vs马斯克、国内大佬互怼' },
   'product':   { name: '新品速递', emoji: '📱', desc: '有意思的新产品发布——不干巴巴报参数，要有梗有槽点有亮点' },
@@ -316,19 +320,30 @@ ${sourcesDesc}
 4. **要有吃瓜视角**：不是转述新闻稿，是用"哇这个事情太有意思了"的语气讲，有梗有槽点
 5. **人物故事优先**：科技圈最有趣的是人的故事——老罗的各种大动作、孙宇晨的各种操作、马斯克的嘴炮、黄仁勋的皮衣——人物比参数有意思
 
-## 关注的科技圈人物（可拓展，不限于此）
+## 重点关注的科技领军人物（可拓展，不限于此）
+- 马斯克——SpaceX星舰/无人驾驶Robotaxi/Cursor相关/X平台动态/AI/各种嘴炮
+- 黄仁勋——NVIDIA/AI芯片/皮衣/各种金句和发布会
 - 罗永浩（老罗）——各种大动作、创业/转型/直播/说要搞电视等
 - 孙宇晨——各种操作、营销/争议/吃瓜
-- 马斯克——推特/X动态、AI/Robotaxi/火星、各种嘴炮
-- 黄仁勋——NVIDIA/皮衣/AI芯片、各种金句
-- 库克——Apple动态/Vision Pro/AI
-- 扎克伯格——Meta/VR/Llama
-- 国内大佬：雷军/余承东/王兴/程维/张一鸣等
-- AI圈：Sam Altman/Ilya/Karpathy等
+- 库克——Apple动态/Vision Pro/Apple Intelligence
+- 扎克伯格——Meta/VR/Llama/开源策略
+- 雷军——小米汽车/小米生态/各种发布会
+- 余承东——华为/鸿蒙/智界/各种"遥遥领先"
+- 苏姿丰（苏妈）——AMD/芯片竞争
+- 黄学松——字节跳动/AI战略
+- 王传福——比亚迪/新能源
 - 新锐创业者/翻车创业者
 
+## 重点关注的头部科技公司（可拓展，不限于此）
+- Apple/Microsoft/Google/Meta/Amazon——五大科技巨头最新动态
+- NVIDIA/AMD/Intel——芯片三巨头
+- 特斯拉/Spaceex——马斯克帝国
+- 国内：华为/小米/字节跳动/腾讯/阿里/百度/比亚迪/大疆
+- 创业公司：OpenAI/Anthropic/Perplexity/Mistral等AI新贵
+- 关键动态：最新成果/战略转型/组织架构调整/裁员增员/财报/收购并购/上市退市
+
 ## 生成要求
-生成 8 条内容，分类分布灵活但尽量覆盖多个分类。每条包含：
+生成 10 条内容，分类分布灵活但尽量覆盖多个分类，特别是"大佬动态"和"公司动态"两个分类。每条包含：
 - title: 标题，有吸引力，让人想点进来看
 - category: 分类key
 - categoryName: 分类名
@@ -337,6 +352,94 @@ ${sourcesDesc}
 - usageTip: 可以怎么开口聊——具体到可以用的开场白
 - trendingTopic: 关联的人物/事件/热词（如有）
 - sourceUrl: 真实可访问的源链接（36氪/微博/虎嗅等）。如是一般性经验可留空。不要编造URL
+
+## 输出格式
+请直接输出 JSON 数组，不要包含 markdown 代码块标记，不要有其他文字：
+[{"title":"...","category":"...","categoryName":"...","content":"...","explanation":"...","usageTip":"...","trendingTopic":"...","sourceUrl":"..."}, ...]`;
+}
+
+// ===== AI炸裂频道模式配置 =====
+const AI_CATEGORIES = {
+  'model-drop':  { name: '模型炸裂',  emoji: '💥', desc: '最新模型发布/评测/对比——新模型有多强？对比上一代提升了多少？跑分如何？实测翻车了吗？' },
+  'bombshell':   { name: '炸裂新闻',  emoji: '🔥', desc: 'AI领域最炸的消息——奥特曼说Astra操作电脑达人类水平、某模型参数量震惊业界、某公司宣布重大突破，必须是"哇！"级别的' },
+  'ai-leader':   { name: '大佬动态',  emoji: '🎤', desc: 'AI头部影响力人物的最新发言和动态——Sam Altman/OpenAI、Dario Amodei/Anthropic、Demis Hassabis/Google DeepMind、Karpathy、LeCun、黄仁勋等的出圈发言' },
+  'company':     { name: '公司动向',  emoji: '🏢', desc: 'AI头部公司战略动态——OpenAI/Anthropic/Google/Meta/Mistral/Perplexity等最新产品发布/融资/估值/组织调整/人事变动/商业化进展' },
+  'agent':       { name: 'Agent能力', emoji: '🤖', desc: 'AI智能体能力突破——操作电脑/自主任务/代码生成/Multi-agent协作/工具调用/浏览器自动化，关注实际能力的跨越式进步' },
+  'research':    { name: '前沿突破',  emoji: '🔬', desc: 'AI前沿研究/论文/技术突破——新架构/新训练方法/推理能力提升/多模态进展/对齐研究/Scaling Law新发现' },
+};
+
+const AI_INFO_SOURCES = {
+  'openai':     { label: 'OpenAI Blog', desc: 'OpenAI官方博客，模型发布和重大公告的第一手来源', url: 'https://openai.com/blog' },
+  'anthropic':  { label: 'Anthropic Blog', desc: 'Anthropic/Claude官方博客，Claude系列模型发布和能力更新', url: 'https://www.anthropic.com/news' },
+  'google-ai':  { label: 'Google AI Blog', desc: 'Google DeepMind/Gemini官方博客，Gemini模型和AI研究动态', url: 'https://blog.google/technology/ai/' },
+  'meta-ai':    { label: 'Meta AI', desc: 'Meta AI/Llama官方博客，开源模型发布和FAIR研究', url: 'https://ai.meta.com/blog/' },
+  'x':          { label: 'X/Twitter', desc: 'Sam Altman @sama、Karpathy @karpathy、黄仁勋等AI大佬的实时动态', url: 'https://x.com' },
+  'hn':         { label: 'Hacker News', desc: 'AI技术讨论第一阵地，新模型发布必上热榜', url: 'https://news.ycombinator.com' },
+  'reddit':     { label: 'Reddit r/LocalLLaMA', desc: '本地大模型社区，新模型评测/对比/开源动态最快', url: 'https://www.reddit.com/r/LocalLLaMA' },
+  'jiqizhixin': { label: '机器之心', desc: '国内AI媒体报道，中文化的技术解读和产业动态', url: 'https://www.jiqizhixin.com' },
+  'qbitai':     { label: '量子位', desc: '国内AI媒体报道，关注AI产业/融资/模型动态', url: 'https://www.qbitai.com' },
+  'jike':       { label: '即刻AI圈', desc: '国内AI从业者/产品经理/开发者动态，消息快', url: 'https://web.okjike.com' },
+};
+
+function buildAIPrompt(slot) {
+  const catsDesc = Object.entries(AI_CATEGORIES).map(([k,v]) => `- ${v.name}（${k}）: ${v.desc}`).join('\n');
+  const sourcesDesc = Object.entries(AI_INFO_SOURCES).map(([k,v]) => `- ${v.label} (${v.url}): ${v.desc}`).join('\n');
+
+  const dateStr = `${slot.shanghai.getUTCFullYear()}-${String(slot.shanghai.getUTCMonth()+1).padStart(2,'0')}-${String(slot.shanghai.getUTCDate()).padStart(2,'0')}`;
+  const yesterday = new Date(slot.shanghai.getTime() - 86400000);
+  const yesterdayStr = `${yesterday.getUTCFullYear()}-${String(yesterday.getUTCMonth()+1).padStart(2,'0')}-${String(yesterday.getUTCDate()).padStart(2,'0')}`;
+
+  return `你是一个"AI炸裂新闻"内容生成助手。你的任务是为用户生成AI领域最新、最热、最具影响力的炸裂内容。
+
+## 用户画像
+- RN开发/App开发/前端程序员，深度关注AI行业
+- 需要第一时间知道AI领域发生了什么大事、出了什么新模型、谁说了什么炸裂的话
+- 想要的是"卧槽这个太猛了"的感觉，不是论文摘要
+
+## 内容分类
+${catsDesc}
+
+## 信息源（当天新鲜！）
+${sourcesDesc}
+
+## ⚠️ 最重要规则：内容必须新鲜且有冲击力！
+1. **优先今天（${dateStr}）的AI热门话题**——新模型发布/大佬发言/重大突破
+2. **当天没有可用昨天（${yesterdayStr}）的**，绝不能用一周前的旧闻
+3. **每条content注明信息来源和时间**："今天OpenAI Blog宣布...""Sam Altman刚在X上发帖...""Hacker News今天热帖..."
+4. **要有炸裂视角**：不是复述新闻稿，是用"卧槽这个太猛了"的语气讲，要说清楚为什么猛、比之前强在哪、影响有多大
+5. **模型对比要有数据**：新模型发布要说清楚比上一代强多少——跑分提升多少、多了什么能力、实测效果如何
+6. **大佬发言要有上下文**：奥特曼说了什么？在什么场合说的？为什么引起轰动？网友怎么看？
+
+## 重点关注的AI头部人物（可拓展，不限于此）
+- Sam Altman——OpenAI CEO，每次发言/发帖都可能暗示重大方向，Astra操作电脑达人类水平等声明
+- Dario Amodei——Anthropic CEO，Claude系列模型方向/安全AI理念
+- Demis Hassabis——Google DeepMind CEO，Gemini/AlphaFold/通用AI
+- Karpathy——AI教育/深度技术解读/vibe coding概念
+- Yann LeCun——Meta首席科学家，开源AI/世界模型
+- 黄仁勋——NVIDIA CEO，AI芯片/算力/GPU需求
+- Mistral团队——欧洲AI新锐
+- 国内AI大佬：李彦宏/王海峰/周伯文等
+
+## 重点关注的AI头部公司（可拓展，不限于此）
+- OpenAI——GPT系列/o系列/Codex/Sora/Astra/Operator
+- Anthropic——Claude系列/Claude Code/Computer Use
+- Google DeepMind——Gemini/Veo/AlphaFold
+- Meta——Llama系列/开源模型
+- Mistral——欧洲开源AI
+- Perplexity——AI搜索
+- xAI——Grok系列
+- 国内：百度/阿里通义/字节豆包/DeepSeek/智谱/月之暗面等
+
+## 生成要求
+生成 10 条内容，分类分布灵活但尽量覆盖多个分类。每条包含：
+- title: 标题，有冲击力，让人想点进来看
+- category: 分类key
+- categoryName: 分类名
+- content: 具体内容，生动有冲击力，说清楚为什么猛/强在哪/影响多大
+- explanation: 背景信息/为什么这件事重要/对开发者有什么影响
+- usageTip: 可以怎么跟同事聊——具体到可以用的开场白
+- trendingTopic: 关联的人物/模型/事件/热词（如有）
+- sourceUrl: 真实可访问的源链接（OpenAI Blog/Anthropic/X/HN等）。不要编造URL
 
 ## 输出格式
 请直接输出 JSON 数组，不要包含 markdown 代码块标记，不要有其他文字：
@@ -732,6 +835,9 @@ async function main() {
   console.log(`📅 时段: ${slot.title} (${slot.slotId})`);
   console.log(`🤖 模型: ${MODEL}`);
   if (MODE === 'parenting') console.log(`👶 模式: 育儿`);
+  if (MODE === 'tech') console.log(`🍉 模式: 科技吃瓜`);
+  if (MODE === 'ai') console.log(`🤖 模式: AI炸裂`);
+  if (MODE === 'wife') console.log(`💝 模式: 媳妇`);
 
   // 读取现有数据
   let existing = { lastUpdated: '', content: [] };
@@ -745,6 +851,7 @@ async function main() {
   const prompt = MODE === 'parenting' ? buildParentingPrompt(slot)
     : MODE === 'wife' ? buildWifePrompt(slot)
     : MODE === 'tech' ? buildTechPrompt(slot)
+    : MODE === 'ai' ? buildAIPrompt(slot)
     : buildPrompt(slot);
   console.log('⏳ 正在生成内容...');
 
@@ -761,7 +868,7 @@ async function main() {
     }
   }
   if (!newItems) throw new Error('所有模型尝试均失败');
-  console.log(`✅ 生成了 ${newItems.length} 条${MODE === 'parenting' ? '育儿故事' : '新梗'}`);
+  console.log(`✅ 生成了 ${newItems.length} 条${MODE === 'parenting' ? '育儿故事' : MODE === 'tech' ? '科技吃瓜' : MODE === 'ai' ? 'AI炸裂' : MODE === 'wife' ? '媳妇内容' : '新梗'}`);
   console.log(`📊 Token: 输入 ${usage.prompt_tokens || 0} / 输出 ${usage.completion_tokens || 0} / 总计 ${usage.total_tokens || 0}`);
 
   // 去重（标题去重）
@@ -813,7 +920,7 @@ async function main() {
   };
 
   writeFileSync(DATA_PATH, JSON.stringify(updated, null, 2) + '\n', 'utf-8');
-  console.log(`📝 content.json 已更新，共 ${merged.length} 条（新增 ${enriched.length} 条）`);
+  console.log(`📝 ${MODE}.json 已更新，共 ${merged.length} 条（新增 ${enriched.length} 条）`);
 }
 
 main().catch(err => {
