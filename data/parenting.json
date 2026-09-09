@@ -1,7 +1,70 @@
 {
-  "lastUpdated": "2026-09-06T23:22:00+08:00",
+  "lastUpdated": "2026-09-10T00:30:00+08:00",
   "version": "3.0.0",
   "content": [
+    {
+      "id": "1788971409104-0",
+      "title": "声音魔法师：梅尔·布兰克的声音奇迹",
+      "theme": "unique-path",
+      "themeName": "做唯一故事",
+      "interest": "voiceover",
+      "interestName": "配音",
+      "story": "梅尔·布兰克是一位著名的配音演员，他为卡通角色如兔八哥、达菲鸭等配音。他可以用不同的声音为多个角色配音，而且每个角色都有独特的个性和特点。梅尔·布兰克用自己的声音创造了无数经典角色，成为了声音魔法师。",
+      "dadScript": "团团，你知道吗？有个叫梅尔·布兰克的人，他用声音创造了很多卡通角色，每个角色都有自己独特的声音哦！",
+      "discussionPrompts": [
+        "你觉得梅尔·布兰克最厉害的是什么？",
+        "如果你可以为一个卡通角色配音，你会选哪个角色？"
+      ],
+      "activity": "试试为家里的玩具或卡通人物配音，看看你能创造出多少种不同的声音！",
+      "personName": "Mel Blanc",
+      "sourceUrl": "https://en.wikipedia.org/wiki/Mel_Blanc",
+      "date": "2026-09-10",
+      "timeSlot": "evening",
+      "slot": "parenting-daily",
+      "createdAt": "2026-09-10T00:30:00+08:00"
+    },
+    {
+      "id": "1788971409104-1",
+      "title": "配音大师：唐·拉方丹的多面声音",
+      "theme": "unique-path",
+      "themeName": "做唯一故事",
+      "interest": "voiceover",
+      "interestName": "配音",
+      "story": "唐·拉方丹是一位传奇配音演员，他为数千个广告、电影和电视节目配音。他可以用不同的声音和语调为各种角色和产品代言，从迪士尼角色到广告中的产品，他的声音无处不在。唐·拉方丹通过不断练习和创新，成为了配音界的巨星。",
+      "dadScript": "团团，你知道吗？有个叫唐·拉方丹的人，他的声音出现在很多广告和动画里，他用声音让角色活灵活现！",
+      "discussionPrompts": [
+        "你觉得配音最难的部分是什么？",
+        "如果你可以为一家公司做广告配音，你会选哪家公司？"
+      ],
+      "activity": "模仿你最喜欢的卡通人物的声音，看看能不能让家人猜出是谁！",
+      "personName": "Don LaFontaine",
+      "sourceUrl": "https://en.wikipedia.org/wiki/Don_LaFontaine",
+      "date": "2026-09-10",
+      "timeSlot": "evening",
+      "slot": "parenting-daily",
+      "createdAt": "2026-09-10T00:30:00+08:00"
+    },
+    {
+      "id": "1788971409104-2",
+      "title": "声音的冒险：艾迪·墨菲的多角色配音",
+      "theme": "unique-path",
+      "themeName": "做唯一故事",
+      "interest": "voiceover",
+      "interestName": "配音",
+      "story": "艾迪·墨菲不仅是一位著名的喜剧演员，还是一位出色的配音演员。在电影《怪物史瑞克》中，他为驴子配音，用幽默和机智的声音为角色增色不少。艾迪·墨菲通过声音赋予角色独特的魅力，让观众们记住这些有趣的角色。",
+      "dadScript": "团团，你知道吗？艾迪·墨菲不仅是个喜剧演员，他还为《怪物史瑞克》里的驴子配音，他的声音让角色变得超级有趣！",
+      "discussionPrompts": [
+        "你觉得艾迪·墨菲的配音有什么特别的地方？",
+        "如果你可以为一部电影配音，你会选哪个角色？"
+      ],
+      "activity": "和家人一起模仿电影里的角色对话，看看谁的声音最像！",
+      "personName": "Eddie Murphy",
+      "sourceUrl": "https://en.wikipedia.org/wiki/Eddie_Murphy",
+      "date": "2026-09-10",
+      "timeSlot": "evening",
+      "slot": "parenting-daily",
+      "createdAt": "2026-09-10T00:30:00+08:00"
+    },
     {
       "id": "1788708126262-0",
       "title": "蝴蝶奶奶的魔法画笔",
@@ -1609,13 +1672,13 @@
     }
   ],
   "generationStats": {
-    "model": "minimax/minimax-m3:free",
-    "lastRun": "2026-09-06T23:22:00+08:00",
+    "model": "deepseek/deepseek-chat",
+    "lastRun": "2026-09-10T00:30:00+08:00",
     "slot": "育儿每日故事",
-    "promptTokens": 1532,
-    "completionTokens": 986,
-    "totalTokens": 2518,
-    "cost": 0,
-    "costNote": "免费模型"
+    "promptTokens": 1439,
+    "completionTokens": 737,
+    "totalTokens": 2176,
+    "cost": 0.00041,
+    "costNote": "$0.14/1M输入 + $0.28/1M输出"
   }
 }
