@@ -1,7 +1,70 @@
 {
-  "lastUpdated": "2026-09-10T00:30:00+08:00",
+  "lastUpdated": "2026-09-11T00:19:00+08:00",
   "version": "3.0.0",
   "content": [
+    {
+      "id": "1789057151485-0",
+      "title": "画画中的自己：弗里达·卡罗",
+      "theme": "unique-path",
+      "themeName": "做唯一故事",
+      "interest": "drawing",
+      "interestName": "画画",
+      "story": "弗里达·卡罗是一位墨西哥画家，她因为车祸受伤，长时间躺在床上。但她没有放弃，而是拿起画笔，对着镜子画自己。她的画风独特，充满了色彩和情感，成为了世界上最有名的画家之一。",
+      "dadScript": "团团，你知道吗？有一位画家叫弗里达·卡罗，她在受伤后躺在床上，但并没有停止画画。她通过画自己，创造了一种独一无二的画风。",
+      "discussionPrompts": [
+        "你觉得画画可以表达哪些情感？",
+        "如果你有一面镜子，你会画什么样的自己？"
+      ],
+      "activity": "让团团对着镜子画自己，尝试用不同的颜色和线条表达她的心情。",
+      "personName": "弗里达·卡罗",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/%E5%BC%97%E9%87%8C%E8%BE%BE%C2%B7%E5%8D%A1%E7%BD%97",
+      "date": "2026-09-11",
+      "timeSlot": "evening",
+      "slot": "parenting-daily",
+      "createdAt": "2026-09-11T00:19:00+08:00"
+    },
+    {
+      "id": "1789057151485-1",
+      "title": "昆虫世界的探险家：玛丽亚·西比拉·梅里安",
+      "theme": "unique-path",
+      "themeName": "做唯一故事",
+      "interest": "insects",
+      "interestName": "昆虫",
+      "story": "玛丽亚·西比拉·梅里安是一位德国的博物学家和插画家，她在17世纪就前往南美洲，观察并画下了许多昆虫的生活。她的作品不仅美丽，还帮助人们了解昆虫的变态过程。",
+      "dadScript": "团团，你知道吗？有一位叫玛丽亚·西比拉·梅里安的探险家，她专门画昆虫的生活。她的画不仅好看，还让人们知道了昆虫是怎么长大的。",
+      "discussionPrompts": [
+        "你最喜欢哪种昆虫？为什么？",
+        "如果你能画一种昆虫的生活，你会选择哪一种？"
+      ],
+      "activity": "让团团画一种她最喜欢的昆虫，并尝试描述它的生活习性。",
+      "personName": "玛丽亚·西比拉·梅里安",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/%E7%8E%9B%E4%B8%BD%E4%BA%9A%C2%B7%E8%A5%BF%E6%AF%94%E6%8B%89%C2%B7%E6%A2%85%E9%87%8C%E5%AE%89",
+      "date": "2026-09-11",
+      "timeSlot": "evening",
+      "slot": "parenting-daily",
+      "createdAt": "2026-09-11T00:19:00+08:00"
+    },
+    {
+      "id": "1789057151485-2",
+      "title": "乒乓女王：邓亚萍",
+      "theme": "unique-path",
+      "themeName": "做唯一故事",
+      "interest": "sports",
+      "interestName": "运动探索",
+      "story": "邓亚萍是中国著名的乒乓球运动员，她身高只有1.55米，但她凭借刻苦训练和独特的打法，赢得了4枚奥运金牌。她的故事告诉我们，只要有决心和独特的风格，任何人都可以成为冠军。",
+      "dadScript": "团团，你知道吗？有一位叫邓亚萍的乒乓球运动员，她虽然个子不高，但她通过自己的努力和独特的打法，赢得了很多金牌。",
+      "discussionPrompts": [
+        "你觉得运动中最重要的是什么？",
+        "如果你可以发明一种新的运动，你会怎么设计它？"
+      ],
+      "activity": "让团团尝试打乒乓球，或者设计一种新的运动规则。",
+      "personName": "邓亚萍",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/%E9%82%93%E4%BA%9A%E8%90%8D",
+      "date": "2026-09-11",
+      "timeSlot": "evening",
+      "slot": "parenting-daily",
+      "createdAt": "2026-09-11T00:19:00+08:00"
+    },
     {
       "id": "1788971409104-0",
       "title": "声音魔法师：梅尔·布兰克的声音奇迹",
@@ -1673,12 +1736,12 @@
   ],
   "generationStats": {
     "model": "deepseek/deepseek-chat",
-    "lastRun": "2026-09-10T00:30:00+08:00",
+    "lastRun": "2026-09-11T00:19:00+08:00",
     "slot": "育儿每日故事",
-    "promptTokens": 1439,
-    "completionTokens": 737,
-    "totalTokens": 2176,
-    "cost": 0.00041,
+    "promptTokens": 1446,
+    "completionTokens": 796,
+    "totalTokens": 2242,
+    "cost": 0.00043,
     "costNote": "$0.14/1M输入 + $0.28/1M输出"
   }
 }
