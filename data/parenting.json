@@ -1,7 +1,70 @@
 {
-  "lastUpdated": "2026-09-11T00:19:00+08:00",
+  "lastUpdated": "2026-09-12T00:22:00+08:00",
   "version": "3.0.0",
   "content": [
+    {
+      "id": "1789143763210-0",
+      "title": "向日葵的秘密花园",
+      "theme": "math-beauty",
+      "themeName": "数学之美",
+      "interest": "general",
+      "interestName": "通用",
+      "story": "你知道吗？向日葵的种子排列方式藏着数学的秘密！它们按照斐波那契数列排列，这样每颗种子都能享受到阳光，不会互相遮挡。数学家们发现，这种排列方式在自然界中最常见，因为它们是最有效率的！",
+      "dadScript": "团团，你知道吗？向日葵的种子排列方式其实是个数学谜题哦！",
+      "discussionPrompts": [
+        "你觉得为什么向日葵会选择这样的排列方式呢？",
+        "你能想到其他植物或动物也用数学的方式解决问题吗？"
+      ],
+      "activity": "一起画一幅向日葵的画，注意种子排列的螺旋形状。",
+      "personName": "Leonardo Fibonacci",
+      "sourceUrl": "https://en.wikipedia.org/wiki/Fibonacci_number",
+      "date": "2026-09-12",
+      "timeSlot": "evening",
+      "slot": "parenting-daily",
+      "createdAt": "2026-09-12T00:22:00+08:00"
+    },
+    {
+      "id": "1789143763210-1",
+      "title": "蜜蜂的建筑艺术",
+      "theme": "math-beauty",
+      "themeName": "数学之美",
+      "interest": "insects",
+      "interestName": "昆虫",
+      "story": "蜜蜂是了不起的建筑师！它们的蜂巢由无数个六边形的小房间组成，这种形状不仅坚固，还能节省材料。数学家们证明，六边形是在平面上最节省材料、最坚固的形状之一。蜜蜂用数学打造了完美的家！",
+      "dadScript": "团团，你知道吗？蜜蜂建造的蜂巢是数学与艺术的完美结合！",
+      "discussionPrompts": [
+        "你认为蜜蜂为什么选择六边形而不是其他形状呢？",
+        "你能设计一个像蜂巢一样结构坚固的建筑吗？"
+      ],
+      "activity": "用纸板或塑料积木搭建一个六边形的蜂巢模型。",
+      "personName": "蜜蜂",
+      "sourceUrl": "https://en.wikipedia.org/wiki/Honeycomb",
+      "date": "2026-09-12",
+      "timeSlot": "evening",
+      "slot": "parenting-daily",
+      "createdAt": "2026-09-12T00:22:00+08:00"
+    },
+    {
+      "id": "1789143763210-2",
+      "title": "螺旋的数学魔法",
+      "theme": "math-beauty",
+      "themeName": "数学之美",
+      "interest": "drawing",
+      "interestName": "画画",
+      "story": "古希腊数学家阿基米德发现了螺旋的美妙之处。螺旋不仅在贝壳、飓风中随处可见，还能帮助我们理解宇宙的运转。他用数学描述了螺旋的形状，后人称之为'阿基米德螺旋'，这种形状在艺术和工程中都有广泛应用。",
+      "dadScript": "团团，你知道吗？古希腊数学家阿基米德用数学揭示了螺旋的奥秘！",
+      "discussionPrompts": [
+        "你能在自然界中找到螺旋形状吗？",
+        "你觉得螺旋为什么在艺术和工程中这么重要？"
+      ],
+      "activity": "画一幅包含螺旋形状的画，可以是贝壳、飓风或是想象中的宇宙。",
+      "personName": "阿基米德",
+      "sourceUrl": "https://en.wikipedia.org/wiki/Archimedean_spiral",
+      "date": "2026-09-12",
+      "timeSlot": "evening",
+      "slot": "parenting-daily",
+      "createdAt": "2026-09-12T00:22:00+08:00"
+    },
     {
       "id": "1789057151485-0",
       "title": "画画中的自己：弗里达·卡罗",
@@ -1736,12 +1799,12 @@
   ],
   "generationStats": {
     "model": "deepseek/deepseek-chat",
-    "lastRun": "2026-09-11T00:19:00+08:00",
+    "lastRun": "2026-09-12T00:22:00+08:00",
     "slot": "育儿每日故事",
-    "promptTokens": 1446,
-    "completionTokens": 796,
-    "totalTokens": 2242,
-    "cost": 0.00043,
+    "promptTokens": 1449,
+    "completionTokens": 629,
+    "totalTokens": 2078,
+    "cost": 0.00038,
     "costNote": "$0.14/1M输入 + $0.28/1M输出"
   }
 }
