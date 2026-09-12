@@ -1,7 +1,70 @@
 {
-  "lastUpdated": "2026-09-12T00:22:00+08:00",
+  "lastUpdated": "2026-09-12T23:29:00+08:00",
   "version": "3.0.0",
   "content": [
+    {
+      "id": "1789226970827-0",
+      "title": "向日葵的数学魔法",
+      "theme": "math-beauty",
+      "themeName": "数学之美",
+      "interest": "general",
+      "interestName": "通用",
+      "story": "你知道吗？向日葵的种子排列成了一种神奇的螺旋，这种螺旋叫做斐波那契数列。数学家斐波那契发现了这个数列，它不仅在向日葵上能看到，还在松果、菠萝和许多其他地方出现呢！",
+      "dadScript": "团团，你知道吗？向日葵的种子里藏着一个数学家的秘密哦！",
+      "discussionPrompts": [
+        "你觉得向日葵为什么要这样排列种子呢？",
+        "你还能想到哪些地方可以看到这种螺旋吗？"
+      ],
+      "activity": "一起去花园或公园找找看，有没有其他植物也有这种螺旋排列的种子，可以用画笔画下来哦！",
+      "personName": "Leonardo Fibonacci",
+      "sourceUrl": "https://en.wikipedia.org/wiki/Fibonacci_number",
+      "date": "2026-09-12",
+      "timeSlot": "evening",
+      "slot": "parenting-daily",
+      "createdAt": "2026-09-12T23:29:00+08:00"
+    },
+    {
+      "id": "1789226970827-1",
+      "title": "蜜蜂的六边形工坊",
+      "theme": "math-beauty",
+      "themeName": "数学之美",
+      "interest": "general",
+      "interestName": "通用",
+      "story": "蜜蜂是自然界最聪明的建筑师之一。它们用蜂蜡建造的蜂巢是由无数个小六边形组成的，这种形状不仅坚固，还能节省材料。数学家们发现，六边形是最节省材料又最稳固的形状之一。",
+      "dadScript": "团团，你知道吗？蜜蜂的蜂巢可是自然界最聪明的建筑设计哦！",
+      "discussionPrompts": [
+        "你觉得蜜蜂为什么要选择六边形来建造蜂巢呢？",
+        "你能想到还有哪些地方用到了六边形的设计吗？"
+      ],
+      "activity": "用纸板和剪刀，试着做一个六边形的模型，看看它是不是真的又稳固又省材料！",
+      "personName": "蜜蜂",
+      "sourceUrl": "https://en.wikipedia.org/wiki/Honeycomb",
+      "date": "2026-09-12",
+      "timeSlot": "evening",
+      "slot": "parenting-daily",
+      "createdAt": "2026-09-12T23:29:00+08:00"
+    },
+    {
+      "id": "1789226970827-2",
+      "title": "达·芬奇的数学密码",
+      "theme": "math-beauty",
+      "themeName": "数学之美",
+      "interest": "drawing",
+      "interestName": "画画",
+      "story": "达·芬奇不仅是伟大的画家，还是数学爱好者。他在画画时，用数学的比例和对称来让画作更完美。比如，他画的《维特鲁威人》就展示了人体比例和黄金分割的美。",
+      "dadScript": "团团，你知道吗？达·芬奇画画时还用到了数学的秘密哦！",
+      "discussionPrompts": [
+        "你觉得数学和画画有什么关系呢？",
+        "你能在自己的画作中用上这些数学知识吗？"
+      ],
+      "activity": "试着画一幅画，用上对称或比例，看看是不是让你的画作更美了！",
+      "personName": "Leonardo da Vinci",
+      "sourceUrl": "https://en.wikipedia.org/wiki/Vitruvian_Man",
+      "date": "2026-09-12",
+      "timeSlot": "evening",
+      "slot": "parenting-daily",
+      "createdAt": "2026-09-12T23:29:00+08:00"
+    },
     {
       "id": "1789143763210-0",
       "title": "向日葵的秘密花园",
@@ -1799,11 +1862,11 @@
   ],
   "generationStats": {
     "model": "deepseek/deepseek-chat",
-    "lastRun": "2026-09-12T00:22:00+08:00",
+    "lastRun": "2026-09-12T23:29:00+08:00",
     "slot": "育儿每日故事",
     "promptTokens": 1449,
-    "completionTokens": 629,
-    "totalTokens": 2078,
+    "completionTokens": 648,
+    "totalTokens": 2097,
     "cost": 0.00038,
     "costNote": "$0.14/1M输入 + $0.28/1M输出"
   }
