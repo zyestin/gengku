@@ -1,7 +1,49 @@
 {
-  "lastUpdated": "2026-09-12T23:29:00+08:00",
+  "lastUpdated": "2026-09-14T00:08:00+08:00",
   "version": "3.0.0",
   "content": [
+    {
+      "id": "1789315695803-0",
+      "title": "牛顿的煮手表实验",
+      "theme": "science-fun",
+      "themeName": "科学乐趣",
+      "interest": "general",
+      "interestName": "通用",
+      "story": "艾萨克·牛顿是个非常好奇的科学家。有一次，他想研究鸡蛋煮熟需要多长时间，于是他把手表放进锅里煮，结果手表煮坏了！牛顿并没有因此沮丧，反而觉得这个实验很有趣。他通过这些有趣的实验发现了许多重要的科学原理，比如万有引力。",
+      "dadScript": "团团，你知道吗？有个叫牛顿的科学家曾经把手表放进锅里煮，结果手表煮坏了！",
+      "discussionPrompts": [
+        "你觉得牛顿煮手表的时候在想什么？",
+        "如果你是个科学家，你会做什么有趣的实验？"
+      ],
+      "activity": "和爸爸一起做一个简单的小实验，比如观察水的沸点。",
+      "personName": "艾萨克·牛顿",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/艾萨克·牛顿",
+      "date": "2026-09-14",
+      "timeSlot": "evening",
+      "slot": "parenting-daily",
+      "createdAt": "2026-09-14T00:08:00+08:00"
+    },
+    {
+      "id": "1789315695803-1",
+      "title": "居里夫人的好奇心",
+      "theme": "science-fun",
+      "themeName": "科学乐趣",
+      "interest": "general",
+      "interestName": "通用",
+      "story": "玛丽·居里是一位非常好奇的科学家。她发现了一种新的元素——镭，并且因此获得了诺贝尔奖。居里夫人并不在乎是否能赚钱，她只是觉得科学研究非常有趣。她甚至在寒冷的实验室里工作，因为那里有她热爱的实验。",
+      "dadScript": "团团，你知道吗？居里夫人因为对科学的好奇心发现了镭，还获得了诺贝尔奖！",
+      "discussionPrompts": [
+        "你觉得居里夫人为什么会在寒冷的实验室里工作？",
+        "如果你能发现一个新元素，你会给它起什么名字？"
+      ],
+      "activity": "和爸爸一起用放大镜观察一些日常物品，看看它们的不同之处。",
+      "personName": "玛丽·居里",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/玛丽·居里",
+      "date": "2026-09-14",
+      "timeSlot": "evening",
+      "slot": "parenting-daily",
+      "createdAt": "2026-09-14T00:08:00+08:00"
+    },
     {
       "id": "1789226970827-0",
       "title": "向日葵的数学魔法",
@@ -1862,11 +1904,11 @@
   ],
   "generationStats": {
     "model": "deepseek/deepseek-chat",
-    "lastRun": "2026-09-12T23:29:00+08:00",
+    "lastRun": "2026-09-14T00:08:00+08:00",
     "slot": "育儿每日故事",
-    "promptTokens": 1449,
-    "completionTokens": 648,
-    "totalTokens": 2097,
+    "promptTokens": 1447,
+    "completionTokens": 644,
+    "totalTokens": 2091,
     "cost": 0.00038,
     "costNote": "$0.14/1M输入 + $0.28/1M输出"
   }
