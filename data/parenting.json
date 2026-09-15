@@ -1,7 +1,70 @@
 {
-  "lastUpdated": "2026-09-14T00:08:00+08:00",
+  "lastUpdated": "2026-09-16T00:50:00+08:00",
   "version": "3.0.0",
   "content": [
+    {
+      "id": "1789491033790-0",
+      "title": "画中的蝴蝶女王",
+      "theme": "learning-meaning",
+      "themeName": "学习的意义",
+      "interest": "insects",
+      "interestName": "昆虫",
+      "story": "玛丽亚·西比拉·梅里安是一位生活在300多年前的画家，她从小就喜欢观察昆虫的生长变化。为了画出蝴蝶从卵到成虫的全过程，她甚至亲自养起了毛毛虫，每天仔细观察并记录它们的每一个变化。她用画笔将这些观察结果画成了一本书《苏里南昆虫变态图谱》，让更多人了解了昆虫的神奇世界。正是因为她的好奇心和对昆虫的热爱，她成为了历史上最著名的博物插画家之一。",
+      "dadScript": "团团，你知道吗？有一位画家阿姨，她特别喜欢观察蝴蝶和小虫子，还用画笔把它们的变化都画了出来。",
+      "discussionPrompts": [
+        "你觉得观察昆虫有哪些有趣的地方？",
+        "如果你也像玛丽亚一样画昆虫，你最想画哪一种？"
+      ],
+      "activity": "今天我们一起在院子里观察昆虫，然后用画笔把你看到的昆虫画下来，看看能不能画出它们的特点。",
+      "personName": "Maria Sibylla Merian",
+      "sourceUrl": "https://en.wikipedia.org/wiki/Maria_Sibylla_Merian",
+      "date": "2026-09-16",
+      "timeSlot": "evening",
+      "slot": "parenting-daily",
+      "createdAt": "2026-09-16T00:50:00+08:00"
+    },
+    {
+      "id": "1789491033790-1",
+      "title": "好奇心的魔法师",
+      "theme": "learning-meaning",
+      "themeName": "学习的意义",
+      "interest": "general",
+      "interestName": "通用",
+      "story": "爱因斯坦小时候并不是一个成绩特别优秀的学生，但他总是充满了好奇心。有一次，爸爸送给他一个指南针，小爱因斯坦发现无论怎么转动，指针总是指向同一个方向。这个现象让他非常着迷，他开始思考为什么会这样，后来甚至研究出了引力波和相对论这些超级厉害的科学理论。爱因斯坦说，他学习不是因为要考试，而是因为他对这个世界充满了好奇。",
+      "dadScript": "团团，你知道吗？爱因斯坦小时候特别喜欢思考问题，他最喜欢问‘为什么’，后来他成为了世界上最伟大的科学家之一。",
+      "discussionPrompts": [
+        "你最近有遇到什么让你特别好奇的事情吗？",
+        "如果你能研究一个问题，你最想研究什么？"
+      ],
+      "activity": "今天我们一起玩‘问为什么’的游戏，你可以问我任何问题，我们一起找答案。",
+      "personName": "Albert Einstein",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/阿尔伯特·爱因斯坦",
+      "date": "2026-09-16",
+      "timeSlot": "evening",
+      "slot": "parenting-daily",
+      "createdAt": "2026-09-16T00:50:00+08:00"
+    },
+    {
+      "id": "1789491033790-2",
+      "title": "用画笔治愈自己",
+      "theme": "learning-meaning",
+      "themeName": "学习的意义",
+      "interest": "drawing",
+      "interestName": "画画",
+      "story": "弗里达·卡罗是一位墨西哥的画家，她小时候经历了一场严重的车祸，受了重伤。卧床休息的时候，她让妈妈在她的床边挂了一面镜子，这样她就能看到自己，并开始对着镜子画自画像。她通过画画表达自己的感受和痛苦，后来她成为了世界上最著名的画家之一。她的画不仅治愈了自己，还感动了全世界的人。",
+      "dadScript": "团团，你知道吗？有一位画家阿姨，她在生病的时候用画画来治愈自己，还画出了很多感人的作品。",
+      "discussionPrompts": [
+        "你觉得画画可以表达什么样的感情？",
+        "如果你画一幅自画像，你会想画些什么？"
+      ],
+      "activity": "今天我们一起画一幅自画像，看看你能不能用画笔表达出自己今天的感受。",
+      "personName": "Frida Kahlo",
+      "sourceUrl": "https://zh.wikipedia.org/wiki/弗里达·卡罗",
+      "date": "2026-09-16",
+      "timeSlot": "evening",
+      "slot": "parenting-daily",
+      "createdAt": "2026-09-16T00:50:00+08:00"
+    },
     {
       "id": "1789315695803-0",
       "title": "牛顿的煮手表实验",
@@ -1904,12 +1967,12 @@
   ],
   "generationStats": {
     "model": "deepseek/deepseek-chat",
-    "lastRun": "2026-09-14T00:08:00+08:00",
+    "lastRun": "2026-09-16T00:50:00+08:00",
     "slot": "育儿每日故事",
-    "promptTokens": 1447,
-    "completionTokens": 644,
-    "totalTokens": 2091,
-    "cost": 0.00038,
+    "promptTokens": 1438,
+    "completionTokens": 762,
+    "totalTokens": 2200,
+    "cost": 0.00041,
     "costNote": "$0.14/1M输入 + $0.28/1M输出"
   }
 }
